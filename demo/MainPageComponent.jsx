@@ -14,9 +14,10 @@ const MainPageComponent = React.createClass({
                 <h1> echarts-for-react </h1>
                 <h3> A very simple echarts(v3.0) wrapper for React. <a href='https://github.com/hustcc/echarts-for-react'>hustcc/echarts-for-react</a></h3>
                 <SimpleChartComponent />
+                <ChartShowLoadingComponent />
                 <ChartWithEventComponent />
                 <ThemeChartComponent />
-                <ChartShowLoadingComponent  />
+                
                 <h3>Get it on GitHub! <a href='https://github.com/hustcc/echarts-for-react'>hustcc/echarts-for-react</a></h3>
             </div>
         );
