@@ -1,4 +1,4 @@
-# echart-for-react
+# echarts-for-react
 
 A very simple echarts(v3.0) wrapper for react.
 
@@ -6,13 +6,13 @@ A very simple echarts(v3.0) wrapper for react.
 
 # install
 
-```
-npm install echart-for-react
+```sh
+npm install echarts-for-react
 ```
 
 How to run the demo:
 
-```
+```sh
 git clone git@github.com:hustcc/echarts-for-react.git
 
 npm install
@@ -20,21 +20,23 @@ npm install
 npm start
 ```
 
-then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or see [http://hustcc.github.io/echarts-for-react/](http://hustcc.github.io/echarts-for-react/)
+then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or see [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
 
 # usage
 
-Simple demo code: more can see: [http://hustcc.github.io/echarts-for-react/](http://hustcc.github.io/echarts-for-react/)
+Simple demo code. for more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
 ```js
 import React from 'react';
-import ReactEcharts from '../src/echarts-for-react';
+import ReactEcharts from 'echarts-for-react';
 
 <ReactEcharts
     option={this.getOtion()} 
     height={300} 
-    onEvents={onEvents} />
+	theme={"theme_name"}
+	onChartReady={this.onChartReadyCallback}
+    onEvents={EventsDict} />
 ```
 
 
@@ -42,19 +44,40 @@ import ReactEcharts from '../src/echarts-for-react';
 
  - **`option`** 
 
-the echart option config, can see [http://echarts.baidu.com/option.html#title](http://echarts.baidu.com/option.html#title).
+the echarts option config, can see [http://echarts.baidu.com/option.html#title](http://echarts.baidu.com/option.html#title).
 
  - **`height`**
 
-the `height` of echart. number, with `px` as it's unit.
+the `height` of echarts. `number`, with `px` as it's unit.
+
+ - **`theme`**
+
+the `theme` of echarts. `string`, should `registerTheme` before use it (theme object format: [https://github.com/ecomfe/echarts/blob/master/theme/dark.js](https://github.com/ecomfe/echarts/blob/master/theme/dark.js)). e.g.
+
+```js
+// import echarts
+import echarts from 'echarts'; 
+...
+// register theme object
+echarts.registerTheme('my_theme', {
+  backgroundColor: '#f4cccc'
+});
+...
+// render the echarts use option `theme`
+<ReactEcharts 
+    option={this.getOtion()} 
+    height={300} 
+    theme='my_theme' /> 
+
+```
 
  - **`onChartReady`**
 
-when chart is ready, will callback the function with the echart object as it's paramter.
+when the chart is ready, will callback the function with the `echarts object` as it's paramter.
 
  - **`onEvents`**
 
-binding the echarts event, will callback the function with the echart event parameter, and `the echart object`. e.g: 
+binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g: 
 
 ```js
 let onEvents = {
@@ -67,13 +90,12 @@ let onEvents = {
     height={300} 
     onEvents={onEvents} />
 ```
-for more event name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
+for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
 
 
 # TODO
 
-1. theme props
-2. echart API
+1. echart API
 
 
 # LICENSE

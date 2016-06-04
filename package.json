@@ -1,7 +1,7 @@
 {
   "name": "echarts-for-react",
-  "version": "1.0.3",
-  "description": "Echarts(v3.0) components for react",
+  "version": "1.0.4",
+  "description": "baidu Echarts(v3.0) components for react",
   "main": "lib/echarts-for-react",
   "scripts": {
     "start": "webpack-dev-server --watch",
@@ -52,6 +52,8 @@
     "jsx-loader": "~0.13.2",
     "style-loader": "~0.12.3",
     "file-loader": "~0.8.4",
+    "rimraf": "^2.5.0",
+    "cross-env": "^1.0.8",
     "echarts": "^3.1.1",
     "element-resize-event": "^2.0.5"
   },

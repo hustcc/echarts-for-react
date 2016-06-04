@@ -7,7 +7,7 @@ const ReactEcharts = React.createClass({
     propTypes: {
         option: React.PropTypes.object.isRequired,
         height: React.PropTypes.number.isRequired,
-        // theme: React.PropTypes.string, TODO
+        theme: React.PropTypes.string,
         onChartReady: React.PropTypes.func,
         showLoading: React.PropTypes.bool,
         onEvents: React.PropTypes.object
@@ -43,7 +43,7 @@ const ReactEcharts = React.createClass({
     // render the dom
     renderEchartDom() {
         // init the echart object
-        let echartObj = echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom);
+        let echartObj = echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom, this.props.theme);
         // set the echart option
         echartObj.setOption(this.props.option);
 
