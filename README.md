@@ -75,6 +75,10 @@ echarts.registerTheme('my_theme', {
 
 when the chart is ready, will callback the function with the `echarts object` as it's paramter.
 
+ - **`showLoading`**
+
+`bool`, when the chart is rendering, show the loading mask.
+
  - **`onEvents`**
 
 binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g: 
