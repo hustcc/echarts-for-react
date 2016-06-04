@@ -42,15 +42,15 @@ import ReactEcharts from 'echarts-for-react';
 
 # component props
 
- - **`option`** 
+ - **`option`** (required, object)
 
 the echarts option config, can see [http://echarts.baidu.com/option.html#title](http://echarts.baidu.com/option.html#title).
 
- - **`height`**
+ - **`height`** (required, number)
 
 the `height` of echarts. `number`, with `px` as it's unit.
 
- - **`theme`**
+ - **`theme`** (optional, string)
 
 the `theme` of echarts. `string`, should `registerTheme` before use it (theme object format: [https://github.com/ecomfe/echarts/blob/master/theme/dark.js](https://github.com/ecomfe/echarts/blob/master/theme/dark.js)). e.g.
 
@@ -71,15 +71,15 @@ echarts.registerTheme('my_theme', {
 
 ```
 
- - **`onChartReady`**
+ - **`onChartReady`** (optional, function)
 
 when the chart is ready, will callback the function with the `echarts object` as it's paramter.
 
- - **`showLoading`**
+ - **`showLoading`** (optional, bool, default: false)
 
 `bool`, when the chart is rendering, show the loading mask.
 
- - **`onEvents`**
+ - **`onEvents`** (optional, array(string=>function) )
 
 binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g: 
 
