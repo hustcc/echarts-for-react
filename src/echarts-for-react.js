@@ -43,7 +43,7 @@ const ReactEcharts = React.createClass({
     // render the dom
     renderEchartDom() {
         // init the echart object
-        let echartObj = echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom, this.props.theme);
+        let echartObj = this.getEchartsInstance();
         // set the echart option
         echartObj.setOption(this.props.option);
 
@@ -53,7 +53,10 @@ const ReactEcharts = React.createClass({
 
         return echartObj;
     },
-
+    getEchartsInstance() {
+        // return the echart object
+        return echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom, this.props.theme);
+    },
     render() {
         let { height } = this.props
         // for render

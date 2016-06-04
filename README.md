@@ -97,9 +97,36 @@ let onEvents = {
 for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
 
 
-# TODO
+# Component API & Echarts API
 
-1. echart API
+the Component only has `one API` named `getEchartsInstance`.
+
+ - **`getEchartsInstance()`** : get the echarts instance object, then you can use any `API of echarts`.
+
+for example:
+
+```js
+// render the echarts component below with rel
+<ReactEcharts ref='echarts_react'
+    option={this.getOtion()} 
+    height={300}  />
+
+// then get the `ReactEcharts` use this.refs.echarts_react
+
+let echarts_instance = this.refs.echarts_react.getEchartsInstance();
+// then you can use any API of echarts.
+let base64 = echarts_instance.getDataURL();
+```
+
+**About API of echarts, can see** [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance).
+
+you can use the API to do:
+
+1. `binding / unbinding` event.
+2. `dynamic charts` with dynamic data.
+3. get the echarts dom / dataURL / base64, save the chart to png.
+4. `release` the charts.
+
 
 
 # LICENSE

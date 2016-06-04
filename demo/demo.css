@@ -100,6 +100,11 @@ button:hover {
   color: #ecf0f1;
 }
 
+.a_line {
+  display: block;
+  width: 100%;
+}
+
 .nsg-tag {
   border-color: #14204f;
 }
