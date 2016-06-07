@@ -9,7 +9,7 @@ const MainPageComponent = React.createClass({
     render: function() {
         return (
             <div>
-                <h1> echarts-for-react - {this.props.params.type} </h1>
+                <h1> echarts-for-react {this.props.params.type} </h1>
                 <h3> A very simple echarts(v3.0) wrapper for React. <a href='https://github.com/hustcc/echarts-for-react'>hustcc/echarts-for-react</a></h3>
                 
                 <h4>
@@ -20,7 +20,7 @@ const MainPageComponent = React.createClass({
                     <Link to="/echarts/theme">Echarts theme</Link>
                 </h4>
 
-                { this.props.children ||  <SimpleChartComponent />}
+                { this.props.children || <SimpleChartComponent />}
                 
                 <h3>Get it on GitHub! <a href='https://github.com/hustcc/echarts-for-react'>hustcc/echarts-for-react</a></h3>
             </div>
