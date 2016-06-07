@@ -45,7 +45,7 @@ const ChartShowLoadingComponent = React.createClass({
     onChartReady: function(chart) {
         setTimeout(function() {
             chart.hideLoading();
-        }, 5000);
+        }, 3000);
     },
     render: function() {
         let code = "onChartReady: function(chart) {\n" + 

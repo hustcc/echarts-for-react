@@ -32,6 +32,20 @@ h3 {
   text-align: center;
 }
 
+h4 {
+  padding: 20px;
+  text-align: center;
+  color: black;
+}
+
+h4 a {
+  color: black;
+}
+
+h4 a:hover {
+  color: blue;
+}
+
 a,
 a:hover {
   color: #ecf0f1;

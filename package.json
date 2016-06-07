@@ -55,7 +55,8 @@
     "rimraf": "^2.5.0",
     "cross-env": "^1.0.8",
     "echarts": "^3.1.1",
-    "element-resize-event": "^2.0.5"
+    "element-resize-event": "^2.0.5",
+    "react-router": "^2.0.0"
   },
   "dependencies": {
     "echarts": "^3.1.1",
