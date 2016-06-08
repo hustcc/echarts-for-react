@@ -6,7 +6,8 @@ import elementResizeEvent from 'element-resize-event';
 const ReactEcharts = React.createClass({
     propTypes: {
         option: React.PropTypes.object.isRequired,
-        height: React.PropTypes.number.isRequired,
+        style: React.PropTypes.object,
+        className: React.PropTypes.string,
         theme: React.PropTypes.string,
         onChartReady: React.PropTypes.func,
         showLoading: React.PropTypes.bool,
@@ -58,11 +59,12 @@ const ReactEcharts = React.createClass({
         return echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom, this.props.theme);
     },
     render() {
-        let { height } = this.props
+        let style = this.props.style || {height: '300px'};
         // for render
         return (
             <div ref='echartsDom'
-                style={{height}} />
+                className={this.props.className}
+                style={style} />
         );
     }
 });

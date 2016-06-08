@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../src/echarts-for-react';
+import ReactEcharts from '../lib/echarts-for-react';
 
 import echarts from 'echarts';
 
@@ -93,7 +93,6 @@ const ThemeChartComponent = React.createClass({
                    "});\n\n" +
                    "<ReactEcharts \n" +
                     "    option={this.getOtion()} \n" +
-                    "    height={300} \n" +
                     "    theme='my_theme' />";
         return (
             <div className='examples'>
@@ -101,7 +100,6 @@ const ThemeChartComponent = React.createClass({
                     <label> render a echart With <strong>theme</strong>, should <strong>echarts.registerTheme(themeName, themeObj)</strong> before use.</label>
                     <ReactEcharts
                         option={this.getOtion()} 
-                        height={300} 
                         theme="my_theme" />
                     <label> the theme object format: https://github.com/ecomfe/echarts/blob/master/theme/dark.js</label>
                     <pre>

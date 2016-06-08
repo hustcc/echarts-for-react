@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../src/echarts-for-react';
+import ReactEcharts from '../lib/echarts-for-react';
 
 const ChartAPIComponent = React.createClass({
     propTypes: {
@@ -101,8 +101,7 @@ const ChartAPIComponent = React.createClass({
     },
     render: function() {
         let code = "<ReactEcharts ref='echartsInstance' \n" +
-                    "    option={this.getOtion()} \n" +
-                    "    height={300} /> \n" + 
+                    "    option={this.getOtion()} /> \n" + 
                     "\n" + 
                     "// use echarts API: http://echarts.baidu.com/api.html#echartsInstance" +
                     "this.refs.echarts_react.getEchartsInstance().getDataURL();";
@@ -111,8 +110,7 @@ const ChartAPIComponent = React.createClass({
                 <div className='parent'>
                     <label> use echarts API With <strong> getEchartsInstance() </strong>: (the API will return the echarts instance, then you can use any API of echarts.)</label>
                     <ReactEcharts ref='echarts_react'
-                        option={this.getOtion()} 
-                        height={300}  />
+                        option={this.getOtion()}  />
                     <div>
                         <button className='a_line' onClick={this.clickBtn}>click here to get the DataURL of chart.</button>
                     </div>

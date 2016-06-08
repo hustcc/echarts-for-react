@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../src/echarts-for-react';
+import ReactEcharts from '../lib/echarts-for-react';
 
 const ChartShowLoadingComponent = React.createClass({
     propTypes: {
@@ -53,7 +53,6 @@ const ChartShowLoadingComponent = React.createClass({
                    "}\n\n" +
                    "<ReactEcharts \n" +
                     "    option={this.getOtion()} \n" +
-                    "    height={300} \n" +
                     "    onChartReady={this.onChartReady} \n" +
                     "    showLoading={true} />";
 
@@ -63,7 +62,6 @@ const ChartShowLoadingComponent = React.createClass({
                     <label> Chart loading With <strong> showLoading </strong>: (when chart ready, hide the loading mask.)</label>
                     <ReactEcharts
                         option={this.getOtion()} 
-                        height={300} 
                         onChartReady={this.onChartReady} 
                         showLoading={true} />
                     <label> code below: </label>

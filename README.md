@@ -4,7 +4,7 @@ A very simple echarts(v3.0) wrapper for react.
 
 [![Build Status](https://travis-ci.org/hustcc/echarts-for-react.svg?branch=master)](https://travis-ci.org/hustcc/echarts-for-react) [![npm](https://img.shields.io/npm/v/echarts-for-react.svg?style=flat-square)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/dt/echarts-for-react.svg?style=flat-square)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/l/echarts-for-react.svg?style=flat-square)](https://www.npmjs.com/package/echarts-for-react)
 
-# install
+# 1. install
 
 ```sh
 npm install echarts-for-react
@@ -23,7 +23,7 @@ npm start
 then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or see [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
 
-# usage
+# 2. usage
 
 Simple demo code. for more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
@@ -33,26 +33,31 @@ import ReactEcharts from 'echarts-for-react';
 
 <ReactEcharts
     option={this.getOtion()} 
-    height={300} 
+    style={{height: '300px'}} 
 	theme={"theme_name"}
 	onChartReady={this.onChartReadyCallback}
     onEvents={EventsDict} />
 ```
 
 
-# component props
+# 3. component props
 
  - **`option`** (required, object)
 
 the echarts option config, can see [http://echarts.baidu.com/option.html#title](http://echarts.baidu.com/option.html#title).
 
- - **`height`** (required, number)
+ - **`style`** (optional, object)
 
-the `height` of echarts. `number`, with `px` as it's unit.
+the `style` of echarts div. `object`, default is {height: '300px'}.
+
+ - **`className`** (optional, string)
+
+the `class` of echarts div. you can setting the css style of charts by class name.
 
  - **`theme`** (optional, string)
 
 the `theme` of echarts. `string`, should `registerTheme` before use it (theme object format: [https://github.com/ecomfe/echarts/blob/master/theme/dark.js](https://github.com/ecomfe/echarts/blob/master/theme/dark.js)). e.g.
+
 
 ```js
 // import echarts
@@ -66,7 +71,8 @@ echarts.registerTheme('my_theme', {
 // render the echarts use option `theme`
 <ReactEcharts 
     option={this.getOtion()} 
-    height={300} 
+    style={{height: '300px', width: '100%'}} 
+	className='echarts-for-echarts' 
     theme='my_theme' /> 
 
 ```
@@ -91,13 +97,13 @@ let onEvents = {
 ...
 <ReactEcharts
     option={this.getOtion()} 
-    height={300} 
+    style={{height: '300px', width: '100%'}} 
     onEvents={onEvents} />
 ```
 for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
 
 
-# Component API & Echarts API
+# 4. Component API & Echarts API
 
 the Component only has `one API` named `getEchartsInstance`.
 
@@ -129,6 +135,6 @@ you can use the API to do:
 
 
 
-# LICENSE
+# 5. LICENSE
 
 MIT
