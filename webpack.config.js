@@ -4,8 +4,7 @@ var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 module.exports = {
   entry: './demo/demo.jsx',
   output: {
-    path: './demo/dist/',
-    filename: 'bundle.js'
+    path: './demo/dist/', filename: 'bundle.js'
   },
   module: {
     loaders:[{
@@ -21,9 +20,6 @@ module.exports = {
     }]
   },
   plugins: [
-    new uglifyJsPlugin({
-      compress: {
-       warnings: false,
-     }
-   })]
+    new uglifyJsPlugin({compress: {warnings: false}})
+  ]
 };
