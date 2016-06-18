@@ -5,6 +5,7 @@ import ChartWithEventComponent from './ChartWithEventComponent.jsx';
 import ThemeChartComponent from './ThemeChartComponent.jsx';
 import ChartShowLoadingComponent from './ChartShowLoadingComponent.jsx';
 import ChartAPIComponent from './ChartAPIComponent.jsx';
+import DynamicChartComponent from './DynamicChartComponent.jsx';
 
 import { Link } from 'react-router'
 
@@ -17,7 +18,8 @@ const EchartsComponent = React.createClass({
         if (this.props.params.type == 'api') return (<ChartAPIComponent />);
         if (this.props.params.type == 'events') return (<ChartWithEventComponent />);
         if (this.props.params.type == 'theme') return (<ThemeChartComponent />);
-        return (<SimpleChartComponent />);
+        if (this.props.params.type == 'dynamic') return (<DynamicChartComponent />);
+        return (<DynamicChartComponent />);
     }
 });
 

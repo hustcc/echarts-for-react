@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router'
-import SimpleChartComponent from './SimpleChartComponent.jsx';
+import DynamicChartComponent from './DynamicChartComponent.jsx';
 
 const MainPageComponent = React.createClass({
     propTypes: {
@@ -17,10 +17,11 @@ const MainPageComponent = React.createClass({
                     <Link to="/echarts/loading">Echarts loading</Link> | 
                     <Link to="/echarts/api">Echarts API</Link> | 
                     <Link to="/echarts/events">Echarts events</Link> | 
-                    <Link to="/echarts/theme">Echarts theme</Link>
+                    <Link to="/echarts/theme">Echarts theme</Link> | 
+                    <Link to="/echarts/dynamic">Dynamic chart</Link>
                 </h4>
 
-                { this.props.children || <SimpleChartComponent />}
+                { this.props.children || <DynamicChartComponent />}
                 
                 <h3>Get it on GitHub! <a href='https://github.com/hustcc/echarts-for-react'>hustcc/echarts-for-react</a></h3>
             </div>
