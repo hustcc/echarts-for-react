@@ -33,7 +33,6 @@ import ReactEcharts from 'echarts-for-react';
 
 <ReactEcharts
     option={this.getOtion()} 
-    style={{height: '300px'}} 
 	theme={"theme_name"}
 	onChartReady={this.onChartReadyCallback}
     onEvents={EventsDict} />
@@ -114,8 +113,7 @@ for example:
 ```js
 // render the echarts component below with rel
 <ReactEcharts ref='echarts_react'
-    option={this.getOtion()} 
-    height={300}  />
+    option={this.getOtion()} />
 
 // then get the `ReactEcharts` use this.refs.echarts_react
 

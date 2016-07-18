@@ -166,7 +166,7 @@ const MapChartComponent = React.createClass({
                     <label> render a china map. <strong>MAP charts</strong>: </label>
                     <ReactEcharts
                         option={this.getOtion()} 
-                        style={{height: '350px', width: '100%'}} 
+                        style={{height: '500px', width: '100%'}} 
                         className='react_for_echarts' />
                     <label> code below: </label>
                     <pre>

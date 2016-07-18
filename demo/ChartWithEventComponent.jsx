@@ -67,7 +67,7 @@ const ChartWithEventComponent = React.createClass({
                    "}\n\n" +
                    "<ReactEcharts \n" +
                     "    option={this.getOtion()} \n" +
-                    "    height={300} \n" +
+                    "    style={{height: 300}} \n" +
                     "    onChartReady={this.onChartReady} \n" +
                     "    onEvents={onEvents} />";
 
@@ -77,7 +77,7 @@ const ChartWithEventComponent = React.createClass({
                     <label> Chart With event <strong> onEvents </strong>: (Click the chart, and watch the console)</label>
                     <ReactEcharts
                         option={this.getOtion()} 
-                        height={300} 
+                        style={{height: 300}} 
                         onChartReady={this.onChartReady} 
                         onEvents={onEvents} />
                     <label> code below: </label>
