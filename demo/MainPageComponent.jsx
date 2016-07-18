@@ -18,7 +18,8 @@ const MainPageComponent = React.createClass({
                     <Link to="/echarts/api">Echarts API</Link> | 
                     <Link to="/echarts/events">Echarts events</Link> | 
                     <Link to="/echarts/theme">Echarts theme</Link> | 
-                    <Link to="/echarts/dynamic">Dynamic chart</Link>
+                    <Link to="/echarts/dynamic">Dynamic chart</Link> | 
+                    <Link to="/echarts/map">Map chart</Link>
                 </h4>
 
                 { this.props.children || <DynamicChartComponent />}
