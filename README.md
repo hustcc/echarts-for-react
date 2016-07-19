@@ -32,7 +32,7 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
 <ReactEcharts
-    option={this.getOtion()} 
+    option={this.getOption()} 
 	theme={"theme_name"}
 	onChartReady={this.onChartReadyCallback}
     onEvents={EventsDict} />
