@@ -69,7 +69,7 @@ echarts.registerTheme('my_theme', {
 ...
 // render the echarts use option `theme`
 <ReactEcharts 
-    option={this.getOtion()} 
+    option={this.getOption()} 
     style={{height: '300px', width: '100%'}} 
 	className='echarts-for-echarts' 
     theme='my_theme' /> 
@@ -95,7 +95,7 @@ let onEvents = {
 }
 ...
 <ReactEcharts
-    option={this.getOtion()} 
+    option={this.getOption()} 
     style={{height: '300px', width: '100%'}} 
     onEvents={onEvents} />
 ```
@@ -113,7 +113,7 @@ for example:
 ```js
 // render the echarts component below with rel
 <ReactEcharts ref='echarts_react'
-    option={this.getOtion()} />
+    option={this.getOption()} />
 
 // then get the `ReactEcharts` use this.refs.echarts_react
 
