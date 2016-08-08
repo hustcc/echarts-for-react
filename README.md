@@ -29,7 +29,7 @@ Simple demo code. for more example can see: [http://git.hust.cc/echarts-for-reac
 
 ```js
 import React from 'react';
-import ReactEcharts from 'echarts-for-react';
+import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require('echarts-for-react');
 
 <ReactEcharts
     option={this.getOption()} 

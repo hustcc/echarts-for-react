@@ -68,4 +68,4 @@ const ReactEcharts = React.createClass({
         );
     }
 });
-export default ReactEcharts;
+module.exports = ReactEcharts;
