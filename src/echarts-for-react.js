@@ -39,7 +39,7 @@ const ReactEcharts = React.createClass({
     },
     // remove
     componentWillUnmount() {
-        echarts.dispose(this.refs.chart)
+        echarts.dispose(this.refs.echartsDom)
     },
     // render the dom
     renderEchartDom() {
