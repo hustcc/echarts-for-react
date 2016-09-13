@@ -6,6 +6,8 @@ import elementResizeEvent from 'element-resize-event';
 const ReactEcharts = React.createClass({
     propTypes: {
         option: React.PropTypes.object.isRequired,
+        notMerge: React.PropTypes.bool,
+        lazyUpdate: React.PropTypes.bool,
         style: React.PropTypes.object,
         className: React.PropTypes.string,
         theme: React.PropTypes.string,
@@ -46,8 +48,7 @@ const ReactEcharts = React.createClass({
         // init the echart object
         let echartObj = this.getEchartsInstance();
         // set the echart option
-        echartObj.setOption(this.props.option);
-
+        echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
         // set loading mask
         if (this.props.showLoading) echartObj.showLoading();
         else echartObj.hideLoading();
