@@ -33,6 +33,8 @@ import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require(
 
 <ReactEcharts
     option={this.getOption()} 
+	notMerge={true}
+	lazyUpdate={true}
 	theme={"theme_name"}
 	onChartReady={this.onChartReadyCallback}
     onEvents={EventsDict} />
@@ -44,6 +46,14 @@ import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require(
  - **`option`** (required, object)
 
 the echarts option config, can see [http://echarts.baidu.com/option.html#title](http://echarts.baidu.com/option.html#title).
+
+ - **`notMerge`** (required, object)
+
+when `setOption`, not merge the data, default is `false`. See [http://echarts.baidu.com/api.html#echartsInstance.setOption](http://echarts.baidu.com/api.html#echartsInstance.setOption).
+
+ - **`lazyUpdate`** (required, object)
+
+when `setOption`, lazy update the data, default is `false`. See [http://echarts.baidu.com/api.html#echartsInstance.setOption](http://echarts.baidu.com/api.html#echartsInstance.setOption).
 
  - **`style`** (optional, object)
 
@@ -130,7 +140,6 @@ you can use the API to do:
 2. `dynamic charts` with dynamic data.
 3. get the echarts dom / dataURL / base64, save the chart to png.
 4. `release` the charts.
-
 
 
 # 5. LICENSE
