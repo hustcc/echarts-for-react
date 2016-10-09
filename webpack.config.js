@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+var definePlugin = webpack.DefinePlugin;
 
 module.exports = {
   entry: './demo/demo.jsx',
@@ -20,6 +21,7 @@ module.exports = {
     }]
   },
   plugins: [
-    new uglifyJsPlugin({compress: {warnings: false}})
+    new uglifyJsPlugin({compress: {warnings: false}}),
+    new definePlugin({'process.env': {NODE_ENV: '"production"'}})
   ]
 };

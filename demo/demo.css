@@ -33,9 +33,10 @@ h3 {
 }
 
 h4 {
-  padding: 20px;
+  padding: 5px 20px;
   text-align: center;
   color: black;
+  margin: 5px 0;
 }
 
 h4 a {
@@ -83,7 +84,7 @@ ul {
 
 .parent {
   background-color: rgba(255, 255, 255, 0.2);
-  margin: 50px 0;
+  margin: 20px 0;
   padding: 20px;
 }
 
