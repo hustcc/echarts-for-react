@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/hustcc/echarts-for-react",
   "devDependencies": {
+    "react-adsence": "^0.0.1",
     "babel-cli": "^6.6.0",
     "babel-core": "^6.3.15",
     "babel-eslint": "^5.0.0-beta4",
@@ -62,7 +63,8 @@
   },
   "dependencies": {
     "echarts": "^3.1.1",
-    "element-resize-event": "^2.0.5"
+    "element-resize-event": "^2.0.5",
+    "react-google-ad": "^1.0.2"
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0"
