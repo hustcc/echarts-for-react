@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router'
 import DynamicChartComponent from './DynamicChartComponent.jsx';
-import AdSence from 'react-adsence';
+import AdSense from 'react-adsense';
 
 
 const MainPageComponent = React.createClass({
@@ -14,7 +14,7 @@ const MainPageComponent = React.createClass({
         <h1> echarts-for-react {this.props.params.type} </h1>
         <h3> A very simple echarts(v3.0) wrapper for React. <a href='https://github.com/hustcc/echarts-for-react'>hustcc/echarts-for-react</a></h3>
         
-        <AdSence.Google client='ca-pub-7292810486004926'
+        <AdSense.Google client='ca-pub-7292810486004926'
                         slot='7806394673' />
 
         <h4>
