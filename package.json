@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "baidu Echarts(v3.0) components for react",
   "main": "lib/echarts-for-react",
   "scripts": {
@@ -8,7 +8,8 @@
     "lint": "eslint src",
     "clean": "rimraf lib",
     "test": "npm run lint",
-    "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib",
+    "demo": "webpack",
+    "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
     "prepublish": "npm run build"
   },
   "repository": {

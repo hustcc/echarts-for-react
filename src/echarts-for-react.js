@@ -18,7 +18,7 @@ const ReactEcharts = React.createClass({
     // first add
     componentDidMount() {
         let echartObj = this.renderEchartDom();
-        let onEvents = this.props.onEvents || [];
+        let onEvents = this.props.onEvents || {};
 
         this.bindEvents(echartObj, onEvents);
         // on chart ready
