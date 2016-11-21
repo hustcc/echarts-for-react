@@ -20,13 +20,7 @@ const ReactEcharts = React.createClass({
         let echartObj = this.renderEchartDom();
         let onEvents = this.props.onEvents || [];
 
-        for (let eventName in onEvents) {
-            // ignore the event config which not satisfy
-            if (typeof eventName === 'string' && typeof onEvents[eventName] === 'function') {
-                // binding event
-                echartObj.on(eventName, function(param) {onEvents[eventName](param, echartObj);});
-            }
-        }
+        this.bindEvents(echartObj, onEvents);
         // on chart ready
         if (typeof this.props.onChartReady === 'function') this.props.onChartReady(echartObj);
 
@@ -37,11 +31,31 @@ const ReactEcharts = React.createClass({
     },
     // update
     componentDidUpdate() {
-        this.renderEchartDom()
+        this.renderEchartDom();
+        this.bindEvents(this.getEchartsInstance(), this.props.onEvents || []);
     },
     // remove
     componentWillUnmount() {
         echarts.dispose(this.refs.echartsDom)
+    },
+
+    //bind the events
+    bindEvents(instance, events) {
+        var _loop = function _loop(eventName) {
+            // ignore the event config which not satisfy
+            if (typeof eventName === 'string' && typeof events[eventName] === 'function') {
+                // binding event
+                instance.off(eventName);
+                instance.on(eventName, function(param) {
+                    events[eventName](param, instance);
+                });
+            }
+        };
+
+        for (var eventName in events) {
+            _loop(eventName);
+        }
+
     },
     // render the dom
     renderEchartDom() {
@@ -60,7 +74,9 @@ const ReactEcharts = React.createClass({
         return echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom, this.props.theme);
     },
     render() {
-        let style = this.props.style || {height: '300px'};
+        let style = this.props.style || {
+            height: '300px'
+        };
         // for render
         return (
             <div ref='echartsDom'
