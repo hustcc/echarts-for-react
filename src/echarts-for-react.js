@@ -61,6 +61,8 @@ const ReactEcharts = React.createClass({
     renderEchartDom() {
         // init the echart object
         let echartObj = this.getEchartsInstance();
+        // clear the buffer
+        echartObj.clear();
         // set the echart option
         echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
         // set loading mask
