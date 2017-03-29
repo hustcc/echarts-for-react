@@ -259,7 +259,7 @@ const TreemapComponent = React.createClass({
     return (
       <div className='examples'>
         <div className='parent'>
-          <label> render a disk usage treemap </label>
+          <label> render a disk usage treemap. </label>
           <ReactEcharts
             option={this.getOtion()} 
             style={{height: '500px', width: '100%'}} 

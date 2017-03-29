@@ -478,7 +478,7 @@ const LunarCalendarComponent = React.createClass({
     return (
       <div className='examples'>
         <div className='parent'>
-          <label> render a Simple echart With <strong>option and height</strong>: </label>
+          <label> render a lunar calendar chart. </label>
           <ReactEcharts
             option={this.getOtion()} 
             style={{height: '500px', width: '100%'}} 
