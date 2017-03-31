@@ -65,8 +65,7 @@ const ReactEcharts = React.createClass({
         // set the echart option
         echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
         // set loading mask
-        if (this.props.showLoading && this.props.loadingOption) echartObj.showLoading(this.props.loadingOption);
-        else if(this.props.showLoading) echartObj.showLoading();
+        if (this.props.showLoading) echartObj.showLoading(this.props.loadingOption || null);
         else echartObj.hideLoading();
 
         return echartObj;
