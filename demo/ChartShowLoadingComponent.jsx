@@ -47,13 +47,24 @@ const ChartShowLoadingComponent = React.createClass({
             chart.hideLoading();
         }, 3000);
     },
+    getLoadingOption: function() {
+        const option = {
+            text: '加载中...',
+            color: '#4413c2',
+            textColor: '#270240',
+            maskColor: 'rgba(194, 88, 86, 0.3)',
+            zlevel: 0
+        };
+        return option;
+    },
     render: function() {
-        let code = "onChartReady: function(chart) {\n" + 
+        let code = "onChartReady: function(chart) {\n" +
                    "  'chart.hideLoading();\n" +
                    "}\n\n" +
                    "<ReactEcharts \n" +
                     "    option={this.getOtion()} \n" +
                     "    onChartReady={this.onChartReady} \n" +
+                    "    loadingOption={this.getLoadingOption()} \n" +
                     "    showLoading={true} />";
 
         return (
@@ -62,7 +73,8 @@ const ChartShowLoadingComponent = React.createClass({
                     <label> Chart loading With <strong> showLoading </strong>: (when chart ready, hide the loading mask.)</label>
                     <ReactEcharts
                         option={this.getOtion()} 
-                        onChartReady={this.onChartReady} 
+                        onChartReady={this.onChartReady}
+                        loadingOption={this.getLoadingOption()}
                         showLoading={true} />
                     <label> code below: </label>
                     <pre>
