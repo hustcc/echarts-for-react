@@ -13,6 +13,7 @@ const ReactEcharts = React.createClass({
         theme: React.PropTypes.string,
         onChartReady: React.PropTypes.func,
         showLoading: React.PropTypes.bool,
+        loadingOption: React.PropTypes.object,
         onEvents: React.PropTypes.object
     },
     // first add
@@ -64,7 +65,7 @@ const ReactEcharts = React.createClass({
         // set the echart option
         echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
         // set loading mask
-        if (this.props.showLoading) echartObj.showLoading();
+        if (this.props.showLoading) echartObj.showLoading(this.props.loadingOption || null);
         else echartObj.hideLoading();
 
         return echartObj;

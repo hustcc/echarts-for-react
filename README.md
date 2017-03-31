@@ -90,6 +90,10 @@ echarts.registerTheme('my_theme', {
 
 when the chart is ready, will callback the function with the `echarts object` as it's paramter.
 
+ - **`loadingOption`** (optional, object)
+
+the echarts loading option config, can see [http://echarts.baidu.com/api.html#echartsInstance.showLoading](http://echarts.baidu.com/api.html#echartsInstance.showLoading).
+
  - **`showLoading`** (optional, bool, default: false)
 
 `bool`, when the chart is rendering, show the loading mask.
