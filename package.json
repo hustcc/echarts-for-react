@@ -65,7 +65,8 @@
     "echarts-liquidfill": "*",
     "enzyme": "^2.8.2",
     "jest": "^19.0.2",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.5.4",
+    "prop-types": "^15.0.0"
   },
   "dependencies": {
     "echarts": "~3.5.0",
