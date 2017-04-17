@@ -7,10 +7,11 @@
     "start": "webpack-dev-server --watch",
     "lint": "eslint src",
     "clean": "rimraf lib",
-    "test": "npm run lint",
+    "test": "npm run lint && npm run jest",
     "demo": "webpack",
     "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "jest": "jest"
   },
   "repository": {
     "type": "git",
@@ -46,8 +47,8 @@
     "eslint": "^1.10.3",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.11.3",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.10.1",
     "css-loader": "~0.16.0",
@@ -61,7 +62,10 @@
     "react-router": "^2.0.0",
     "babel-plugin-transform-es3-property-literals": "*",
     "babel-plugin-transform-es3-member-expression-literals": "*",
-    "echarts-liquidfill": "*"
+    "echarts-liquidfill": "*",
+    "enzyme": "^2.8.2",
+    "jest": "^19.0.2",
+    "react-test-renderer": "^15.5.4"
   },
   "dependencies": {
     "echarts": "~3.5.0",
@@ -70,5 +74,14 @@
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0",
     "prop-types": "^15.0.0"
+  },
+  "jest": {
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
   }
 }
