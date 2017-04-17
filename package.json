@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "baidu Echarts(v3.0) components for react",
   "main": "lib/echarts-for-react",
   "scripts": {
@@ -68,6 +68,7 @@
     "element-resize-event": "^2.0.5"
   },
   "peerDependencies": {
-    "react": ">=0.13.2 || ^0.14 || ^15.0.0"
+    "react": ">=0.13.2 || ^0.14 || ^15.0.0",
+    "prop-types": "^15.0.0"
   }
 }

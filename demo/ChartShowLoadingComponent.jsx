@@ -4,6 +4,7 @@ import ReactEcharts from '../lib/echarts-for-react';
 const ChartShowLoadingComponent = React.createClass({
     propTypes: {
     },
+    _t: null,
     getOtion: function() {
         const option = {
             title: {
@@ -43,7 +44,7 @@ const ChartShowLoadingComponent = React.createClass({
         return option;
     },
     onChartReady: function(chart) {
-        setTimeout(function() {
+        this._t = setTimeout(function() {
             chart.hideLoading();
         }, 3000);
     },
@@ -56,6 +57,9 @@ const ChartShowLoadingComponent = React.createClass({
             zlevel: 0
         };
         return option;
+    },
+    componentWillUnmount: function() {
+        clearTimeout(this._t);
     },
     render: function() {
         let code = "onChartReady: function(chart) {\n" +
