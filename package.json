@@ -60,7 +60,8 @@
     "element-resize-event": "^2.0.5",
     "react-router": "^2.0.0",
     "babel-plugin-transform-es3-property-literals": "*",
-    "babel-plugin-transform-es3-member-expression-literals": "*"
+    "babel-plugin-transform-es3-member-expression-literals": "*",
+    "echarts-liquidfill": "*"
   },
   "dependencies": {
     "echarts": "~3.5.0",

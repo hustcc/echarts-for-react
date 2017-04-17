@@ -34,7 +34,8 @@ const MainPageComponent = React.createClass({
           <Link to="/echarts/treemap">Treemap</Link> | 
           <Link to="/echarts/gauge">Gauge</Link> | 
           <Link to="/echarts/gcalendar">GCalendar</Link> | 
-          <Link to="/echarts/lunar">Lunar</Link>
+          <Link to="/echarts/lunar">Lunar</Link> | 
+          <Link to="/echarts/liquid">Liquidfill</Link>
         </h4>
         { this.props.children || <DynamicChartComponent />}
         

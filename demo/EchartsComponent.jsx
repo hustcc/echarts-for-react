@@ -16,6 +16,7 @@ import GCalendarComponent from './GCalendarComponent.jsx';
 import GraphComponent from './GraphComponent.jsx';
 import LunarCalendarComponent from './LunarCalendarComponent.jsx';
 import TreemapComponent from './TreemapComponent.jsx';
+import LiquidfillComponent from './LiquidfillComponent.jsx';
 
 import { Link } from 'react-router'
 
@@ -38,6 +39,7 @@ const EchartsComponent = React.createClass({
         if (this.props.params.type == 'gauge') return (<GaugeComponent />);
         if (this.props.params.type == 'gcalendar') return (<GCalendarComponent />);
         if (this.props.params.type == 'lunar') return (<LunarCalendarComponent />);
+        if (this.props.params.type == 'liquid') return (<LiquidfillComponent />);
         return (<DynamicChartComponent />);
     }
 });
