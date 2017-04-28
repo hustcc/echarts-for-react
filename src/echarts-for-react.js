@@ -7,6 +7,7 @@ export default class ReactEcharts extends React.Component {
     constructor(props) {
     super(props)
     this.timeagoInstance = null;
+    this.echartsElement = null; // echarts div element
   }
   // first add
   componentDidMount() {
@@ -18,7 +19,7 @@ export default class ReactEcharts extends React.Component {
     if (typeof this.props.onChartReady === 'function') this.props.onChartReady(echartObj);
 
     // on resize
-    elementResizeEvent(this.refs.echartsDom, function() {
+    elementResizeEvent(this.echartsElement, function() {
       echartObj.resize();
     });
   }
@@ -29,7 +30,10 @@ export default class ReactEcharts extends React.Component {
   }
   // remove
   componentWillUnmount() {
-    echarts.dispose(this.refs.echartsDom)
+    if (this.echartsElement) {
+      elementResizeEvent.unbind(this.echartsElement);
+      echarts.dispose(this.echartsElement);
+    }
   }
 
   //bind the events
@@ -64,7 +68,7 @@ export default class ReactEcharts extends React.Component {
   }
   getEchartsInstance() {
     // return the echart object
-    return echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom, this.props.theme);
+    return echarts.getInstanceByDom(this.echartsElement) || echarts.init(this.echartsElement, this.props.theme);
   }
   render() {
     let style = this.props.style || {
@@ -72,7 +76,7 @@ export default class ReactEcharts extends React.Component {
     };
     // for render
     return (
-      <div ref='echartsDom'
+      <div ref={(e) => { this.echartsElement = e; }}
           className={this.props.className}
           style={style} />
     );
