@@ -6,6 +6,22 @@ require("echarts/map/js/china.js");
 const MapChartComponent = React.createClass({
     propTypes: {
     },
+    timeTicket: null,
+    componentDidMount: function() {
+        if (this.timeTicket) {
+            clearInterval(this.timeTicket);
+        }
+        this.timeTicket = setInterval(() => {
+            const option = this.getOtion();
+            option.title.text = 'iphone销量' + new Date().getSeconds();
+            this.setState({ option });
+        }, 1000);
+    },
+    componentWillUnmount: function() {
+        if (this.timeTicket) {
+            clearInterval(this.timeTicket);
+        }
+    },
     randomData: function() {
         return Math.round(Math.random()*1000);
     },

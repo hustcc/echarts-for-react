@@ -12,6 +12,7 @@ const DynamicChartComponent = React.createClass({
     fetchNewDate: function() {
         let axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
         let option = this.state.option;
+        option.title.text = 'Hello Echarts-for-react.' + new Date().getSeconds();
         let data0 = option.series[0].data;
         let data1 = option.series[1].data;
         data0.shift();
@@ -39,6 +40,7 @@ const DynamicChartComponent = React.createClass({
     getOption: function() {
         const option = {
             title: {
+                text:'Hello Echarts-for-react.',
             },
             tooltip: {
                 trigger: 'axis'
@@ -173,7 +175,7 @@ const DynamicChartComponent = React.createClass({
                     <label> use React state to render dynamic chart</label>
                     <ReactEcharts ref='echarts_react'
                         option={this.state.option} 
-                        style={{height: 300}} />
+                        style={{height: 400}} />
                     <label> code below: use state of react to render dynamic chart</label>
                     <pre>
                         <code>{code}</code>
