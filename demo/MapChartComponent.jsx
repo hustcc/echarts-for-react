@@ -16,7 +16,10 @@ const MapChartComponent = React.createClass({
         }
         this.timeTicket = setInterval(() => {
             const option = this.state.option;
-            option.title.text = 'iphone销量' + new Date().getSeconds();
+            const r = new Date().getSeconds();
+            option.title.text = 'iphone销量' + r;
+            option.series[0].name = 'iphone销量' + r;
+            option.legend.data[0] = 'iphone销量' + r;
             this.setState({ option: option });
         }, 1000);
     },
