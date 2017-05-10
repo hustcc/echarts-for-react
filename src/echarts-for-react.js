@@ -5,29 +5,31 @@ import elementResizeEvent from 'element-resize-event';
 
 export default class ReactEcharts extends React.Component {
     constructor(props) {
-    super(props)
-    this.timeagoInstance = null;
+    super(props);
     this.echartsElement = null; // echarts div element
   }
+
   // first add
   componentDidMount() {
-    let echartObj = this.renderEchartDom();
-    let onEvents = this.props.onEvents || {};
+    const echartObj = this.renderEchartDom();
+    const onEvents = this.props.onEvents || {};
 
     this.bindEvents(echartObj, onEvents);
     // on chart ready
     if (typeof this.props.onChartReady === 'function') this.props.onChartReady(echartObj);
 
     // on resize
-    elementResizeEvent(this.echartsElement, function() {
+    elementResizeEvent(this.echartsElement, () => {
       echartObj.resize();
     });
   }
+
   // update
   componentDidUpdate() {
     this.renderEchartDom();
     this.bindEvents(this.getEchartsInstance(), this.props.onEvents || []);
   }
+
   // remove
   componentWillUnmount() {
     if (this.echartsElement) {
@@ -35,29 +37,34 @@ export default class ReactEcharts extends React.Component {
       echarts.dispose(this.echartsElement);
     }
   }
+  // return the echart object
+  getEchartsInstance = () => echarts.getInstanceByDom(this.echartsElement) ||
+    echarts.init(this.echartsElement, this.props.theme);
 
-  //bind the events
-  bindEvents(instance, events) {
-    var _loop = function _loop(eventName) {
+  // bind the events
+  bindEvents = (instance, events) => {
+    const _loopEvent = (eventName) => {
       // ignore the event config which not satisfy
       if (typeof eventName === 'string' && typeof events[eventName] === 'function') {
         // binding event
         instance.off(eventName);
-        instance.on(eventName, function(param) {
+        instance.on(eventName, (param) => {
           events[eventName](param, instance);
         });
       }
     };
 
-    for (var eventName in events) {
-      _loop(eventName);
+    for (const eventName in events) {
+      if (Object.prototype.hasOwnProperty.call(events, eventName)) {
+        _loopEvent(eventName);
+      }
     }
+  };
 
-  }
   // render the dom
-  renderEchartDom() {
+  renderEchartDom = () => {
     // init the echart object
-    let echartObj = this.getEchartsInstance();
+    const echartObj = this.getEchartsInstance();
     // set the echart option
     echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
     // set loading mask
@@ -65,38 +72,44 @@ export default class ReactEcharts extends React.Component {
     else echartObj.hideLoading();
 
     return echartObj;
-  }
-  getEchartsInstance() {
-    // return the echart object
-    return echarts.getInstanceByDom(this.echartsElement) || echarts.init(this.echartsElement, this.props.theme);
-  }
+  };
+
   render() {
-    let style = this.props.style || {
+    const style = this.props.style || {
       height: '300px'
     };
     // for render
     return (
-      <div ref={(e) => { this.echartsElement = e; }}
-          className={this.props.className}
-          style={style} />
+      <div
+        ref={(e) => { this.echartsElement = e; }}
+        style={style}
+        className={this.props.className}
+      />
     );
   }
-};
+}
 
 ReactEcharts.propTypes = {
-  option: React.PropTypes.object.isRequired,
-  notMerge: React.PropTypes.bool,
-  lazyUpdate: React.PropTypes.bool,
-  style: React.PropTypes.object,
-  className: React.PropTypes.string,
-  theme: React.PropTypes.string,
-  onChartReady: React.PropTypes.func,
-  showLoading: React.PropTypes.bool,
-  loadingOption: React.PropTypes.object,
-  onEvents: React.PropTypes.object
+  option: PropTypes.object.isRequired,  // eslint-disable-line react/forbid-prop-types
+  notMerge: PropTypes.bool,
+  lazyUpdate: PropTypes.bool,
+  style: PropTypes.object,  // eslint-disable-line react/forbid-prop-types
+  className: PropTypes.string,
+  theme: PropTypes.string,
+  onChartReady: PropTypes.func,
+  showLoading: PropTypes.bool,
+  loadingOption: PropTypes.object,  // eslint-disable-line react/forbid-prop-types
+  onEvents: PropTypes.object  // eslint-disable-line react/forbid-prop-types
 };
 
 ReactEcharts.defaultProps = {
-  live: true,
-  locale: 'en'
+  notMerge: false,
+  lazyUpdate: false,
+  style: {height: '300px'},
+  className: '',
+  theme: null,
+  onChartReady: () => {},
+  showLoading: false,
+  loadingOption: null,
+  onEvents: {},
 };

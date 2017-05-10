@@ -11,12 +11,12 @@ module.exports = {
     loaders:[{
       test: /\.js[x]?$/,
       exclude: /node_modules/,
-      loader: 'babel-loader?presets[]=es2015&presets[]=react'
-    }, { 
-      test: /\.css$/, 
-      loader: 'style-loader!css-loader' 
-    }, { 
-      test: /\.(png|jpg)$/, 
+      loader: 'babel-loader?presets[]=es2015&presets[]=react&presets[]=stage-0'
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    }, {
+      test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=512'
     }]
   },
