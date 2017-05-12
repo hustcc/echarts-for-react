@@ -32,8 +32,11 @@ export default class ReactEcharts extends React.Component {
 
   // remove
   componentWillUnmount() {
-    if (this.echartsElement && !!elementResizeEvent.unbind && typeof elementResizeEvent.unbind === 'function') {
-      elementResizeEvent.unbind(this.echartsElement);
+    if (this.echartsElement) {
+      // if elementResizeEvent.unbind exist, just do it.
+      if (typeof elementResizeEvent.unbind === 'function') {
+        elementResizeEvent.unbind(this.echartsElement);
+     }
       echarts.dispose(this.echartsElement);
     }
   }
