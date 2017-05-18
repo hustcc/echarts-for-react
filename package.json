@@ -81,7 +81,8 @@
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0-alpha.1 <17.0.0",
-    "prop-types": "^15.0.0"
+    "prop-types": "^15.0.0",
+    "@types/react": "^15.0.24"
   },
   "jest": {
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
