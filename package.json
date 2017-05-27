@@ -2,7 +2,7 @@
   "name": "echarts-for-react",
   "version": "1.2.5",
   "description": "baidu Echarts(v3.0) components for react",
-  "main": "lib/echarts-for-react",
+  "main": "./src",
   "scripts": {
     "start": "webpack-dev-server --watch",
     "lint": "eslint src",
@@ -76,12 +76,12 @@
     "prop-types": "^15.0.0"
   },
   "dependencies": {
-    "echarts": "~3.5.0",
     "element-resize-event": "2.0.7"
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0-alpha.1 <17.0.0",
-    "prop-types": "^15.0.0"
+    "prop-types": "^15.0.0",
+    "echarts": ">=3.0.0"
   },
   "jest": {
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
