@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 import echarts from 'echarts';
 require("echarts/map/js/china.js");
 
@@ -309,8 +309,8 @@ const AirportCoordComponent = React.createClass({
         <div className='parent'>
           <label> render a airport chart. </label>
           <ReactEcharts
-            option={this.getOtion()} 
-            style={{height: '700px', width: '100%'}} 
+            option={this.getOtion()}
+            style={{height: '700px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>

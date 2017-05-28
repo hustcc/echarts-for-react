@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 const ChartAPIComponent = React.createClass({
     propTypes: {
@@ -101,8 +101,8 @@ const ChartAPIComponent = React.createClass({
     },
     render: function() {
         let code = "<ReactEcharts ref='echartsInstance' \n" +
-                    "    option={this.getOtion()} /> \n" + 
-                    "\n" + 
+                    "    option={this.getOtion()} /> \n" +
+                    "\n" +
                     "// use echarts API: http://echarts.baidu.com/api.html#echartsInstance" +
                     "this.refs.echarts_react.getEchartsInstance().getDataURL();";
         return (

@@ -1,0 +1,38 @@
+body {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  background-color: #2d2d2d;
+}
+
+.App {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  animation-fill-mode: both;
+  height: 140px;
+}
+
+.App-logo:hover {
+  animation: App-logo-spin infinite 2s linear;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App-header {
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}

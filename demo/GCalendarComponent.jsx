@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 import echarts from 'echarts';
 
 const GCalendarComponent = React.createClass({
@@ -60,8 +60,8 @@ const GCalendarComponent = React.createClass({
         <div className='parent'>
           <label> render a calendar like github commit history. </label>
           <ReactEcharts
-            option={this.getOtion()} 
-            style={{height: '500px', width: '100%'}} 
+            option={this.getOtion()}
+            style={{height: '500px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>

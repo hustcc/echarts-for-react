@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactEcharts from '../src/echarts-for-react';
+import ReactEcharts from '../';
 
-// require.config({  
-//     paths: {  
+// require.config({
+//     paths: {
 //         echarts:'../node_modules/echarts',
-//     }  
+//     }
 // });
 
 const ModuleLoadChartComponent = React.createClass({
@@ -37,8 +37,8 @@ const ModuleLoadChartComponent = React.createClass({
                 <div className='parent'>
                     <label> load echarts module as you wish <strong>reduce the file size</strong>: </label>
                     <ReactEcharts
-                        option={this.getOtion()} 
-                        style={{height: '350px', width: '100%'}} 
+                        option={this.getOtion()}
+                        style={{height: '350px', width: '100%'}}
                         modules={['echarts/lib/chart/bar', 'echarts/lib/component/tooltip', 'echarts/lib/component/title']}
                         className='react_for_echarts' />
                     <label> code below: </label>

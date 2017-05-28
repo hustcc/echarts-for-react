@@ -32,7 +32,24 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require('echarts-for-react');
 
 <ReactEcharts
-    option={this.getOption()} 
+    option={this.getOption()}
+	notMerge={true}
+	lazyUpdate={true}
+	theme={"theme_name"}
+	onChartReady={this.onChartReadyCallback}
+    onEvents={EventsDict} />
+```
+
+If you only need bar chart (or others), you can import it manually to reduce your code size:
+
+```js
+import React from 'react';
+import ReactEcharts from 'echarts-for-react/lib/core';
+import 'echarts/lib/chart/bar';
+import 'echarts/lib/component/tooltip';
+
+<ReactEcharts
+    option={this.getOption()}
 	notMerge={true}
 	lazyUpdate={true}
 	theme={"theme_name"}
@@ -70,7 +87,7 @@ the `theme` of echarts. `string`, should `registerTheme` before use it (theme ob
 
 ```js
 // import echarts
-import echarts from 'echarts'; 
+import echarts from 'echarts';
 ...
 // register theme object
 echarts.registerTheme('my_theme', {
@@ -78,11 +95,11 @@ echarts.registerTheme('my_theme', {
 });
 ...
 // render the echarts use option `theme`
-<ReactEcharts 
-    option={this.getOption()} 
-    style={{height: '300px', width: '100%'}} 
-	className='echarts-for-echarts' 
-    theme='my_theme' /> 
+<ReactEcharts
+    option={this.getOption()}
+    style={{height: '300px', width: '100%'}}
+	className='echarts-for-echarts'
+    theme='my_theme' />
 
 ```
 
@@ -100,7 +117,7 @@ the echarts loading option config, can see [http://echarts.baidu.com/api.html#ec
 
  - **`onEvents`** (optional, array(string=>function) )
 
-binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g: 
+binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g:
 
 ```js
 let onEvents = {
@@ -109,8 +126,8 @@ let onEvents = {
 }
 ...
 <ReactEcharts
-    option={this.getOption()} 
-    style={{height: '300px', width: '100%'}} 
+    option={this.getOption()}
+    style={{height: '300px', width: '100%'}}
     onEvents={onEvents} />
 ```
 for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)

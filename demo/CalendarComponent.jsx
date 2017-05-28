@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 import echarts from 'echarts';
 
 const CalendarComponent = React.createClass({
@@ -187,8 +187,8 @@ const CalendarComponent = React.createClass({
         <div className='parent'>
           <label> render a calendar-charts </label>
           <ReactEcharts
-              option={this.getOtion()} 
-              style={{height: '700px', width: '100%'}} 
+              option={this.getOtion()}
+              style={{height: '700px', width: '100%'}}
               className='react_for_echarts' />
         </div>
       </div>

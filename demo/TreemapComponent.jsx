@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 import echarts from 'echarts';
 
 const TreemapComponent = React.createClass({
@@ -261,8 +261,8 @@ const TreemapComponent = React.createClass({
         <div className='parent'>
           <label> render a disk usage treemap. </label>
           <ReactEcharts
-            option={this.getOtion()} 
-            style={{height: '500px', width: '100%'}} 
+            option={this.getOtion()}
+            style={{height: '500px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>

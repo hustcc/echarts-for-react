@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 import echarts from 'echarts';
 
 const LunarCalendarComponent = React.createClass({
@@ -480,8 +480,8 @@ const LunarCalendarComponent = React.createClass({
         <div className='parent'>
           <label> render a lunar calendar chart. </label>
           <ReactEcharts
-            option={this.getOtion()} 
-            style={{height: '500px', width: '100%'}} 
+            option={this.getOtion()}
+            style={{height: '500px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>
