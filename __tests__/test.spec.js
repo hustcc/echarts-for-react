@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../';
+import ReactEcharts from '../src/';
 import { shallow } from 'enzyme';
 
 test('test echarts-for-react of simple echarts option.`', () => {

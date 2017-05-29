@@ -7,12 +7,13 @@
     "start": "webpack-dev-server --watch",
     "lint": "eslint src",
     "clean": "rimraf lib",
-    "test": "npm run lint && npm run jest",
+    "test": "npm run lint && npm run cover",
     "demo": "webpack",
     "dev": "webpack --watch",
     "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
     "prepublish": "npm run build",
-    "jest": "jest"
+    "cover": "jest --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
+    "coveralls": "^2.13.1",
     "cross-env": "^1.0.8",
     "css-loader": "~0.16.0",
     "echarts": "^3.5.4",
@@ -90,6 +92,12 @@
       "tsx",
       "js",
       "json"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
     ]
   }
 }
