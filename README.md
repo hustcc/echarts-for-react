@@ -25,36 +25,39 @@ then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or s
 
 # 2. usage
 
-Simple demo code. for more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
+Code of a simple demo code showed below. For more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
 ```js
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require('echarts-for-react');
 
 <ReactEcharts
-    option={this.getOption()}
-	notMerge={true}
-	lazyUpdate={true}
-	theme={"theme_name"}
-	onChartReady={this.onChartReadyCallback}
-    onEvents={EventsDict} />
+  option={this.getOption()}
+  notMerge={true}
+  lazyUpdate={true}
+  theme={"theme_name"}
+  onChartReady={this.onChartReadyCallback}
+  onEvents={EventsDict} />
 ```
 
-If you only need bar chart (or others), you can import it manually to reduce your code size:
+If you have only used bar chart (or others), you can import echarts modules manually to reduce bundle file size, e.g.
 
 ```js
 import React from 'react';
+// import the core library.
 import ReactEcharts from 'echarts-for-react/lib/core';
+// then import echarts modules those you have used manually.
 import 'echarts/lib/chart/bar';
 import 'echarts/lib/component/tooltip';
 
+// The usage of ReactEcharts are same with above.
 <ReactEcharts
-    option={this.getOption()}
-	notMerge={true}
-	lazyUpdate={true}
-	theme={"theme_name"}
-	onChartReady={this.onChartReadyCallback}
-    onEvents={EventsDict} />
+  option={this.getOption()}
+  notMerge={true}
+  lazyUpdate={true}
+  theme={"theme_name"}
+  onChartReady={this.onChartReadyCallback}
+  onEvents={EventsDict} />
 ```
 
 
@@ -96,11 +99,10 @@ echarts.registerTheme('my_theme', {
 ...
 // render the echarts use option `theme`
 <ReactEcharts
-    option={this.getOption()}
-    style={{height: '300px', width: '100%'}}
+  option={this.getOption()}
+  style={{height: '300px', width: '100%'}}
 	className='echarts-for-echarts'
-    theme='my_theme' />
-
+  theme='my_theme' />
 ```
 
  - **`onChartReady`** (optional, function)
@@ -121,14 +123,14 @@ binding the echarts event, will callback with the `echarts event object`, and `t
 
 ```js
 let onEvents = {
-    'click': this.onChartClick,
-    'legendselectchanged': this.onChartLegendselectchanged
+  'click': this.onChartClick,
+  'legendselectchanged': this.onChartLegendselectchanged
 }
 ...
 <ReactEcharts
-    option={this.getOption()}
-    style={{height: '300px', width: '100%'}}
-    onEvents={onEvents} />
+  option={this.getOption()}
+  style={{height: '300px', width: '100%'}}
+  onEvents={onEvents} />
 ```
 for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
 
@@ -144,7 +146,7 @@ for example:
 ```js
 // render the echarts component below with rel
 <ReactEcharts ref='echarts_react'
-    option={this.getOption()} />
+  option={this.getOption()} />
 
 // then get the `ReactEcharts` use this.refs.echarts_react
 
@@ -155,7 +157,7 @@ let base64 = echarts_instance.getDataURL();
 
 **About API of echarts, can see** [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance).
 
-you can use the API to do:
+You can use the API to do:
 
 1. `binding / unbinding` event.
 2. `dynamic charts` with dynamic data.
@@ -165,4 +167,6 @@ you can use the API to do:
 
 # 5. LICENSE
 
-MIT
+MIT@[hustcc](https://github.com/hustcc).
+
+
