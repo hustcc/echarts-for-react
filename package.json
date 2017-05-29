@@ -41,6 +41,7 @@
     "babel-cli": "^6.6.0",
     "babel-core": "^6.3.15",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^6.2.0",
     "babel-plugin-transform-class-properties": "*",
     "babel-plugin-transform-es3-member-expression-literals": "*",
@@ -93,6 +94,9 @@
       "js",
       "json"
     ],
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/*.{js,jsx}",
