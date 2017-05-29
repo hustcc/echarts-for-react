@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 const DynamicChartComponent = React.createClass({
     propTypes: {
@@ -71,7 +71,7 @@ const DynamicChartComponent = React.createClass({
                 show: false,
                 min: 0,
                 max: 1000,
-                color: ['#BE002F', '#F20C00', '#F00056', '#FF2D51', '#FF2121', '#FF4C00', '#FF7500', 
+                color: ['#BE002F', '#F20C00', '#F00056', '#FF2D51', '#FF2121', '#FF4C00', '#FF7500',
                         '#FF8936', '#FFA400', '#F0C239', '#FFF143', '#FAFF72', '#C9DD22', '#AFDD22',
                         '#9ED900', '#00E500', '#0EB83A', '#0AA344', '#0C8918', '#057748', '#177CB0']
             },
@@ -174,7 +174,7 @@ const DynamicChartComponent = React.createClass({
                 <div className='parent'>
                     <label> use React state to render dynamic chart</label>
                     <ReactEcharts ref='echarts_react'
-                        option={this.state.option} 
+                        option={this.state.option}
                         style={{height: 400}} />
                     <label> code below: use state of react to render dynamic chart</label>
                     <pre>

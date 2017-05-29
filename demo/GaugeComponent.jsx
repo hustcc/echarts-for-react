@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 const GaugeComponent = React.createClass({
   getOtion: function() {
@@ -311,8 +311,8 @@ const GaugeComponent = React.createClass({
         <div className='parent'>
           <label> render a car gauge chart. </label>
           <ReactEcharts
-            option={this.state.option} 
-            style={{height: '500px', width: '100%'}} 
+            option={this.state.option}
+            style={{height: '500px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>

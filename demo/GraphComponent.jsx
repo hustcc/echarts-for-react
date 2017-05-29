@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 const GraphComponent = React.createClass({
   getOtion: function() {
@@ -42,8 +42,8 @@ const GraphComponent = React.createClass({
         <div className='parent'>
           <label> render a graph-webkit-dep.</label>
           <ReactEcharts
-            option={this.getOtion()} 
-            style={{height: '700px', width: '100%'}} 
+            option={this.getOtion()}
+            style={{height: '700px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>

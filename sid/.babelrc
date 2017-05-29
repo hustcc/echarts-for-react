@@ -1,0 +1,23 @@
+{
+    "presets": [
+        ["env", {"modules": false}],
+        "stage-1",
+        "react"
+    ],
+    "comments": false,
+    "plugins": ["transform-runtime"],
+    "env": {
+        "production": {
+            "plugins": [[
+                "transform-react-remove-prop-types",
+                {
+                    "removeImport": true,
+                    "ignoreFilenames": ["node_modules"]
+                }
+            ]]
+        },
+        "development": {
+            "plugins": ["react-hot-loader/babel"]
+        }
+    }
+}

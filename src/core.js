@@ -1,6 +1,6 @@
-import echarts from 'echarts';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import echarts from 'echarts/lib/echarts';
 import elementResizeEvent from 'element-resize-event';
 
 export default class ReactEcharts extends React.Component {

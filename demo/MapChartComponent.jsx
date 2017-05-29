@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 require("echarts/map/js/china.js");
 
@@ -177,7 +177,7 @@ const MapChartComponent = React.createClass({
         return option;
     },
     render: function() {
-        let code = "require('echarts/map/js/china.js'); \n" +   
+        let code = "require('echarts/map/js/china.js'); \n" +
                     "<ReactEcharts \n" +
                     "    option={this.state.option || {}} \n" +
                     "    style={{height: '350px', width: '100%'}}  \n" +
@@ -187,8 +187,8 @@ const MapChartComponent = React.createClass({
                 <div className='parent'>
                     <label> render a china map. <strong>MAP charts</strong>: </label>
                     <ReactEcharts
-                        option={this.state.option} 
-                        style={{height: '500px', width: '100%'}} 
+                        option={this.state.option}
+                        style={{height: '500px', width: '100%'}}
                         className='react_for_echarts' />
                     <label> code below: </label>
                     <pre>
