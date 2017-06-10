@@ -3,6 +3,10 @@
   "version": "1.4.2",
   "description": "baidu Echarts(v3.0) components for react",
   "main": "lib/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
   "scripts": {
     "start": "webpack-dev-server --watch",
     "lint": "eslint src",
@@ -53,7 +57,7 @@
     "coveralls": "^2.13.1",
     "cross-env": "^1.0.8",
     "css-loader": "~0.16.0",
-    "echarts": "^3.5.4",
+    "echarts": "^3.6.1",
     "echarts-liquidfill": "~1.0.5",
     "element-resize-event": "^2.0.5",
     "enzyme": "^2.8.2",
@@ -80,7 +84,8 @@
   },
   "dependencies": {
     "element-resize-event": "2.0.7",
-    "echarts": "^3.5.0"
+    "echarts": "^3.6.1",
+    "prop-types": "^15.5.10"
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0-alpha.1 <17.0.0",

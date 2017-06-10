@@ -1,3 +1,3 @@
-import 'echarts';
+import 'echarts/index';
 
 export default from './core';
