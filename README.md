@@ -45,10 +45,15 @@ If you have only used bar chart (or others), you can import echarts modules manu
 ```js
 import React from 'react';
 // import the core library.
-import ReactEcharts from 'echarts-for-react/lib/core';
+import Core from 'echarts-for-react/lib/core';
 // then import echarts modules those you have used manually.
 import 'echarts/lib/chart/bar';
 import 'echarts/lib/component/tooltip';
+
+// pass the echarts in the core
+const ReactEcharts = props => (
+  <Core echarts={echarts} {...props} />
+);
 
 // The usage of ReactEcharts are same with above.
 <ReactEcharts
@@ -168,5 +173,3 @@ You can use the API to do:
 # 5. LICENSE
 
 MIT@[hustcc](https://github.com/hustcc).
-
-

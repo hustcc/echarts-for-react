@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import echarts from 'echarts/lib/echarts';
 import elementResizeEvent from 'element-resize-event';
 
 export default class ReactEcharts extends React.Component {
@@ -37,12 +36,12 @@ export default class ReactEcharts extends React.Component {
       if (typeof elementResizeEvent.unbind === 'function') {
         elementResizeEvent.unbind(this.echartsElement);
      }
-      echarts.dispose(this.echartsElement);
+      this.props.echarts.dispose(this.echartsElement);
     }
   }
   // return the echart object
-  getEchartsInstance = () => echarts.getInstanceByDom(this.echartsElement) ||
-    echarts.init(this.echartsElement, this.props.theme);
+  getEchartsInstance = () => this.props.echarts.getInstanceByDom(this.echartsElement) ||
+    this.props.echarts.init(this.echartsElement, this.props.theme);
 
   // bind the events
   bindEvents = (instance, events) => {
@@ -94,6 +93,7 @@ export default class ReactEcharts extends React.Component {
 
 ReactEcharts.propTypes = {
   option: PropTypes.object.isRequired,  // eslint-disable-line react/forbid-prop-types
+  echarts: PropTypes.object.isRequired,  // eslint-disable-line react/forbid-prop-types
   notMerge: PropTypes.bool,
   lazyUpdate: PropTypes.bool,
   style: PropTypes.object,  // eslint-disable-line react/forbid-prop-types
