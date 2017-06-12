@@ -22,7 +22,7 @@ module.exports = {
     }]
   },
   externals: {
-    // echarts: 'window.echarts',
+    echarts: 'window.echarts',
   },
   plugins: [
     new uglifyJsPlugin({compress: {warnings: false}}),
