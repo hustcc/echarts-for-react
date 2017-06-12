@@ -5,7 +5,8 @@ var definePlugin = webpack.DefinePlugin;
 module.exports = {
   entry: './demo/demo.jsx',
   output: {
-    path: './demo/dist/', filename: 'bundle.js'
+    path: './demo/dist/',
+    filename: 'bundle.js'
   },
   module: {
     loaders:[{
@@ -19,6 +20,9 @@ module.exports = {
       test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=512'
     }]
+  },
+  externals: {
+    // echarts: 'window.echarts',
   },
   plugins: [
     new uglifyJsPlugin({compress: {warnings: false}}),

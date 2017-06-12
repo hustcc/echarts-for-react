@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactEcharts from '../src/';
+import ReactEcharts from '../src/core';
 import { shallow } from 'enzyme';
+import echarts from 'echarts';
 
 test('test echarts-for-react of simple echarts option.`', () => {
   const option = {
@@ -26,6 +27,7 @@ test('test echarts-for-react of simple echarts option.`', () => {
     <ReactEcharts
       option={option}
       style={{height: '400px'}}
+      echarts={echarts}
     />
   );
   const echartsDiv = component.find('div');

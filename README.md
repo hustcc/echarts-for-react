@@ -7,7 +7,7 @@ A very simple echarts(v3.0) wrapper for react.
 # 1. install
 
 ```sh
-npm install echarts-for-react
+npm install --save echarts-for-react
 ```
 
 How to run the demo:
@@ -42,21 +42,19 @@ import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require(
 
 If you have only used bar chart (or others), you can import echarts modules manually to reduce bundle file size, e.g.
 
+
 ```js
 import React from 'react';
 // import the core library.
-import Core from 'echarts-for-react/lib/core';
+import ReactEchartsCore from 'echarts-for-react/lib/core';
 // then import echarts modules those you have used manually.
+import echarts from 'echarts/lib/echarts';
 import 'echarts/lib/chart/bar';
 import 'echarts/lib/component/tooltip';
 
-// pass the echarts in the core
-const ReactEcharts = props => (
-  <Core echarts={echarts} {...props} />
-);
-
-// The usage of ReactEcharts are same with above.
-<ReactEcharts
+// The usage of ReactEchartsCore are same with above.
+<ReactEchartsCore
+  echarts={echarts}
   option={this.getOption()}
   notMerge={true}
   lazyUpdate={true}
@@ -173,3 +171,5 @@ You can use the API to do:
 # 5. LICENSE
 
 MIT@[hustcc](https://github.com/hustcc).
+
+

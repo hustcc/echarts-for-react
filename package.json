@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "1.4.2",
+  "version": "1.4.2.dev0",
   "description": "baidu Echarts(v3.0) components for react",
   "main": "lib/index.js",
   "files": [
