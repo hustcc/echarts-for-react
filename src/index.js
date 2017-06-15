@@ -8,3 +8,7 @@ const Chart = props => (
 );
 
 export default Chart;
+
+export {
+  echarts,
+};
