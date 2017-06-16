@@ -148,12 +148,12 @@ for example:
 
 ```js
 // render the echarts component below with rel
-<ReactEcharts ref='echarts_react'
+<ReactEcharts ref={(e) => { this.echarts_react = e; }}
   option={this.getOption()} />
 
-// then get the `ReactEcharts` use this.refs.echarts_react
+// then get the `ReactEcharts` use this.echarts_react
 
-let echarts_instance = this.refs.echarts_react.getEchartsInstance();
+let echarts_instance = this.echarts_react.getEchartsInstance();
 // then you can use any API of echarts.
 let base64 = echarts_instance.getDataURL();
 ```

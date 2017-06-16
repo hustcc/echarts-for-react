@@ -1,10 +1,10 @@
-import React from 'react';
 import echarts from 'echarts';
-
 import Core from './core';
 
-const Chart = props => (
-  <Core {...props} echarts={echarts} />
-);
-
-export default Chart;
+// export the Component the echarts Object.
+export default class EchartsReact extends Core {
+  constructor(props) {
+    super(props);
+    this.echartsInstance = echarts;
+  }
+}

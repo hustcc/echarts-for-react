@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
 
 export default class ReactEcharts extends React.Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
+    this.echartsInstance = this.props.echarts; // the echarts object.
     this.echartsElement = null; // echarts div element
   }
 
@@ -36,12 +37,12 @@ export default class ReactEcharts extends React.Component {
       if (typeof elementResizeEvent.unbind === 'function') {
         elementResizeEvent.unbind(this.echartsElement);
      }
-      this.props.echarts.dispose(this.echartsElement);
+      this.echartsInstance.dispose(this.echartsElement);
     }
   }
   // return the echart object
-  getEchartsInstance = () => this.props.echarts.getInstanceByDom(this.echartsElement) ||
-    this.props.echarts.init(this.echartsElement, this.props.theme);
+  getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) ||
+    this.echartsInstance.init(this.echartsElement, this.props.theme);
 
   // bind the events
   bindEvents = (instance, events) => {
@@ -106,6 +107,7 @@ ReactEcharts.propTypes = {
 };
 
 ReactEcharts.defaultProps = {
+  echarts: {},
   notMerge: false,
   lazyUpdate: false,
   style: {height: '300px'},

@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "baidu Echarts(v3.0) components for react",
   "main": "lib/index.js",
   "files": [
@@ -69,6 +69,7 @@
     "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "file-loader": "~0.8.4",
+    "immutability-util": "^0.0.1",
     "jest": "^19.0.2",
     "jsx-loader": "~0.13.2",
     "prop-types": "^15.0.0",
