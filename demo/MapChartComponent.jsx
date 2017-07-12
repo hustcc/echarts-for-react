@@ -1,10 +1,32 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 require("echarts/map/js/china.js");
 
 const MapChartComponent = React.createClass({
     propTypes: {
+    },
+    timeTicket: null,
+    getInitialState: function() {
+        return {option: this.getOtion()};
+    },
+    componentDidMount: function() {
+        if (this.timeTicket) {
+            clearInterval(this.timeTicket);
+        }
+        this.timeTicket = setInterval(() => {
+            const option = this.state.option;
+            const r = new Date().getSeconds();
+            option.title.text = 'iphone销量' + r;
+            option.series[0].name = 'iphone销量' + r;
+            option.legend.data[0] = 'iphone销量' + r;
+            this.setState({ option: option });
+        }, 1000);
+    },
+    componentWillUnmount: function() {
+        if (this.timeTicket) {
+            clearInterval(this.timeTicket);
+        }
     },
     randomData: function() {
         return Math.round(Math.random()*1000);
@@ -155,9 +177,9 @@ const MapChartComponent = React.createClass({
         return option;
     },
     render: function() {
-        let code = "require('echarts/map/js/china.js'); \n" +   
+        let code = "require('echarts/map/js/china.js'); \n" +
                     "<ReactEcharts \n" +
-                    "    option={this.getOtion()} \n" +
+                    "    option={this.state.option || {}} \n" +
                     "    style={{height: '350px', width: '100%'}}  \n" +
                     "    className='react_for_echarts' />";
         return (
@@ -165,8 +187,8 @@ const MapChartComponent = React.createClass({
                 <div className='parent'>
                     <label> render a china map. <strong>MAP charts</strong>: </label>
                     <ReactEcharts
-                        option={this.getOtion()} 
-                        style={{height: '500px', width: '100%'}} 
+                        option={this.state.option}
+                        style={{height: '500px', width: '100%'}}
                         className='react_for_echarts' />
                     <label> code below: </label>
                     <pre>

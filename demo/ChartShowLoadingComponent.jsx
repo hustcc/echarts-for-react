@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 const ChartShowLoadingComponent = React.createClass({
     propTypes: {
     },
+    _t: null,
     getOtion: function() {
         const option = {
             title: {
@@ -43,17 +44,31 @@ const ChartShowLoadingComponent = React.createClass({
         return option;
     },
     onChartReady: function(chart) {
-        setTimeout(function() {
+        this._t = setTimeout(function() {
             chart.hideLoading();
         }, 3000);
     },
+    getLoadingOption: function() {
+        const option = {
+            text: '加载中...',
+            color: '#4413c2',
+            textColor: '#270240',
+            maskColor: 'rgba(194, 88, 86, 0.3)',
+            zlevel: 0
+        };
+        return option;
+    },
+    componentWillUnmount: function() {
+        clearTimeout(this._t);
+    },
     render: function() {
-        let code = "onChartReady: function(chart) {\n" + 
+        let code = "onChartReady: function(chart) {\n" +
                    "  'chart.hideLoading();\n" +
                    "}\n\n" +
                    "<ReactEcharts \n" +
                     "    option={this.getOtion()} \n" +
                     "    onChartReady={this.onChartReady} \n" +
+                    "    loadingOption={this.getLoadingOption()} \n" +
                     "    showLoading={true} />";
 
         return (
@@ -61,8 +76,9 @@ const ChartShowLoadingComponent = React.createClass({
                 <div className='parent'>
                     <label> Chart loading With <strong> showLoading </strong>: (when chart ready, hide the loading mask.)</label>
                     <ReactEcharts
-                        option={this.getOtion()} 
-                        onChartReady={this.onChartReady} 
+                        option={this.getOtion()}
+                        onChartReady={this.onChartReady}
+                        loadingOption={this.getLoadingOption()}
                         showLoading={true} />
                     <label> code below: </label>
                     <pre>

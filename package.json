@@ -1,15 +1,23 @@
 {
   "name": "echarts-for-react",
-  "version": "1.1.5",
+  "version": "1.4.4",
   "description": "baidu Echarts(v3.0) components for react",
-  "main": "lib/echarts-for-react",
+  "main": "lib/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
   "scripts": {
     "start": "webpack-dev-server --watch",
     "lint": "eslint src",
     "clean": "rimraf lib",
-    "test": "npm run lint",
-    "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib",
-    "prepublish": "npm run build"
+    "test": "npm run lint && npm run cover",
+    "demo": "webpack",
+    "dev": "webpack --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
+    "prepublish": "npm run build",
+    "cover": "jest --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -34,38 +42,71 @@
   },
   "homepage": "https://github.com/hustcc/echarts-for-react",
   "devDependencies": {
-    "react-adsense": "^0.0.1",
     "babel-cli": "^6.6.0",
     "babel-core": "^6.3.15",
-    "babel-eslint": "^5.0.0-beta4",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-react-hmre": "^1.0.0",
-    "eslint": "^1.10.3",
-    "eslint-plugin-babel": "^3.0.0",
-    "eslint-plugin-react": "^3.11.3",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.10.1",
-    "css-loader": "~0.16.0",
-    "jsx-loader": "~0.13.2",
-    "style-loader": "~0.12.3",
-    "file-loader": "~0.8.4",
-    "rimraf": "^2.5.0",
-    "cross-env": "^1.0.8",
-    "echarts": "^3.1.1",
-    "element-resize-event": "^2.0.5",
-    "react-router": "^2.0.0",
+    "babel-plugin-transform-class-properties": "*",
+    "babel-plugin-transform-es3-member-expression-literals": "*",
     "babel-plugin-transform-es3-property-literals": "*",
-    "babel-plugin-transform-es3-member-expression-literals": "*"
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "coveralls": "^2.13.1",
+    "cross-env": "^1.0.8",
+    "css-loader": "~0.16.0",
+    "echarts": "^3.6.1",
+    "echarts-liquidfill": "~1.0.5",
+    "element-resize-event": "^2.0.5",
+    "enzyme": "^2.8.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-babel": "^3.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
+    "file-loader": "~0.8.4",
+    "immutability-util": "^0.0.1",
+    "jest": "^19.0.2",
+    "jsx-loader": "~0.13.2",
+    "prop-types": "^15.0.0",
+    "react": "^15.5.0",
+    "react-adsense": "^0.0.2",
+    "react-dom": "^15.5.0",
+    "react-router": "^2.0.0",
+    "react-test-renderer": "^15.5.4",
+    "rimraf": "^2.5.0",
+    "style-loader": "~0.12.3",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
-    "echarts": "^3.1.1",
-    "element-resize-event": "^2.0.5"
+    "element-resize-event": "2.0.7",
+    "echarts": "^3.6.1"
   },
   "peerDependencies": {
-    "react": ">=0.13.2 || ^0.14 || ^15.0.0"
+    "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0-alpha.1 <17.0.0",
+    "prop-types": ">=15.0.0"
+  },
+  "jest": {
+    "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
   }
 }

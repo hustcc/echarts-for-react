@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 const SimpleChartComponent = React.createClass({
     propTypes: {
@@ -74,8 +74,8 @@ const SimpleChartComponent = React.createClass({
                 <div className='parent'>
                     <label> render a Simple echart With <strong>option and height</strong>: </label>
                     <ReactEcharts
-                        option={this.getOtion()} 
-                        style={{height: '350px', width: '100%'}} 
+                        option={this.getOtion()}
+                        style={{height: '350px', width: '100%'}}
                         className='react_for_echarts' />
                     <label> code below: </label>
                     <pre>

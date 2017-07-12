@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../lib/echarts-for-react';
+import ReactEcharts from '../';
 
 const ChartAPIComponent = React.createClass({
     propTypes: {
@@ -97,19 +97,21 @@ const ChartAPIComponent = React.createClass({
         return option;
     },
     clickBtn: function() {
-        window.open(this.refs.echarts_react.getEchartsInstance().getDataURL(), '_blank');
+        console.log(this);
+        console.log(this.echarts_react);
+        window.open(this.echarts_react.getEchartsInstance().getDataURL(), '_blank');
     },
     render: function() {
-        let code = "<ReactEcharts ref='echartsInstance' \n" +
-                    "    option={this.getOtion()} /> \n" + 
-                    "\n" + 
+        let code = "<ReactEcharts ref={(e) => { this.echarts_react = e; }} \n" +
+                    "    option={this.getOtion()} /> \n" +
+                    "\n" +
                     "// use echarts API: http://echarts.baidu.com/api.html#echartsInstance" +
-                    "this.refs.echarts_react.getEchartsInstance().getDataURL();";
+                    "this.echarts_react.getEchartsInstance().getDataURL();";
         return (
             <div className='examples'>
                 <div className='parent'>
                     <label> use echarts API With <strong> getEchartsInstance() </strong>: (the API will return the echarts instance, then you can use any API of echarts.)</label>
-                    <ReactEcharts ref='echarts_react'
+                    <ReactEcharts ref={(e) => { this.echarts_react = e; }}
                         option={this.getOtion()}  />
                     <div>
                         <button className='a_line' onClick={this.clickBtn}>click here to get the DataURL of chart.</button>

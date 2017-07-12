@@ -2,12 +2,12 @@
 
 A very simple echarts(v3.0) wrapper for react.
 
-[![Build Status](https://travis-ci.org/hustcc/echarts-for-react.svg?branch=master)](https://travis-ci.org/hustcc/echarts-for-react) [![npm](https://img.shields.io/npm/v/echarts-for-react.svg?style=flat-square)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/dt/echarts-for-react.svg?style=flat-square)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/l/echarts-for-react.svg?style=flat-square)](https://www.npmjs.com/package/echarts-for-react)
+[![Build Status](https://travis-ci.org/hustcc/echarts-for-react.svg?branch=master)](https://travis-ci.org/hustcc/echarts-for-react) [![npm](https://img.shields.io/npm/v/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/dt/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/l/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) [![react supported](https://img.shields.io/badge/React-%3E%3D0.13.2%20%7C%7C%20%5E0.14.0%20%7C%7C%20%5E15.0.0-blue.svg)](https://github.com/hustcc/echarts-for-react)
 
 # 1. install
 
 ```sh
-npm install echarts-for-react
+npm install --save echarts-for-react
 ```
 
 How to run the demo:
@@ -25,19 +25,42 @@ then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or s
 
 # 2. usage
 
-Simple demo code. for more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
+Code of a simple demo code showed below. For more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
 ```js
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require('echarts-for-react');
 
 <ReactEcharts
-    option={this.getOption()} 
-	notMerge={true}
-	lazyUpdate={true}
-	theme={"theme_name"}
-	onChartReady={this.onChartReadyCallback}
-    onEvents={EventsDict} />
+  option={this.getOption()}
+  notMerge={true}
+  lazyUpdate={true}
+  theme={"theme_name"}
+  onChartReady={this.onChartReadyCallback}
+  onEvents={EventsDict} />
+```
+
+If you have only used bar chart (or others), you can import echarts modules manually to reduce bundle file size, e.g.
+
+
+```js
+import React from 'react';
+// import the core library.
+import ReactEchartsCore from 'echarts-for-react/lib/core';
+// then import echarts modules those you have used manually.
+import echarts from 'echarts/lib/echarts';
+import 'echarts/lib/chart/bar';
+import 'echarts/lib/component/tooltip';
+
+// The usage of ReactEchartsCore are same with above.
+<ReactEchartsCore
+  echarts={echarts}
+  option={this.getOption()}
+  notMerge={true}
+  lazyUpdate={true}
+  theme={"theme_name"}
+  onChartReady={this.onChartReadyCallback}
+  onEvents={EventsDict} />
 ```
 
 
@@ -70,7 +93,7 @@ the `theme` of echarts. `string`, should `registerTheme` before use it (theme ob
 
 ```js
 // import echarts
-import echarts from 'echarts'; 
+import echarts from 'echarts';
 ...
 // register theme object
 echarts.registerTheme('my_theme', {
@@ -78,17 +101,20 @@ echarts.registerTheme('my_theme', {
 });
 ...
 // render the echarts use option `theme`
-<ReactEcharts 
-    option={this.getOption()} 
-    style={{height: '300px', width: '100%'}} 
-	className='echarts-for-echarts' 
-    theme='my_theme' /> 
-
+<ReactEcharts
+  option={this.getOption()}
+  style={{height: '300px', width: '100%'}}
+  className='echarts-for-echarts'
+  theme='my_theme' />
 ```
 
  - **`onChartReady`** (optional, function)
 
 when the chart is ready, will callback the function with the `echarts object` as it's paramter.
+
+ - **`loadingOption`** (optional, object)
+
+the echarts loading option config, can see [http://echarts.baidu.com/api.html#echartsInstance.showLoading](http://echarts.baidu.com/api.html#echartsInstance.showLoading).
 
  - **`showLoading`** (optional, bool, default: false)
 
@@ -96,18 +122,18 @@ when the chart is ready, will callback the function with the `echarts object` as
 
  - **`onEvents`** (optional, array(string=>function) )
 
-binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g: 
+binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g:
 
 ```js
 let onEvents = {
-    'click': this.onChartClick,
-    'legendselectchanged': this.onChartLegendselectchanged
+  'click': this.onChartClick,
+  'legendselectchanged': this.onChartLegendselectchanged
 }
 ...
 <ReactEcharts
-    option={this.getOption()} 
-    style={{height: '300px', width: '100%'}} 
-    onEvents={onEvents} />
+  option={this.getOption()}
+  style={{height: '300px', width: '100%'}}
+  onEvents={onEvents} />
 ```
 for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
 
@@ -122,19 +148,19 @@ for example:
 
 ```js
 // render the echarts component below with rel
-<ReactEcharts ref='echarts_react'
-    option={this.getOption()} />
+<ReactEcharts ref={(e) => { this.echarts_react = e; }}
+  option={this.getOption()} />
 
-// then get the `ReactEcharts` use this.refs.echarts_react
+// then get the `ReactEcharts` use this.echarts_react
 
-let echarts_instance = this.refs.echarts_react.getEchartsInstance();
+let echarts_instance = this.echarts_react.getEchartsInstance();
 // then you can use any API of echarts.
 let base64 = echarts_instance.getDataURL();
 ```
 
 **About API of echarts, can see** [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance).
 
-you can use the API to do:
+You can use the API to do:
 
 1. `binding / unbinding` event.
 2. `dynamic charts` with dynamic data.
@@ -144,4 +170,6 @@ you can use the API to do:
 
 # 5. LICENSE
 
-MIT
+MIT@[hustcc](https://github.com/hustcc).
+
+

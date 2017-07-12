@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEcharts from '../src/echarts-for-react';
+import ReactEcharts from '../';
 
 const ChartWithEventComponent = React.createClass({
     propTypes: {
@@ -61,7 +61,7 @@ const ChartWithEventComponent = React.createClass({
             'click': this.onChartClick,
             'legendselectchanged': this.onChartLegendselectchanged
         };
-        let code = "let onEvents = {\n" + 
+        let code = "let onEvents = {\n" +
                    "  'click': this.onChartClick,\n" +
                    "  'legendselectchanged': this.onChartLegendselectchanged\n" +
                    "}\n\n" +
@@ -76,9 +76,9 @@ const ChartWithEventComponent = React.createClass({
                 <div className='parent'>
                     <label> Chart With event <strong> onEvents </strong>: (Click the chart, and watch the console)</label>
                     <ReactEcharts
-                        option={this.getOtion()} 
-                        style={{height: 300}} 
-                        onChartReady={this.onChartReady} 
+                        option={this.getOtion()}
+                        style={{height: 300}}
+                        onChartReady={this.onChartReady}
                         onEvents={onEvents} />
                     <label> code below: </label>
                     <pre>
