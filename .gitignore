@@ -1,5 +1,9 @@
 node_modules/
-npm-debug.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .idea
 coverage
 .coveralls.yml
+package-lock.json
+yarn.lock
