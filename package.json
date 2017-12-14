@@ -59,7 +59,6 @@
     "css-loader": "~0.16.0",
     "echarts": "^3.6.1",
     "echarts-liquidfill": "~1.0.5",
-    "element-resize-event": "^2.0.5",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
