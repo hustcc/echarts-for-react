@@ -71,7 +71,7 @@
     "immutability-util": "^0.0.1",
     "jest": "^19.0.2",
     "jsx-loader": "~0.13.2",
-    "prop-types": "^15.0.0",
+    "prop-types": "^15.5.7",
     "react": "^15.5.0",
     "react-adsense": "^0.0.2",
     "react-dom": "^15.5.0",
@@ -87,7 +87,7 @@
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0-alpha.1 <17.0.0",
-    "prop-types": ">=15.0.0",
+    "prop-types": "^15.5.7",
     "echarts": "^3.0.0"
   },
   "jest": {
