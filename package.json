@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "baidu Echarts(v3.x) components for react",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "src",
     "lib"
@@ -10,11 +11,13 @@
   "scripts": {
     "start": "webpack-dev-server --watch",
     "lint": "eslint src",
-    "clean": "rimraf lib",
+    "clean": "rimraf lib/core.js && rimraf lib/index.js",
     "test": "npm run lint && npm run cover",
     "demo": "webpack",
     "dev": "webpack --watch",
     "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
+    "tsc": "tsc",
+    "ts-test": "tsc && npm test",
     "prepublish": "npm run build",
     "cover": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
@@ -42,6 +45,9 @@
   },
   "homepage": "https://github.com/hustcc/echarts-for-react",
   "devDependencies": {
+    "@types/enzyme": "^3.1.6",
+    "@types/jest": "^21.1.8",
+    "@types/react": "^16.0.31",
     "babel-cli": "^6.6.0",
     "babel-core": "^6.3.15",
     "babel-eslint": "^7.2.3",
@@ -79,6 +85,7 @@
     "react-test-renderer": "^15.5.4",
     "rimraf": "^2.5.0",
     "style-loader": "~0.12.3",
+    "typescript": "^2.6.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.10.1"
   },
