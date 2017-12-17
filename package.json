@@ -16,7 +16,6 @@
     "demo": "webpack",
     "dev": "webpack --watch",
     "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
-    "tsc": "tsc",
     "ts-test": "tsc && npm test",
     "prepublish": "npm run build",
     "cover": "jest --coverage",
