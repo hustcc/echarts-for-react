@@ -45,8 +45,8 @@ import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require(
 ### typescript
 
 ```js
-import * as React from 'react';
-import ReactEcharts from 'echarts-for-react';
+import * as React from "react";
+import ReactEcharts from "echarts-for-react";
 
 <ReactEcharts
     option={this.getOption()}

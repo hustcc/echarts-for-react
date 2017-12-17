@@ -12,11 +12,11 @@
     "start": "webpack-dev-server --watch",
     "lint": "eslint src",
     "clean": "rimraf lib/core.js && rimraf lib/index.js",
-    "test": "npm run lint && npm run cover",
+    "test": "npm run tsc && npm run lint && npm run cover",
     "demo": "webpack",
     "dev": "webpack --watch",
     "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
-    "ts-test": "tsc && npm test",
+    "tsc": "tsc",
     "prepublish": "npm run build",
     "cover": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
