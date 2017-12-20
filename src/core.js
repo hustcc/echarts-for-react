@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
 
+const isEqual = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
+
 export default class ReactEcharts extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +27,17 @@ export default class ReactEcharts extends React.Component {
   }
 
   // update
-  componentDidUpdate() {
-    this.renderEchartDom();
+  componentDidUpdate(prevProps) {
+    const echartObj = this.renderEchartDom();
     this.bindEvents(this.getEchartsInstance(), this.props.onEvents || []);
+
+    if (
+        !isEqual(prevProps.style, this.props.style)
+        ||
+        !isEqual(prevProps.className, this.props.className)
+    ) {
+        echartObj.resize();
+    }
   }
 
   // remove
