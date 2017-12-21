@@ -31,12 +31,10 @@ export default class ReactEcharts extends React.Component {
     const echartObj = this.renderEchartDom();
     this.bindEvents(this.getEchartsInstance(), this.props.onEvents || []);
 
-    if (
-        !isEqual(prevProps.style, this.props.style)
-        ||
-        !isEqual(prevProps.className, this.props.className)
-    ) {
+    if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
+      try {
         echartObj.resize();
+      } catch (_) {}
     }
   }
 
