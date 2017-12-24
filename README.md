@@ -27,6 +27,8 @@ then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or s
 
 Code of a simple demo code showed below. For more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
+### javascript
+
 ```js
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require('echarts-for-react');
@@ -38,6 +40,21 @@ import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require(
   theme={"theme_name"}
   onChartReady={this.onChartReadyCallback}
   onEvents={EventsDict} />
+```
+
+### typescript
+
+```js
+import * as React from "react";
+import ReactEcharts from "echarts-for-react";
+
+<ReactEcharts
+    option={this.getOption()}
+    notMerge={true}
+    lazyUpdate={true}
+    theme={"theme_name"}
+    onChartReady={this.onChartReadyCallback}
+    onEvents={EventsDict} />
 ```
 
 If you have only used bar chart (or others), you can import echarts modules manually to reduce bundle file size, e.g.
