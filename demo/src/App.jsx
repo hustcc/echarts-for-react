@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router'
 import AdSense from 'react-adsense';
+import Dynamic from './charts/Dynamic.jsx';
 
 import './index.css';
 
@@ -34,7 +35,7 @@ export default class App extends PureComponent {
           <Link to="/echarts/lunar">Lunar</Link> |
           <Link to="/echarts/liquid">Liquidfill</Link>
         </h4>
-        { children }
+        { children || <Dynamic /> }
 
         <h3>
           Get it on GitHub!
