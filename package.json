@@ -109,6 +109,9 @@
       "^.+\\.js[x]?$": "babel-jest",
       "^.+\\.ts[x]?$": "ts-jest"
     },
+    "moduleNameMapper": {
+      "^echarts$": "<rootDir>/__tests__/Echarts.js"
+    },
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/*.{js,jsx,ts,tsx}",

@@ -1,26 +1,26 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import EchartsReact from '../src';
 import option from './option';
 
 test('test echarts-for-react\'s index.js.', () => {
-  let component = shallow(<EchartsReact
+  let component = mount(<EchartsReact
     option={option}
     className="echarts-for-react"
   />);
   expect(component.exists()).toBe(true);
 
+  expect(component.getDOMNode().className).toBe('echarts-for-react-div echarts-for-react');
+
   expect(component.find('div').length).toBe(1);
 
-  expect(component.hasClass('echarts-for-react')).toBe(true);
-  expect(component.hasClass('echarts-for-react-div')).toBe(true);
-
-  expect(component.type()).toEqual('div');
+  expect(component.name()).toEqual('EchartsReact');
   // default props
   expect(component.instance().props.option).toEqual(option);
-  expect(component.instance().props.style).toEqual({});
-  expect(component.props().style).toEqual({ height: 300 });
+  expect(component.props().style).toEqual({});
+
+  expect(component.getDOMNode().style.height).toEqual('300px');
   expect(component.instance().props.className).toEqual('echarts-for-react');
   expect(component.instance().props.notMerge).toEqual(false);
   expect(component.instance().props.lazyUpdate).toEqual(false);
@@ -33,7 +33,7 @@ test('test echarts-for-react\'s index.js.', () => {
   const testFunc = () => {};
   const chartReady = jest.fn();
   // not default props
-  component = shallow(<EchartsReact
+  component = mount(<EchartsReact
     option={option}
     style={{ width: 100 }}
     notMerge
@@ -45,11 +45,8 @@ test('test echarts-for-react\'s index.js.', () => {
     className="echarts-for-react"
   />);
 
-  // expect(chartReady).toBeCalled();
+  expect(chartReady).toBeCalled();
 
-  expect(component.props().style).toEqual({ width: 100, height: 300 });
-  expect(component.hasClass('echarts-for-react')).toBe(true);
-  expect(component.hasClass('echarts-for-react-div')).toBe(true);
   expect(component.instance().props.option).toEqual(option);
   expect(component.instance().props.style).toEqual({ width: 100 });
   expect(component.instance().props.className).toEqual('echarts-for-react');
@@ -77,6 +74,8 @@ test('test echarts-for-react update props.', () => {
     style: { height: 500 },
   });
 
+  component.update();
+
   expect(component.props().style).toEqual({ height: 500 });
   expect(component.hasClass('test-classname')).toBe(true);
   expect(component.hasClass('echarts-for-react-div')).toBe(true);
@@ -84,13 +83,21 @@ test('test echarts-for-react update props.', () => {
 
 
 test('test echarts-for-react getEchartsInstance.', () => {
-  const component = shallow(<EchartsReact
+  const component = mount(<EchartsReact
     option={option}
     className="echarts-for-react"
   />);
 
-  // ref can not work on shallow of enzyme, but can work on mount
-  // echarts can not be work on mount.
-  // TODO need to mock echarts on jest.
-  expect(typeof component.instance().getEchartsInstance).toBe('function');
+  expect(component.instance().getEchartsInstance().displayName).toBe('EchartsInstance');
+});
+
+
+test('test echarts-for-react unmount.', () => {
+  const component = mount(<EchartsReact
+    option={option}
+    className="echarts-for-react"
+  />);
+
+  component.unmount();
+  expect(true).toBe(true);
 });

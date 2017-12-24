@@ -47,7 +47,7 @@ export default class EchartsReactCore extends Component {
       // if elementResizeEvent.unbind exist, just do it.
       if (typeof elementResizeEvent.unbind === 'function') {
         elementResizeEvent.unbind(this.echartsElement);
-     }
+      }
       this.echartsInstance.dispose(this.echartsElement);
     }
   }
