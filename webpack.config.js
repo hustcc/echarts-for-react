@@ -1,18 +1,19 @@
+var path = require('path');
 var webpack = require('webpack');
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var definePlugin = webpack.DefinePlugin;
 
 module.exports = {
-  entry: './demo/demo.jsx',
+  entry: './demo/src/index.js',
   output: {
-    path: './demo/dist/',
+    path: path.resolve(__dirname, './demo/dist'),
     filename: 'bundle.js'
   },
   module: {
     loaders:[{
       test: /\.js[x]?$/,
       exclude: /node_modules/,
-      loader: 'babel-loader?presets[]=es2015&presets[]=react&presets[]=stage-0'
+      loader: 'babel-loader'
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
@@ -25,7 +26,8 @@ module.exports = {
     echarts: 'window.echarts',
   },
   plugins: [
-    new uglifyJsPlugin({compress: {warnings: false}}),
-    new definePlugin({'process.env': {NODE_ENV: '"production"'}})
-  ]
+   new uglifyJsPlugin({compress: {warnings: false}}),
+   new definePlugin({'process.env': {NODE_ENV: '"production"'}})
+  ],
+  devtool: 'source-map'
 };

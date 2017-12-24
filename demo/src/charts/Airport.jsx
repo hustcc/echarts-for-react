@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactEcharts from '../';
-import echarts from 'echarts';
+import React, { PureComponent } from 'react';
+import ReactEcharts from '../../../lib/index';
+
 require("echarts/map/js/china.js");
 
-const AirportCoordComponent = React.createClass({
-  getOtion: function() {
-    var geoCoordMap = {
+export default class Airport extends PureComponent{
+  getOption = () => {
+    const geoCoordMap = {
         '上海': [121.4648,31.2891],
         '东莞': [113.8953,22.901],
         '东营': [118.7073,37.5513],
@@ -122,7 +122,7 @@ const AirportCoordComponent = React.createClass({
         '韶关': [113.7964,24.7028]
     };
 
-    var BJData = [
+    const BJData = [
         [{name:'北京'}, {name:'上海',value:95}],
         [{name:'北京'}, {name:'广州',value:90}],
         [{name:'北京'}, {name:'大连',value:80}],
@@ -135,7 +135,7 @@ const AirportCoordComponent = React.createClass({
         [{name:'北京'}, {name:'常州',value:10}]
     ];
 
-    var SHData = [
+    const SHData = [
         [{name:'上海'},{name:'包头',value:95}],
         [{name:'上海'},{name:'昆明',value:90}],
         [{name:'上海'},{name:'广州',value:80}],
@@ -148,7 +148,7 @@ const AirportCoordComponent = React.createClass({
         [{name:'上海'},{name:'大连',value:10}]
     ];
 
-    var GZData = [
+    const GZData = [
         [{name:'广州'},{name:'福州',value:95}],
         [{name:'广州'},{name:'太原',value:90}],
         [{name:'广州'},{name:'长春',value:80}],
@@ -161,9 +161,9 @@ const AirportCoordComponent = React.createClass({
         [{name:'广州'},{name:'海口',value:10}]
     ];
 
-    var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+    const planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
 
-    var convertData = function (data) {
+    const convertData = function (data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
             var dataItem = data[i];
@@ -180,8 +180,8 @@ const AirportCoordComponent = React.createClass({
         return res;
     };
 
-    var color = ['#a6c84c', '#ffa022', '#46bee9'];
-    var series = [];
+    const color = ['#a6c84c', '#ffa022', '#46bee9'];
+    const series = [];
     [['北京', BJData], ['上海', SHData], ['广州', GZData]].forEach(function (item, i) {
         series.push({
             name: item[0] + ' Top10',
@@ -258,7 +258,7 @@ const AirportCoordComponent = React.createClass({
         });
     });
 
-    var option = {
+    const option = {
         backgroundColor: '#404a59',
         title : {
             text: '模拟迁徙',
@@ -302,20 +302,18 @@ const AirportCoordComponent = React.createClass({
         series: series
     };
     return option;
-  },
-  render: function() {
+  };
+  render() {
     return (
       <div className='examples'>
         <div className='parent'>
           <label> render a airport chart. </label>
           <ReactEcharts
-            option={this.getOtion()}
+            option={this.getOption()}
             style={{height: '700px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>
     );
   }
-});
-
-export default AirportCoordComponent;
+}

@@ -1,24 +1,24 @@
-import React from 'react';
-import ReactEcharts from '../';
+import React, { PureComponent } from 'react';
+import ReactEcharts from '../../../lib/index';
 import echarts from 'echarts';
 
-const GCalendarComponent = React.createClass({
-  getVirtulData: function(year) {
+export default class Gcalendar extends PureComponent {
+  getVirtulData = (year) => {
     year = year || '2017';
-    var date = +echarts.number.parseDate(year + '-01-01');
-    var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-    var dayTime = 3600 * 24 * 1000;
-    var data = [];
-    for (var time = date; time < end; time += dayTime) {
+    const date = +echarts.number.parseDate(year + '-01-01');
+    const end = +echarts.number.parseDate((+year + 1) + '-01-01');
+    const dayTime = 3600 * 24 * 1000;
+    const data = [];
+    for (let time = date; time < end; time += dayTime) {
         data.push([
             echarts.format.formatTime('yyyy-MM-dd', time),
             Math.floor(Math.random() * 1000)
         ]);
     }
     return data;
-  },
-  getOtion: function() {
-    const option = {
+  };
+  getOption = () => {
+    return {
       tooltip: {
         position: 'top'
       },
@@ -51,22 +51,19 @@ const GCalendarComponent = React.createClass({
         calendarIndex: 1,
         data: this.getVirtulData(2016)
       }]
+    };
   };
-    return option;
-  },
-  render: function() {
+  render() {
     return (
       <div className='examples'>
         <div className='parent'>
           <label> render a calendar like github commit history. </label>
           <ReactEcharts
-            option={this.getOtion()}
+            option={this.getOption()}
             style={{height: '500px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>
     );
   }
-});
-
-export default GCalendarComponent;
+}

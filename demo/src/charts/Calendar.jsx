@@ -1,24 +1,24 @@
-import React from 'react';
-import ReactEcharts from '../';
+import React, { PureComponent } from 'react';
+import ReactEcharts from '../../../lib/index';
 import echarts from 'echarts';
 
-const CalendarComponent = React.createClass({
-  getVirtulData: function(year) {
+export default class Calendar extends PureComponent {
+  getVirtulData = (year) => {
     year = year || '2017';
-    var date = +echarts.number.parseDate(year + '-01-01');
-    var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-    var dayTime = 3600 * 24 * 1000;
-    var data = [];
-    for (var time = date; time < end; time += dayTime) {
+    const date = +echarts.number.parseDate(year + '-01-01');
+    const end = +echarts.number.parseDate((+year + 1) + '-01-01');
+    const dayTime = 3600 * 24 * 1000;
+    const data = [];
+    for (let time = date; time < end; time += dayTime) {
         data.push([
             echarts.format.formatTime('yyyy-MM-dd', time),
             Math.floor(Math.random() * 1000)
         ]);
     }
     return data;
-  },
-  getOtion: function() {
-    var graphData = [[
+  };
+  getOption = () => {
+    const graphData = [[
         1485878400000,
         260
       ],[
@@ -42,7 +42,7 @@ const CalendarComponent = React.createClass({
       ]
     ];
 
-    var links = graphData.map(function (item, idx) {
+    const links = graphData.map(function (item, idx) {
       return {
         source: idx,
         target: idx + 1
@@ -50,7 +50,7 @@ const CalendarComponent = React.createClass({
     });
     links.pop();
 
-    const option = {
+    return {
       tooltip: {
         position: 'top'
       },
@@ -88,15 +88,15 @@ const CalendarComponent = React.createClass({
       {
         orient: 'vertical',
         yearLabel: {
-            margin: 40
+          margin: 40
         },
         monthLabel: {
-            nameMap: 'cn',
-            margin: 20
+          nameMap: 'cn',
+          margin: 20
         },
         dayLabel: {
-            firstDay: 1,
-            nameMap: 'cn'
+          firstDay: 1,
+          nameMap: 'cn'
         },
         cellSize: 40,
         range: '2017-02'
@@ -104,10 +104,10 @@ const CalendarComponent = React.createClass({
       {
         orient: 'vertical',
         yearLabel: {
-            margin: 40
+          margin: 40
         },
         monthLabel: {
-            margin: 20
+          margin: 20
         },
         cellSize: 40,
         left: 460,
@@ -116,10 +116,10 @@ const CalendarComponent = React.createClass({
       {
         orient: 'vertical',
         yearLabel: {
-            margin: 40
+          margin: 40
         },
         monthLabel: {
-            margin: 20
+          margin: 20
         },
         cellSize: 40,
         top: 350,
@@ -128,15 +128,15 @@ const CalendarComponent = React.createClass({
       {
         orient: 'vertical',
         yearLabel: {
-            margin: 40
+          margin: 40
         },
         dayLabel: {
-            firstDay: 1,
-            nameMap: ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+          firstDay: 1,
+          nameMap: ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
         },
         monthLabel: {
-            nameMap: 'cn',
-            margin: 20
+          nameMap: 'cn',
+          margin: 20
         },
         cellSize: 40,
         top: 350,
@@ -179,21 +179,19 @@ const CalendarComponent = React.createClass({
         data: this.getVirtulData(2017)
       }]
     };
-    return option
-  },
-  render: function() {
+  };
+
+  render() {
     return (
       <div className='examples'>
         <div className='parent'>
           <label> render a calendar-charts </label>
           <ReactEcharts
-              option={this.getOtion()}
+              option={this.getOption()}
               style={{height: '700px', width: '100%'}}
               className='react_for_echarts' />
         </div>
       </div>
     );
   }
-});
-
-export default CalendarComponent;
+}

@@ -1,25 +1,26 @@
-import * as React from "react";
-import {shallow} from "enzyme";
-import ReactEcharts from "..";
-import option from "./option"
+/* eslint-disable no-undef */
+import * as React from 'react';
+import { shallow } from 'enzyme';
+import EchartsReact from '..';
+import option from './option';
 
-test("test echarts-for-react's index.d.ts.", () => {
-  let component = shallow(
-    <ReactEcharts
-      option={option}
-      className="echarts-for-react"
-    />
-  );
+test('test echarts-for-react\'s index.d.ts.', () => {
+  let component = shallow(<EchartsReact
+    option={option}
+    className="echarts-for-react"
+  />);
   expect(component.exists()).toBe(true);
 
   expect(component.find('div').length).toBe(1);
 
   expect(component.hasClass('echarts-for-react')).toBe(true);
+  expect(component.hasClass('echarts-for-react-div')).toBe(true);
 
   expect(component.type()).toEqual('div');
   // default props
   expect(component.instance().props.option).toEqual(option);
-  expect(component.instance().props.style).toEqual({height: '300px'});
+  expect(component.instance().props.style).toEqual({});
+  expect(component.props().style).toEqual({ height: 300 });
   expect(component.instance().props.className).toEqual('echarts-for-react');
   expect(component.instance().props.notMerge).toEqual(false);
   expect(component.instance().props.lazyUpdate).toEqual(false);
@@ -31,22 +32,23 @@ test("test echarts-for-react's index.d.ts.", () => {
 
   const testFunc = () => {};
   // not default props
-  component = shallow(
-    <ReactEcharts
-      option={option}
-      style={{ width: 100 }}
-      notMerge
-      lazyUpdate
-      theme="test_theme"
-      onChartReady={testFunc}
-      showLoading
-      onEvents={{ onClick: testFunc }}
-      className="echarts-for-react"
-    />
-  );
+  component = shallow(<EchartsReact
+    option={option}
+    style={{ width: 100 }}
+    notMerge
+    lazyUpdate
+    theme="test_theme"
+    onChartReady={testFunc}
+    showLoading
+    onEvents={{ onClick: testFunc }}
+    className="echarts-for-react"
+  />);
 
+  expect(component.props().style).toEqual({ width: 100, height: 300 });
+  expect(component.hasClass('echarts-for-react')).toBe(true);
+  expect(component.hasClass('echarts-for-react-div')).toBe(true);
   expect(component.instance().props.option).toEqual(option);
-  expect(component.instance().props.style).toEqual({width: 100});
+  expect(component.instance().props.style).toEqual({ width: 100 });
   expect(component.instance().props.className).toEqual('echarts-for-react');
   expect(component.instance().props.notMerge).toEqual(true);
   expect(component.instance().props.lazyUpdate).toEqual(true);

@@ -1,8 +1,8 @@
 import echarts from 'echarts';
-import Core from './core';
+import EchartsReactCore from './core';
 
 // export the Component the echarts Object.
-export default class EchartsReact extends Core {
+export default class EchartsReact extends EchartsReactCore {
   constructor(props) {
     super(props);
     this.echartsInstance = echarts;

@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactEcharts from '../';
+import React, { PureComponent } from 'react';
+import ReactEcharts from '../../../lib/index';
 import echarts from 'echarts';
 
-const LunarCalendarComponent = React.createClass({
-  getOtion: function() {
-    var dateList = [
+export default class Lunar extends PureComponent {
+  getOption = () => {
+    const dateList = [
       ['2017-1-1', '初四'],
       ['2017-1-2', '初五'],
       ['2017-1-3', '初六'],
@@ -372,22 +372,22 @@ const LunarCalendarComponent = React.createClass({
       ['2017-12-31', '十四']
   ];
 
-  var heatmapData = [];
-  var lunarData = [];
-  for (var i = 0; i < dateList.length; i++) {
-      heatmapData.push([
-          dateList[i][0],
-          Math.random() * 300
-      ]);
-      lunarData.push([
-          dateList[i][0],
-          1,
-          dateList[i][1],
-          dateList[i][2]
-      ]);
+  const heatmapData = [];
+  const lunarData = [];
+  for (let i = 0; i < dateList.length; i++) {
+    heatmapData.push([
+      dateList[i][0],
+      Math.random() * 300
+    ]);
+    lunarData.push([
+      dateList[i][0],
+      1,
+      dateList[i][1],
+      dateList[i][2]
+    ]);
   }
 
-  const option = {
+  return {
       tooltip: {
           formatter: function (params) {
               return '降雨量: ' + params.value[1].toFixed(2);
@@ -472,21 +472,19 @@ const LunarCalendarComponent = React.createClass({
           data: heatmapData
       }]
     };
-    return option;
-  },
-  render: function() {
+  };
+
+  render() {
     return (
       <div className='examples'>
         <div className='parent'>
           <label> render a lunar calendar chart. </label>
           <ReactEcharts
-            option={this.getOtion()}
+            option={this.getOption()}
             style={{height: '500px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>
     );
   }
-});
-
-export default LunarCalendarComponent;
+}

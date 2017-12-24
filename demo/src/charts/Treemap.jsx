@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactEcharts from '../';
+import React, { PureComponent } from 'react';
+import ReactEcharts from '../../../lib/index';
 import echarts from 'echarts';
 
-const TreemapComponent = React.createClass({
-  getOtion: function() {
-    var diskData = [
+export default class Treemap extends PureComponent {
+  getOption = () => {
+    const diskData = [
     {
         "value": 180,
         "name": "Accounts",
@@ -254,20 +254,18 @@ const TreemapComponent = React.createClass({
       }]
     }
     return option;
-  },
-  render: function() {
+  };
+  render() {
     return (
       <div className='examples'>
         <div className='parent'>
           <label> render a disk usage treemap. </label>
           <ReactEcharts
-            option={this.getOtion()}
+            option={this.getOption()}
             style={{height: '500px', width: '100%'}}
             className='react_for_echarts' />
         </div>
     </div>
     );
   }
-});
-
-export default TreemapComponent;
+}

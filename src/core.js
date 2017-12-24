@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
 
 const isEqual = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
 
-export default class ReactEcharts extends React.Component {
+export default class EchartsReactCore extends Component {
   constructor(props) {
     super(props);
     this.echartsInstance = this.props.echarts; // the echarts object.
@@ -13,17 +13,20 @@ export default class ReactEcharts extends React.Component {
 
   // first add
   componentDidMount() {
+    const { onEvents, onChartReady } = this.props;
+
     const echartObj = this.renderEchartDom();
-    const onEvents = this.props.onEvents || {};
-
-    this.bindEvents(echartObj, onEvents);
-    // on chart ready
-    if (typeof this.props.onChartReady === 'function') this.props.onChartReady(echartObj);
-
-    // on resize
-    elementResizeEvent(this.echartsElement, () => {
-      echartObj.resize();
-    });
+    if (echartObj) {
+      this.bindEvents(echartObj, onEvents || {});
+      // on chart ready
+      if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
+      // on resize
+      if (this.echartsElement) {
+        elementResizeEvent(this.echartsElement, () => {
+          echartObj.resize();
+        });
+      }
+    }
   }
 
   // update
@@ -49,8 +52,10 @@ export default class ReactEcharts extends React.Component {
     }
   }
   // return the echart object
-  getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) ||
-    this.echartsInstance.init(this.echartsElement, this.props.theme);
+  getEchartsInstance = () => (this.echartsElement ?
+    this.echartsInstance.getInstanceByDom(this.echartsElement) ||
+    this.echartsInstance.init(this.echartsElement, this.props.theme) :
+    false);
 
   // bind the events
   bindEvents = (instance, events) => {
@@ -76,49 +81,53 @@ export default class ReactEcharts extends React.Component {
   renderEchartDom = () => {
     // init the echart object
     const echartObj = this.getEchartsInstance();
-    // set the echart option
-    echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
-    // set loading mask
-    if (this.props.showLoading) echartObj.showLoading(this.props.loadingOption || null);
-    else echartObj.hideLoading();
+    if (echartObj) {
+      // set the echart option
+      echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
+      // set loading mask
+      if (this.props.showLoading) echartObj.showLoading(this.props.loadingOption || null);
+      else echartObj.hideLoading();
 
-    return echartObj;
+      return echartObj;
+    }
   };
 
   render() {
-    const style = this.props.style || {
-      height: '300px'
+    const { style = {}, className } = this.props;
+    const newStyle = {
+      height: 300,
+      ...style,
     };
     // for render
     return (
       <div
         ref={(e) => { this.echartsElement = e; }}
-        style={style}
-        className={this.props.className}
+        style={newStyle}
+        className={`echarts-for-react-div ${className}`}
       />
     );
   }
 }
 
-ReactEcharts.propTypes = {
-  option: PropTypes.object.isRequired,  // eslint-disable-line react/forbid-prop-types
-  echarts: PropTypes.object.isRequired,  // eslint-disable-line react/forbid-prop-types
+EchartsReactCore.propTypes = {
+  option: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  echarts: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   notMerge: PropTypes.bool,
   lazyUpdate: PropTypes.bool,
-  style: PropTypes.object,  // eslint-disable-line react/forbid-prop-types
+  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   className: PropTypes.string,
   theme: PropTypes.string,
   onChartReady: PropTypes.func,
   showLoading: PropTypes.bool,
-  loadingOption: PropTypes.object,  // eslint-disable-line react/forbid-prop-types
-  onEvents: PropTypes.object  // eslint-disable-line react/forbid-prop-types
+  loadingOption: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  onEvents: PropTypes.object // eslint-disable-line react/forbid-prop-types
 };
 
-ReactEcharts.defaultProps = {
+EchartsReactCore.defaultProps = {
   echarts: {},
   notMerge: false,
   lazyUpdate: false,
-  style: {height: '300px'},
+  style: {},
   className: '',
   theme: null,
   onChartReady: () => {},
