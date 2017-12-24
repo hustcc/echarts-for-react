@@ -60,3 +60,37 @@ test('test echarts-for-react\'s index.js.', () => {
   expect(component.instance().props.showLoading).toEqual(true);
   expect(component.instance().props.onEvents).toEqual({ onClick: testFunc });
 });
+
+
+test('test echarts-for-react update props.', () => {
+  const component = shallow(<EchartsReact
+    option={option}
+    className="echarts-for-react"
+  />);
+
+  expect(component.props().style).toEqual({ height: 300 });
+  expect(component.hasClass('echarts-for-react')).toBe(true);
+  expect(component.hasClass('echarts-for-react-div')).toBe(true);
+
+  component.setProps({
+    className: 'test-classname',
+    style: { height: 500 },
+  });
+
+  expect(component.props().style).toEqual({ height: 500 });
+  expect(component.hasClass('test-classname')).toBe(true);
+  expect(component.hasClass('echarts-for-react-div')).toBe(true);
+});
+
+
+test('test echarts-for-react getEchartsInstance.', () => {
+  const component = shallow(<EchartsReact
+    option={option}
+    className="echarts-for-react"
+  />);
+
+  // ref can not work on shallow of enzyme, but can work on mount
+  // echarts can not be work on mount.
+  // TODO need to mock echarts on jest.
+  expect(typeof component.instance().getEchartsInstance).toBe('function');
+});
