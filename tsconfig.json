@@ -8,14 +8,9 @@
       "es6",
       "dom"
     ],
-    "rootDir": "tsx-test",
-    "outDir": "__tests__"
+    "rootDir": "__tests__"
   },
   "exclude": [
     "node_modules"
-  ],
-  "files": [
-    "lib/index.d.ts",
-    "tsx-test/index.ts.spec.tsx"
   ]
 }

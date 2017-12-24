@@ -1,10 +1,9 @@
-/* eslint-disable no-undef */
-import React from 'react';
-import { shallow } from 'enzyme';
-import ReactEcharts from '../src';
-import option from './option';
+import * as React from "react";
+import {shallow} from "enzyme";
+import ReactEcharts from "..";
+import option from "./option"
 
-test('test echarts-for-react\'s index.js.', () => {
+test("test echarts-for-react's index.d.ts.", () => {
   let component = shallow(
     <ReactEcharts
       option={option}

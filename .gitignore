@@ -7,4 +7,3 @@ coverage
 .coveralls.yml
 package-lock.json
 yarn.lock
-/__tests__/index.ts.spec.js
