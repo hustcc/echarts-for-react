@@ -110,7 +110,7 @@
       "^.+\\.ts[x]?$": "ts-jest"
     },
     "moduleNameMapper": {
-      "^echarts$": "<rootDir>/__tests__/Echarts.js"
+      "^echarts$": "<rootDir>/__tests__/jest-echarts-mock/index.js"
     },
     "collectCoverage": true,
     "collectCoverageFrom": [
