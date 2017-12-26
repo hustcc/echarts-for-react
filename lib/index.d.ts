@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-interface ReactEchartsProps {
+// Index
+export interface ReactEchartsPropsTypes {
   option: object;
   notMerge?: boolean;
   lazyUpdate?: boolean;
@@ -14,6 +15,6 @@ interface ReactEchartsProps {
   echarts?: object;
 }
 
-export default class ReactEcharts<P, S> extends React.Component<P, S>{
+export class ReactEcharts extends Component<ReactEchartsPropsTypes, any> {
   getEchartsInstance: () => any;
 }
