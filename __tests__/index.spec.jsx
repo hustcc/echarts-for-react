@@ -1,103 +1,127 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import EchartsReact from '../src';
 import option from './option';
 
-test('test echarts-for-react\'s index.js.', () => {
-  let component = mount(<EchartsReact
-    option={option}
-    className="echarts-for-react"
-  />);
-  expect(component.exists()).toBe(true);
 
-  expect(component.getDOMNode().className).toBe('echarts-for-react-div echarts-for-react');
+describe('index.js', () => {
+  test('default props', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      className="echarts-for-react-root"
+    />);
 
-  expect(component.find('div').length).toBe(1);
+    expect(component.exists()).toBe(true);
 
-  expect(component.name()).toEqual('EchartsReact');
-  // default props
-  expect(component.instance().props.option).toEqual(option);
-  expect(component.props().style).toEqual({});
+    expect(component.find('div').length).toBe(1);
 
-  expect(component.getDOMNode().style.height).toEqual('300px');
-  expect(component.instance().props.className).toEqual('echarts-for-react');
-  expect(component.instance().props.notMerge).toEqual(false);
-  expect(component.instance().props.lazyUpdate).toEqual(false);
-  expect(component.instance().props.theme).toEqual(null);
-  expect(typeof component.instance().props.onChartReady).toEqual('function');
-  expect(component.instance().props.showLoading).toEqual(false);
-  expect(component.instance().props.onEvents).toEqual({});
-
-
-  const testFunc = () => {};
-  const chartReady = jest.fn();
-  // not default props
-  component = mount(<EchartsReact
-    option={option}
-    style={{ width: 100 }}
-    notMerge
-    lazyUpdate
-    theme="test_theme"
-    onChartReady={chartReady}
-    showLoading
-    onEvents={{ onClick: testFunc }}
-    className="echarts-for-react"
-  />);
-
-  expect(chartReady).toBeCalled();
-
-  expect(component.instance().props.option).toEqual(option);
-  expect(component.instance().props.style).toEqual({ width: 100 });
-  expect(component.instance().props.className).toEqual('echarts-for-react');
-  expect(component.instance().props.notMerge).toEqual(true);
-  expect(component.instance().props.lazyUpdate).toEqual(true);
-  expect(component.instance().props.theme).toEqual('test_theme');
-  expect(component.instance().props.onChartReady).toEqual(chartReady);
-  expect(component.instance().props.showLoading).toEqual(true);
-  expect(component.instance().props.onEvents).toEqual({ onClick: testFunc });
-});
-
-
-test('test echarts-for-react update props.', () => {
-  const component = shallow(<EchartsReact
-    option={option}
-    className="echarts-for-react"
-  />);
-
-  expect(component.props().style).toEqual({ height: 300 });
-  expect(component.hasClass('echarts-for-react')).toBe(true);
-  expect(component.hasClass('echarts-for-react-div')).toBe(true);
-
-  component.setProps({
-    className: 'test-classname',
-    style: { height: 500 },
+    // root tag
+    expect(component.getDOMNode().nodeName.toLowerCase()).toBe('div');
+    // class name
+    expect(component.getDOMNode().className).toBe('echarts-for-react echarts-for-react-root');
+    // style
+    expect(component.getDOMNode().style.height).toBe('300px');
+    // default props
+    expect(component.props().option).toEqual(option);
+    expect(component.props().style).toEqual({});
+    expect(component.props().className).toBe('echarts-for-react-root');
+    expect(component.props().notMerge).toBe(false);
+    expect(component.props().lazyUpdate).toBe(false);
+    expect(component.props().theme).toBe(null);
+    expect(typeof component.props().onChartReady).toBe('function');
+    expect(component.props().showLoading).toBe(false);
+    expect(component.props().onEvents).toEqual({});
   });
 
-  component.update();
+  test('override props', () => {
+    const testOnChartReadyFunc = jest.fn();
+    const testFunc = () => {};
+    // not default props
+    const component = mount(<EchartsReact
+      option={option}
+      style={{ width: 100 }}
+      notMerge
+      lazyUpdate
+      theme="test_theme"
+      onChartReady={testOnChartReadyFunc}
+      showLoading
+      onEvents={{ onClick: testFunc }}
+    />);
 
-  expect(component.props().style).toEqual({ height: 500 });
-  expect(component.hasClass('test-classname')).toBe(true);
-  expect(component.hasClass('echarts-for-react-div')).toBe(true);
-});
+    // default props
+    expect(component.props().option).toEqual(option);
+    expect(component.props().style).toEqual({ width: 100 });
+    expect(component.props().className).toBe('');
+    expect(component.props().notMerge).toBe(true);
+    expect(component.props().lazyUpdate).toBe(true);
+    expect(component.props().theme).toBe('test_theme');
+    expect(typeof component.props().onChartReady).toBe('function');
+    expect(component.props().showLoading).toBe(true);
+    expect(component.props().onEvents).toEqual({ onClick: testFunc });
 
+    expect(testOnChartReadyFunc).toBeCalled();
+  });
 
-test('test echarts-for-react getEchartsInstance.', () => {
-  const component = mount(<EchartsReact
-    option={option}
-    className="echarts-for-react"
-  />);
+  test('update props', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      className="test-classname"
+    />);
 
-  expect(component.instance().getEchartsInstance().displayName).toBe('EchartsInstance');
-});
+    expect(component.props().style).toEqual({});
+    expect(component.getDOMNode().style.height).toBe('300px');
 
+    const preId = component.instance().getEchartsInstance().id;
+    // udpate props
+    component.setProps({
+      className: 'test-classname',
+      style: { height: 500 },
+    });
 
-test('test echarts-for-react unmount.', () => {
-  const component = mount(<EchartsReact
-    option={option}
-    className="echarts-for-react"
-  />);
+    component.update(); // force update
 
-  component.unmount();
-  expect(true).toBe(true);
+    expect(component.props().style).toEqual({ height: 500 });
+    expect(component.getDOMNode().style.height).toBe('500px');
+
+    expect(component.props().className).toBe('test-classname');
+
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+  });
+
+  test('getEchartsInstance', () => {
+    const component = mount(<EchartsReact
+      className="cls"
+      option={option}
+    />);
+
+    // echarts instance, id 以 ec_ 开头
+    expect(component.instance().getEchartsInstance().id.substring(0, 3)).toBe('ec_');
+  });
+
+  test('upadte theme', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      theme="hello"
+    />);
+
+    const preId = component.instance().getEchartsInstance().id;
+    // udpate props
+    component.setProps({
+      theme: 'world',
+    });
+
+    component.update(); // force update
+    expect(preId).not.toBe(component.instance().getEchartsInstance().id);
+  });
+
+  test('unmount', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      className="cls"
+    />);
+
+    component.unmount();
+    expect(() => { component.instance(); }).toThrow();
+  });
 });

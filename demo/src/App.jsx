@@ -32,8 +32,7 @@ export default class App extends PureComponent {
           <Link to="/echarts/treemap">Treemap</Link> |
           <Link to="/echarts/gauge">Gauge</Link> |
           <Link to="/echarts/gcalendar">GCalendar</Link> |
-          <Link to="/echarts/lunar">Lunar</Link> |
-          <Link to="/echarts/liquid">Liquidfill</Link>
+          <Link to="/echarts/lunar">Lunar</Link>
         </h4>
         { children || <Dynamic /> }
 

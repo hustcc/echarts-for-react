@@ -72,6 +72,7 @@
     "eslint-plugin-react": "^7.5.1",
     "file-loader": "^1.1.6",
     "jest": "^21.2.1",
+    "jest-canvas-mock": "^0.0.2",
     "jsx-loader": "^0.13.2",
     "react": "^15.5.0",
     "react-adsense": "^0.0.3",
@@ -103,15 +104,14 @@
       "json"
     ],
     "setupFiles": [
-      "./__tests__/setup.js"
+      "./__tests__/setup.js",
+      "jest-canvas-mock"
     ],
     "transform": {
       "^.+\\.js[x]?$": "babel-jest",
       "^.+\\.ts[x]?$": "ts-jest"
     },
-    "moduleNameMapper": {
-      "^echarts$": "<rootDir>/__tests__/jest-echarts-mock/index.js"
-    },
+    "moduleNameMapper": {},
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/*.{js,jsx,ts,tsx}",

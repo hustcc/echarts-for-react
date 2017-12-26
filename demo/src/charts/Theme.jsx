@@ -1,9 +1,18 @@
 import React, { PureComponent } from 'react';
+import { udpate } from '76';
 import ReactEcharts from '../../../lib/index';
 
 import echarts from 'echarts';
 
 export default class Theme extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.registerTheme();
+    this.state = {
+      theme: 'my_theme',
+      style: { height: 300 }
+    }
+  }
   getOption = () => {
     return {
       title: {
@@ -79,13 +88,28 @@ export default class Theme extends PureComponent {
     };
   };
 
-  registerTheme() {
+  registerTheme = () => {
     echarts.registerTheme('my_theme', {
       backgroundColor: '#f4cccc'
     });
+    echarts.registerTheme('another_theme', {
+      backgroundColor: '#eee'
+    });
   };
+
+  toggleTheme = () => {
+    this.setState({
+      theme: this.state.theme === 'my_theme' ? 'another_theme' : 'my_theme',
+    })
+  };
+
+  toggleStyle = () => {
+    this.setState({
+      style: this.state.style.height === 200 ? { height: 300 } : { height: 200 },
+    })
+  }
+
   render() {
-    this.registerTheme();
     let code = "echarts.registerTheme('my_theme', {\n" +
            "  backgroundColor: '#f4cccc'\n" +
            "});\n\n" +
@@ -98,7 +122,14 @@ export default class Theme extends PureComponent {
           <label> render a echart With <strong>theme</strong>, should <strong>echarts.registerTheme(themeName, themeObj)</strong> before use.</label>
           <ReactEcharts
             option={this.getOption()}
-            theme="my_theme" />
+            style={this.state.style}
+            theme={this.state.theme} />
+          <div>
+            <button className='a_line' onClick={this.toggleTheme}>Click to Toggle theme.</button>
+          </div>
+          <div>
+            <button className='a_line' onClick={this.toggleStyle}>Click to Toggle style.</button>
+          </div>
           <label> the theme object format: https://github.com/ecomfe/echarts/blob/master/theme/dark.js</label>
           <pre>
             <code>{code}</code>

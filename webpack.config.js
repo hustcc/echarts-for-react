@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var definePlugin = webpack.DefinePlugin;
 
+// webpack for demo website
 module.exports = {
   entry: './demo/src/index.js',
   output: {

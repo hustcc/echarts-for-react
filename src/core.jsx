@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
 
-const isEqual = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
+const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export default class EchartsReactCore extends Component {
   constructor(props) {
@@ -13,26 +13,21 @@ export default class EchartsReactCore extends Component {
 
   // first add
   componentDidMount() {
-    const { onEvents, onChartReady } = this.props;
-
-    const echartObj = this.renderEchartDom();
-    if (echartObj) {
-      this.bindEvents(echartObj, onEvents || {});
-      // on chart ready
-      if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
-      // on resize
-      if (this.echartsElement) {
-        elementResizeEvent(this.echartsElement, () => {
-          echartObj.resize();
-        });
-      }
-    }
+    this.rerender();
   }
 
   // update
   componentDidUpdate(prevProps) {
     const echartObj = this.renderEchartDom();
-    this.bindEvents(this.getEchartsInstance(), this.props.onEvents || []);
+    this.bindEvents(echartObj, this.props.onEvents || {});
+
+    // 切换 theme 的时候，需要 dispost 之后才新建
+    if (this.props.theme !== prevProps.theme) {
+      this.echartsInstance.dispose(this.echartsElement);
+
+      this.rerender(); // 重建
+      return;
+    }
 
     if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
       try {
@@ -51,11 +46,25 @@ export default class EchartsReactCore extends Component {
       this.echartsInstance.dispose(this.echartsElement);
     }
   }
+
   // return the echart object
-  getEchartsInstance = () => (this.echartsElement ?
-    this.echartsInstance.getInstanceByDom(this.echartsElement) ||
-    this.echartsInstance.init(this.echartsElement, this.props.theme) :
-    false);
+  getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) ||
+    this.echartsInstance.init(this.echartsElement, this.props.theme);
+
+  rerender = () => {
+    const { onEvents, onChartReady } = this.props;
+
+    const echartObj = this.renderEchartDom();
+    this.bindEvents(echartObj, onEvents || {});
+    // on chart ready
+    if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
+    // on resize
+    if (this.echartsElement) {
+      elementResizeEvent(this.echartsElement, () => {
+        echartObj.resize();
+      });
+    }
+  };
 
   // bind the events
   bindEvents = (instance, events) => {
@@ -81,15 +90,13 @@ export default class EchartsReactCore extends Component {
   renderEchartDom = () => {
     // init the echart object
     const echartObj = this.getEchartsInstance();
-    if (echartObj) {
-      // set the echart option
-      echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
-      // set loading mask
-      if (this.props.showLoading) echartObj.showLoading(this.props.loadingOption || null);
-      else echartObj.hideLoading();
+    // set the echart option
+    echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
+    // set loading mask
+    if (this.props.showLoading) echartObj.showLoading(this.props.loadingOption || null);
+    else echartObj.hideLoading();
 
-      return echartObj;
-    }
+    return echartObj;
   };
 
   render() {
@@ -103,7 +110,7 @@ export default class EchartsReactCore extends Component {
       <div
         ref={(e) => { this.echartsElement = e; }}
         style={newStyle}
-        className={`echarts-for-react-div ${className}`}
+        className={`echarts-for-react ${className}`}
       />
     );
   }

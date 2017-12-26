@@ -4,7 +4,7 @@ interface ReactEchartsProps {
   option: object;
   notMerge?: boolean;
   lazyUpdate?: boolean;
-  style?: Object;
+  style?: object;
   className?: string;
   theme?: string;
   onChartReady?: () => void;
@@ -14,6 +14,6 @@ interface ReactEchartsProps {
   echarts?: object;
 }
 
-export default class ReactEcharts extends React.Component<ReactEchartsProps, any>{
+export default class ReactEcharts<P, S> extends React.Component<P, S>{
   getEchartsInstance: () => any;
 }
