@@ -149,3 +149,13 @@ button:hover {
 .examples {
   background-color: rgba(0,0,0,0.1);
 }
+
+/* test class name */
+
+.class_1 {
+  height: 300px!important;
+}
+
+.class_2 {
+  height: 200px!important;
+}

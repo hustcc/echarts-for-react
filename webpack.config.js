@@ -12,7 +12,7 @@ module.exports = {
   },
   module: {
     loaders:[{
-      test: /\.js[x]?$/,
+      test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
     }, {
@@ -22,6 +22,9 @@ module.exports = {
       test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=512'
     }]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   externals: {
     echarts: 'window.echarts',

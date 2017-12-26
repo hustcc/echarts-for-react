@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ReactEcharts from '../../../lib/index';
+import ReactEcharts from '../../../src/index';
 
 export default class Loading extends PureComponent {
   _t = null;

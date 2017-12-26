@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactEcharts from '../../../lib/index';
+import ReactEcharts from '../../../src/index';
 
 export default class Dynamic extends Component {
   constructor(props) {

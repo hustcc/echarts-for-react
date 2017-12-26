@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { udpate } from '76';
-import ReactEcharts from '../../../lib/index';
+import ReactEcharts from '../../../src/index';
 
 import echarts from 'echarts';
 
@@ -10,7 +10,7 @@ export default class Theme extends PureComponent {
     this.registerTheme();
     this.state = {
       theme: 'my_theme',
-      style: { height: 300 }
+      className: 'class_1'
     }
   }
   getOption = () => {
@@ -103,9 +103,9 @@ export default class Theme extends PureComponent {
     })
   };
 
-  toggleStyle = () => {
+  toggleClassName = () => {
     this.setState({
-      style: this.state.style.height === 200 ? { height: 300 } : { height: 200 },
+      className: this.state.className === 'class_1' ? 'class_2' : 'class_1',
     })
   }
 
@@ -122,13 +122,13 @@ export default class Theme extends PureComponent {
           <label> render a echart With <strong>theme</strong>, should <strong>echarts.registerTheme(themeName, themeObj)</strong> before use.</label>
           <ReactEcharts
             option={this.getOption()}
-            style={this.state.style}
+            className={this.state.className}
             theme={this.state.theme} />
           <div>
             <button className='a_line' onClick={this.toggleTheme}>Click to Toggle theme.</button>
           </div>
           <div>
-            <button className='a_line' onClick={this.toggleStyle}>Click to Toggle style.</button>
+            <button className='a_line' onClick={this.toggleClassName}>Click to Toggle className.</button>
           </div>
           <label> the theme object format: https://github.com/ecomfe/echarts/blob/master/theme/dark.js</label>
           <pre>
