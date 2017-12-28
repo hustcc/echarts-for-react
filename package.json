@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "baidu Echarts(v3.x) components for react",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -81,24 +81,20 @@
     "react-test-renderer": "^15.6.2",
     "rimraf": "^2.6.2",
     "style-loader": "^0.19.1",
-    "ts-jest": "^21.2.3",
-    "typescript": "^2.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
-    "element-resize-event": "2.0.7"
+    "element-resize-event": "2.0.8"
   },
   "peerDependencies": {
-    "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0-alpha.1 <17.0.0",
+    "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0",
     "prop-types": "^15.5.7",
     "echarts": "^3.0.0"
   },
   "jest": {
-    "testRegex": "(/__tests__/.*\\.spec)\\.(ts|tsx|js|jsx)$",
+    "testRegex": "(/__tests__/.*\\.spec)\\.(js|jsx)$",
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
       "js",
       "jsx",
       "json"
@@ -108,13 +104,12 @@
       "jest-canvas-mock"
     ],
     "transform": {
-      "^.+\\.js[x]?$": "babel-jest",
-      "^.+\\.ts[x]?$": "ts-jest"
+      "^.+\\.js[x]?$": "babel-jest"
     },
     "moduleNameMapper": {},
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/*.{js,jsx,ts,tsx}",
+      "src/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**"
     ]

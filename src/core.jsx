@@ -23,7 +23,7 @@ export default class EchartsReactCore extends Component {
 
     // 切换 theme 的时候，需要 dispost 之后才新建
     if (this.props.theme !== prevProps.theme) {
-      this.echartsInstance.dispose(this.echartsElement);
+      this.dispose();
 
       this.rerender(); // 重建
       return;
@@ -38,18 +38,23 @@ export default class EchartsReactCore extends Component {
 
   // remove
   componentWillUnmount() {
-    if (this.echartsElement) {
-      // if elementResizeEvent.unbind exist, just do it.
-      if (typeof elementResizeEvent.unbind === 'function') {
-        elementResizeEvent.unbind(this.echartsElement);
-      }
-      this.echartsInstance.dispose(this.echartsElement);
-    }
+    this.dispose();
   }
 
   // return the echart object
   getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) ||
     this.echartsInstance.init(this.echartsElement, this.props.theme);
+
+  // dispose echarts and element-resize-event
+  dispose = () => {
+    if (this.echartsElement) {
+      // if elementResizeEvent.unbind exist, just do it.
+      try {
+        elementResizeEvent.unbind(this.echartsElement);
+      } catch (_) {}
+      this.echartsInstance.dispose(this.echartsElement);
+    }
+  };
 
   rerender = () => {
     const { onEvents, onChartReady } = this.props;

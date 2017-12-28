@@ -1,20 +1,30 @@
-import React, { Component } from 'react';
+/// <reference types="react" />
+
+import * as React from 'react';
+
+type Func = (...args: any[]) => any;
+
+interface EventMap {
+  [key: string]: Func,
+}
+
+interface ObjectMap {
+  [key: string]: any,
+}
 
 // Index
 export interface ReactEchartsPropsTypes {
-  option: object;
+  option: ObjectMap;
   notMerge?: boolean;
   lazyUpdate?: boolean;
-  style?: object;
+  style?: ObjectMap;
   className?: string;
-  theme?: string;
-  onChartReady?: () => void;
+  theme?: string | null;
+  onChartReady?: Func;
   showLoading?: boolean;
-  loadingOption?: object;
-  onEvents?: object;
+  loadingOption?: ObjectMap;
+  onEvents?: EventMap;
   echarts?: object;
 }
 
-export class ReactEcharts extends Component<ReactEchartsPropsTypes, any> {
-  getEchartsInstance: () => any;
-}
+export default class ReactEcharts extends React.Component<ReactEchartsPropsTypes, any>{}
