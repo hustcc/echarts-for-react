@@ -61,6 +61,7 @@
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.7",
     "echarts": "^3.8.5",
+    "echarts-gl": "^1.0.0-beta.6",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "eslint": "^4.13.1",
@@ -85,12 +86,12 @@
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
-    "element-resize-event": "2.0.8"
+    "element-resize-event": "2.0.9"
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0",
     "prop-types": "^15.5.7",
-    "echarts": "^3.0.0"
+    "echarts": "^3.0.0 || ^4.0.0"
   },
   "jest": {
     "testRegex": "(/__tests__/.*\\.spec)\\.(js|jsx)$",

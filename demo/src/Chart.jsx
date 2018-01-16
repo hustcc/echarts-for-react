@@ -7,6 +7,7 @@ import Loading from './charts/Loading.jsx';
 import Api from './charts/Api.jsx';
 import Dynamic from './charts/Dynamic.jsx';
 import Map from './charts/Map.jsx';
+import Gl from './charts/Gl.jsx';
 
 // v1.2.0 add 7 demo.
 import Airport from './charts/Airport.jsx';
@@ -32,6 +33,7 @@ const Components = {
   Gauge,
   Gcalendar,
   Lunar,
+  Gl,
 };
 
 export default class Chart extends PureComponent {
