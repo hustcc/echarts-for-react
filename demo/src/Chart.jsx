@@ -17,6 +17,7 @@ import Gcalendar from './charts/Gcalendar.jsx';
 import Graph from './charts/Graph.jsx';
 import Lunar from './charts/Lunar.jsx';
 import Treemap from './charts/Treemap.jsx';
+import Sunburst from './charts/Sunburst.jsx';
 
 const Components = {
   Simple,
@@ -34,6 +35,7 @@ const Components = {
   Gcalendar,
   Lunar,
   Gl,
+  Sunburst,
 };
 
 export default class Chart extends PureComponent {
