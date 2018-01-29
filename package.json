@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "baidu Echarts(v3.x & v4.x) components for react.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,7 +16,6 @@
     "demo": "webpack",
     "dev": "webpack --watch",
     "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
-    "prepublish": "npm run build",
     "cover": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },

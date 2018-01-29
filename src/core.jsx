@@ -21,8 +21,9 @@ export default class EchartsReactCore extends Component {
     const echartObj = this.renderEchartDom();
     this.bindEvents(echartObj, this.props.onEvents || {});
 
-    // 切换 theme 的时候，需要 dispost 之后才新建
-    if (this.props.theme !== prevProps.theme) {
+    // 1. 切换 theme 的时候，需要 dispose 之后再新建
+    // 2. 修改 opts 的时候，需要 dispose 之后再新建
+    if (this.props.theme !== prevProps.theme || !isEqual(prevProps.opts, this.props.opts)) {
       this.dispose();
 
       this.rerender(); // 重建
@@ -43,7 +44,7 @@ export default class EchartsReactCore extends Component {
 
   // return the echart object
   getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) ||
-    this.echartsInstance.init(this.echartsElement, this.props.theme);
+    this.echartsInstance.init(this.echartsElement, this.props.theme, this.props.opts);
 
   // dispose echarts and element-resize-event
   dispose = () => {
@@ -132,7 +133,19 @@ EchartsReactCore.propTypes = {
   onChartReady: PropTypes.func,
   showLoading: PropTypes.bool,
   loadingOption: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  onEvents: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  onEvents: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  opts: PropTypes.shape({
+    devicePixelRatio: PropTypes.number,
+    renderer: PropTypes.oneOf(['canvas', 'svg']),
+    width: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf([null, undefined, 'auto'])
+    ]),
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf([null, undefined, 'auto'])
+    ]),
+  })
 };
 
 EchartsReactCore.defaultProps = {
@@ -146,4 +159,5 @@ EchartsReactCore.defaultProps = {
   showLoading: false,
   loadingOption: null,
   onEvents: {},
+  opts: {},
 };

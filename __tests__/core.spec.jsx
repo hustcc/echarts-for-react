@@ -34,6 +34,7 @@ describe('core.js', () => {
     expect(typeof component.props().onChartReady).toEqual('function');
     expect(component.props().showLoading).toEqual(false);
     expect(component.props().onEvents).toEqual({});
+    expect(component.props().opts).toEqual({});
   });
 
   test('override props', () => {
@@ -50,6 +51,7 @@ describe('core.js', () => {
       showLoading
       onEvents={{ onClick: testFunc }}
       echarts={echarts}
+      opts={{ renderer: 'svg' }}
     />);
 
     // default props
@@ -62,6 +64,7 @@ describe('core.js', () => {
     expect(typeof component.props().onChartReady).toEqual('function');
     expect(component.props().showLoading).toEqual(true);
     expect(component.props().onEvents).toEqual({ onClick: testFunc });
+    expect(component.props().opts).toEqual({ renderer: 'svg' });
 
     expect(testOnChartReadyFunc).toBeCalled();
   });

@@ -99,7 +99,8 @@ describe('index.js', () => {
     expect(component.instance().getEchartsInstance().id.substring(0, 3)).toBe('ec_');
   });
 
-  test('upadte theme', () => {
+  // update theme, should dispose echarts instance.
+  test('update theme', () => {
     const component = mount(<EchartsReact
       option={option}
       theme="hello"
@@ -109,6 +110,32 @@ describe('index.js', () => {
     // udpate props
     component.setProps({
       theme: 'world',
+    });
+
+    component.update(); // force update
+    expect(preId).not.toBe(component.instance().getEchartsInstance().id);
+  });
+
+  // update opts, should dispose echarts instance.
+  test('update opts', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      opts={{renderer: 'svg'}}
+
+    />);
+
+    const preId = component.instance().getEchartsInstance().id;
+    // udpate props
+    component.setProps({
+      opts: {renderer: 'svg'}
+    });
+
+    component.update(); // force update
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+
+    // udpate props
+    component.setProps({
+      opts: {renderer: 'canvas'}
     });
 
     component.update(); // force update

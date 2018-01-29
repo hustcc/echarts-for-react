@@ -39,7 +39,8 @@ import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require(
   lazyUpdate={true}
   theme={"theme_name"}
   onChartReady={this.onChartReadyCallback}
-  onEvents={EventsDict} />
+  onEvents={EventsDict}
+  opts={} />
 ```
 
 ### typescript
@@ -49,12 +50,13 @@ import * as React from "react";
 import ReactEcharts from "echarts-for-react";
 
 <ReactEcharts
-    option={this.getOption()}
-    notMerge={true}
-    lazyUpdate={true}
-    theme={"theme_name"}
-    onChartReady={this.onChartReadyCallback}
-    onEvents={EventsDict} />
+  option={this.getOption()}
+  notMerge={true}
+  lazyUpdate={true}
+  theme={"theme_name"}
+  onChartReady={this.onChartReadyCallback}
+  onEvents={EventsDict}
+  opts={} />
 ```
 
 If you have only used bar chart (or others), you can import echarts modules manually to reduce bundle file size, e.g.
@@ -77,7 +79,8 @@ import 'echarts/lib/component/tooltip';
   lazyUpdate={true}
   theme={"theme_name"}
   onChartReady={this.onChartReadyCallback}
-  onEvents={EventsDict} />
+  onEvents={EventsDict}
+  opts={} />
 ```
 
 
@@ -106,7 +109,6 @@ the `class` of echarts div. you can setting the css style of charts by class nam
  - **`theme`** (optional, string)
 
 the `theme` of echarts. `string`, should `registerTheme` before use it (theme object format: [https://github.com/ecomfe/echarts/blob/master/theme/dark.js](https://github.com/ecomfe/echarts/blob/master/theme/dark.js)). e.g.
-
 
 ```js
 // import echarts
@@ -154,6 +156,18 @@ let onEvents = {
 ```
 for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
 
+ - **`opts`** (optional, object)
+
+the `opts` of echarts. `object`, will be used when initial echarts instance by `echarts.init`. Document [here](http://echarts.baidu.com/api.html#echarts.init).
+
+```js
+<ReactEcharts
+  option={this.getOption()}
+  style={{height: '300px'}}
+  opts={{renderer: 'svg'}} // use svg to render the chart.
+/>
+```
+
 
 # 4. Component API & Echarts API
 
@@ -185,7 +199,23 @@ You can use the API to do:
 4. `release` the charts.
 
 
-# 5. LICENSE
+# 5. Q & A
+
+ - How to render the chart with svg when using echarts 4.x
+
+Use the props `opts` of component with `renderer = 'svg'`. For example:
+
+
+```js
+<ReactEcharts
+  option={this.getOption()}
+  style={{height: '300px'}}
+  opts={{renderer: 'svg'}} // use svg to render the chart.
+/>
+```
+
+
+# 6. LICENSE
 
 MIT@[hustcc](https://github.com/hustcc).
 

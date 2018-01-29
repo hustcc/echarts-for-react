@@ -18,6 +18,7 @@ import Graph from './charts/Graph.jsx';
 import Lunar from './charts/Lunar.jsx';
 import Treemap from './charts/Treemap.jsx';
 import Sunburst from './charts/Sunburst.jsx';
+import Svg from './charts/Svg.jsx';
 
 const Components = {
   Simple,
@@ -36,6 +37,7 @@ const Components = {
   Lunar,
   Gl,
   Sunburst,
+  Svg,
 };
 
 export default class Chart extends PureComponent {
