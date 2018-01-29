@@ -43,7 +43,7 @@ export default class EchartsReactCore extends Component {
 
   // return the echart object
   getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) ||
-    this.echartsInstance.init(this.echartsElement, this.props.theme);
+    this.echartsInstance.init(this.echartsElement, this.props.theme,{ renderer: this.props.renderer });
 
   // dispose echarts and element-resize-event
   dispose = () => {
@@ -132,7 +132,8 @@ EchartsReactCore.propTypes = {
   onChartReady: PropTypes.func,
   showLoading: PropTypes.bool,
   loadingOption: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  onEvents: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  onEvents: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  renderer: PropTypes.string
 };
 
 EchartsReactCore.defaultProps = {
@@ -146,4 +147,5 @@ EchartsReactCore.defaultProps = {
   showLoading: false,
   loadingOption: null,
   onEvents: {},
+  renderer: "canvas"
 };
