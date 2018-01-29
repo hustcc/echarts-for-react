@@ -15,7 +15,7 @@
     "test": "npm run lint && npm run cover",
     "demo": "webpack",
     "dev": "webpack --watch",
-    "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
+    "build": "npm run test && npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo",
     "cover": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
