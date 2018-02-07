@@ -2,7 +2,7 @@
 
 A very simple echarts(v3.0 & v4.0) wrapper for react.
 
-[![Build Status](https://travis-ci.org/hustcc/echarts-for-react.svg?branch=master)](https://travis-ci.org/hustcc/echarts-for-react) [![Coverage Status](https://coveralls.io/repos/github/hustcc/echarts-for-react/badge.svg?branch=master)](https://coveralls.io/github/hustcc/echarts-for-react?branch=master) [![npm](https://img.shields.io/npm/v/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/dt/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/l/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) ![echarts supported](https://img.shields.io/badge/echarts-%5E3.0.0%20%7C%7C%20%5E4.0.0-blue.svg) ![react supported](https://img.shields.io/badge/React-%3E%3D0.13.2%20%7C%7C%20%5E0.14%20%7C%7C%20%5E15.0.0%20%7C%7C%20%3E%3D16.0.0-blue.svg)
+[![Build Status](https://travis-ci.org/hustcc/echarts-for-react.svg?branch=master)](https://travis-ci.org/hustcc/echarts-for-react) [![Coverage Status](https://coveralls.io/repos/github/hustcc/echarts-for-react/badge.svg?branch=master)](https://coveralls.io/github/hustcc/echarts-for-react?branch=master) [![npm](https://img.shields.io/npm/v/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/dm/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) [![npm](https://img.shields.io/npm/l/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react) ![echarts supported](https://img.shields.io/badge/echarts-%5E3.0.0%20%7C%7C%20%5E4.0.0-blue.svg) ![react supported](https://img.shields.io/badge/React-%3E%3D0.13.2%20%7C%7C%20%5E0.14%20%7C%7C%20%5E15.0.0%20%7C%7C%20%3E%3D16.0.0-blue.svg)
 
 # 1. install
 
@@ -10,7 +10,16 @@ A very simple echarts(v3.0 & v4.0) wrapper for react.
 npm install --save echarts-for-react
 ```
 
-How to run the demo:
+Then use it.
+
+```js
+import ReactEcharts from 'echarts-for-react';
+
+// render echarts option.
+<ReactEcharts option={this.getOption()} />
+```
+
+You can run demo by:
 
 ```sh
 git clone git@github.com:hustcc/echarts-for-react.git
@@ -90,11 +99,11 @@ import 'echarts/lib/component/tooltip';
 
 the echarts option config, can see [http://echarts.baidu.com/option.html#title](http://echarts.baidu.com/option.html#title).
 
- - **`notMerge`** (required, object)
+ - **`notMerge`** (optional, object)
 
 when `setOption`, not merge the data, default is `false`. See [http://echarts.baidu.com/api.html#echartsInstance.setOption](http://echarts.baidu.com/api.html#echartsInstance.setOption).
 
- - **`lazyUpdate`** (required, object)
+ - **`lazyUpdate`** (optional, object)
 
 when `setOption`, lazy update the data, default is `false`. See [http://echarts.baidu.com/api.html#echartsInstance.setOption](http://echarts.baidu.com/api.html#echartsInstance.setOption).
 
