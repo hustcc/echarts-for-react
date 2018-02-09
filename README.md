@@ -8,6 +8,9 @@ A very simple echarts(v3.0 & v4.0) wrapper for react.
 
 ```sh
 npm install --save echarts-for-react
+
+# `echarts` is the peerDependence of `echarts-for-react`, you can install echarts with your own version.
+npm install --save echarts
 ```
 
 Then use it.
