@@ -21,15 +21,22 @@ export default class EchartsReactCore extends Component {
     const echartObj = this.renderEchartDom();
     this.bindEvents(echartObj, this.props.onEvents || {});
 
-    // 1. 切换 theme 的时候，需要 dispose 之后再新建
-    // 2. 修改 opts 的时候，需要 dispose 之后再新建
-    if (this.props.theme !== prevProps.theme || !isEqual(prevProps.opts, this.props.opts)) {
+    // 以下属性修改的时候，需要 dispose 之后再新建
+    // 1. 切换 theme 的时候
+    // 2. 修改 opts 的时候
+    // 3. 修改 onEvents 的时候，这样可以取消所以之前绑定的事件 issue #151
+    if (
+      prevProps.theme !== this.props.theme ||
+      !isEqual(prevProps.opts, this.props.opts) ||
+      !isEqual(Object.keys(prevProps.onEvents).sort(), Object.keys(this.props.onEvents).sort())
+    ) {
       this.dispose();
 
       this.rerender(); // 重建
       return;
     }
 
+    // 样式修改的时候，可能会导致大小变化，所以触发一下 resize
     if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
       try {
         echartObj.resize();
@@ -74,20 +81,21 @@ export default class EchartsReactCore extends Component {
 
   // bind the events
   bindEvents = (instance, events) => {
-    const _loopEvent = (eventName) => {
+    const _bindEvent = (eventName, func) => {
       // ignore the event config which not satisfy
-      if (typeof eventName === 'string' && typeof events[eventName] === 'function') {
+      if (typeof eventName === 'string' && typeof func === 'function') {
         // binding event
-        instance.off(eventName);
+        // instance.off(eventName); // 已经 dispose 在重建，所以无需 off 操作
         instance.on(eventName, (param) => {
-          events[eventName](param, instance);
+          func(param, instance);
         });
       }
     };
 
+    // loop and bind
     for (const eventName in events) {
       if (Object.prototype.hasOwnProperty.call(events, eventName)) {
-        _loopEvent(eventName);
+        _bindEvent(eventName, events[eventName]);
       }
     }
   };

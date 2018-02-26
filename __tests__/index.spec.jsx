@@ -121,7 +121,6 @@ describe('index.js', () => {
     const component = mount(<EchartsReact
       option={option}
       opts={{renderer: 'svg'}}
-
     />);
 
     const preId = component.instance().getEchartsInstance().id;
@@ -136,6 +135,39 @@ describe('index.js', () => {
     // udpate props
     component.setProps({
       opts: {renderer: 'canvas'}
+    });
+
+    component.update(); // force update
+    expect(preId).not.toBe(component.instance().getEchartsInstance().id);
+  });
+
+  // update opts, should dispose echarts instance.
+  test('update onEvents', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      onEvents={{
+        click: () => {},
+        mousemove: () => {},
+      }}
+    />);
+
+    const preId = component.instance().getEchartsInstance().id;
+    // udpate props
+    component.setProps({
+      onEvents: {
+        mousemove: () => {},
+        click: () => {},
+      }
+    });
+
+    component.update(); // force update
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+
+    // udpate props
+    component.setProps({
+      onEvents: {
+        click: () => {},
+      }
     });
 
     component.update(); // force update
