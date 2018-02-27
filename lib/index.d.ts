@@ -12,6 +12,13 @@ interface ObjectMap {
   [key: string]: any,
 }
 
+interface optsMap {
+  devicePixelRatio?: number,
+  renderer?: 'canvas' | 'svg',
+  width?: number | null | undefined | 'auto',
+  height?: number | null | undefined | 'auto',
+}
+
 // Index
 export interface ReactEchartsPropsTypes {
   option: ObjectMap;
@@ -25,6 +32,7 @@ export interface ReactEchartsPropsTypes {
   loadingOption?: ObjectMap;
   onEvents?: EventMap;
   echarts?: object;
+  opts?: optsMap;
 }
 
 export default class ReactEcharts extends React.Component<ReactEchartsPropsTypes, any>{}
