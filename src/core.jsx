@@ -7,7 +7,7 @@ const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 export default class EchartsReactCore extends Component {
   constructor(props) {
     super(props);
-    this.echartsInstance = this.props.echarts; // the echarts object.
+    this.echartsLib = this.props.echarts; // the echarts object.
     this.echartsElement = null; // echarts div element
   }
 
@@ -50,8 +50,8 @@ export default class EchartsReactCore extends Component {
   }
 
   // return the echart object
-  getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) ||
-    this.echartsInstance.init(this.echartsElement, this.props.theme, this.props.opts);
+  getEchartsInstance = () => this.echartsLib.getInstanceByDom(this.echartsElement) ||
+    this.echartsLib.init(this.echartsElement, this.props.theme, this.props.opts);
 
   // dispose echarts and element-resize-event
   dispose = () => {
@@ -60,7 +60,7 @@ export default class EchartsReactCore extends Component {
       try {
         elementResizeEvent.unbind(this.echartsElement);
       } catch (_) {}
-      this.echartsInstance.dispose(this.echartsElement);
+      this.echartsLib.dispose(this.echartsElement);
     }
   };
 
@@ -69,6 +69,12 @@ export default class EchartsReactCore extends Component {
 
     const echartObj = this.renderEchartDom();
     this.bindEvents(echartObj, onEvents || {});
+
+    // fix bug of 100px width * height.
+    try {
+      echartObj.resize();
+    } catch (_) {}
+
     // on chart ready
     if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
     // on resize
