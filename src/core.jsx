@@ -28,7 +28,7 @@ export default class EchartsReactCore extends Component {
     if (
       prevProps.theme !== this.props.theme ||
       !isEqual(prevProps.opts, this.props.opts) ||
-      !isEqual(Object.keys(prevProps.onEvents).sort(), Object.keys(this.props.onEvents).sort())
+      !isEqual(Object.keys(prevProps.onEvents || {}).sort(), Object.keys(this.props.onEvents || {}).sort())
     ) {
       this.dispose();
 

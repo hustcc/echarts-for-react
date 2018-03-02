@@ -169,8 +169,14 @@ describe('index.js', () => {
         click: () => {},
       }
     });
-
     component.update(); // force update
+    expect(preId).not.toBe(component.instance().getEchartsInstance().id);
+
+    // to null
+    component.setProps({
+      onEvents: null,
+    });
+    component.update();
     expect(preId).not.toBe(component.instance().getEchartsInstance().id);
   });
 
