@@ -19,7 +19,6 @@ export default class EchartsReactCore extends Component {
   // update
   componentDidUpdate(prevProps) {
     const echartObj = this.renderEchartDom();
-    this.bindEvents(echartObj, this.props.onEvents || {});
 
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
@@ -60,6 +59,7 @@ export default class EchartsReactCore extends Component {
       try {
         elementResizeEvent.unbind(this.echartsElement);
       } catch (_) {}
+      // dispose echarts instance
       this.echartsLib.dispose(this.echartsElement);
     }
   };

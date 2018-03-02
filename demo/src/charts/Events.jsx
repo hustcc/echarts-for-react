@@ -2,6 +2,12 @@ import React, { PureComponent } from 'react';
 import ReactEcharts from '../../../src/index';
 
 export default class Events extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cnt: 0,
+    };
+  }
   getOption = () => ({
     title : {
       text: '某站点用户访问来源',
@@ -44,6 +50,9 @@ export default class Events extends PureComponent {
   onChartClick = (param, echarts) => {
     console.log(param, echarts);
     alert('chart click');
+    this.setState({
+      cnt: this.state.cnt + 1,
+    })
   };
 
   onChartLegendselectchanged = (param, echart) => {
@@ -73,7 +82,7 @@ export default class Events extends PureComponent {
     return (
       <div className='examples'>
         <div className='parent'>
-          <label> Chart With event <strong> onEvents </strong>: (Click the chart, and watch the console)</label>
+          <label> Chart With event <strong> onEvents </strong>（{this.state.cnt}）: (Click the chart, and watch the console)</label>
           <ReactEcharts
             option={this.getOption()}
             style={{height: 300}}
