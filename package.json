@@ -71,7 +71,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "file-loader": "^1.1.6",
-    "jest": "^21.2.1",
+    "jest": "^22.0.0",
     "jest-canvas-mock": "^1.0.0",
     "jsx-loader": "^0.13.2",
     "react": "^15.5.0",
