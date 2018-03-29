@@ -101,6 +101,11 @@ describe('index.js', () => {
       option,
       className: 'test-classname',
     })).toBe(false);
+    expect(component.instance().shouldComponentUpdate({
+      ...EchartsReactCore.defaultProps,
+      option,
+      className: 'test',
+    })).toBe(true);
 
     const mockFn = jest.fn();
     component.instance().componentDidUpdate = mockFn;
