@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'fast-deep-equal';
 import elementResizeEvent from 'element-resize-event';
-
-const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export default class EchartsReactCore extends Component {
   constructor(props) {
@@ -14,6 +13,12 @@ export default class EchartsReactCore extends Component {
   // first add
   componentDidMount() {
     this.rerender();
+  }
+
+  // not update when props are not changed
+  // because if update, it may reset some internal state of echarts
+  shouldComponentUpdate(nextProps) {
+    return !isEqual(this.props, nextProps);
   }
 
   // update

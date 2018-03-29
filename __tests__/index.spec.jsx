@@ -2,6 +2,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import EchartsReact from '../src';
+import EchartsReactCore from '../src/core';
 import option from './option';
 
 
@@ -73,7 +74,7 @@ describe('index.js', () => {
     expect(component.getDOMNode().style.height).toBe('300px');
 
     const preId = component.instance().getEchartsInstance().id;
-    // udpate props
+    // update props
     component.setProps({
       className: 'test-classname',
       style: { height: 500 },
@@ -87,6 +88,26 @@ describe('index.js', () => {
     expect(component.props().className).toBe('test-classname');
 
     expect(preId).toBe(component.instance().getEchartsInstance().id);
+  });
+
+  test('should not update when no props are changed', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      className="test-classname"
+    />);
+
+    expect(component.instance().shouldComponentUpdate({
+      ...EchartsReactCore.defaultProps,
+      option,
+      className: 'test-classname',
+    })).toBe(false);
+
+    const mockFn = jest.fn();
+    component.instance().componentDidUpdate = mockFn;
+    // no props change
+    component.setProps({ option });
+
+    expect(mockFn.mock.calls).toHaveLength(0);
   });
 
   test('getEchartsInstance', () => {
