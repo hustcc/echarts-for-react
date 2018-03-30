@@ -74,7 +74,6 @@
     "jest": "^22.4.2",
     "jest-canvas-mock": "^1.0.0",
     "jsx-loader": "^0.13.2",
-    "prop-types": "^15.5.7",
     "react": "^15.5.0",
     "react-adsense": "^0.0.3",
     "react-dom": "^15.5.0",
@@ -91,6 +90,7 @@
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0",
+    "prop-types": "^15.5.7",
     "echarts": "^3.0.0 || ^4.0.0"
   },
   "jest": {

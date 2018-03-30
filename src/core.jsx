@@ -125,7 +125,7 @@ export default class EchartsReactCore extends Component {
   };
 
   render() {
-    const { style = {}, className } = this.props;
+    const { style, className } = this.props;
     const newStyle = {
       height: 300,
       ...style,
