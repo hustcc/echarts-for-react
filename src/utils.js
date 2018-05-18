@@ -6,14 +6,14 @@ export const pick = (obj, keys) => {
   return r;
 };
 
-export const debounce = (fn, delay = 0) => {
+export const debounce = (fn, delay = 50) => {
   let timer = null;
 
   return function (...args) {
-      clearTimeout(timer);
+    clearTimeout(timer);
 
-      timer = setTimeout(() => {
-          fn.apply(this, args);
-      }, delay);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
   };
 };

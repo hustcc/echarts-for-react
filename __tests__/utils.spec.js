@@ -2,6 +2,8 @@
 
 import { pick, debounce } from '../src/utils';
 
+jest.useFakeTimers();
+
 describe('utils.js', () => {
   test('pick', () => {
     expect(pick({ a: 1 }, [])).toEqual({});
@@ -14,14 +16,45 @@ describe('utils.js', () => {
   });
 
   test('debounce', () => {
-    let count = 0;
-    const f = debounce((i) => { count += i; });
+    jest.clearAllTimers();
+
+    const callback = jest.fn();
+
+    let f = debounce(callback, 10);
+
     f(1);
-    expect(count).toEqual(0);
-    f(1);
-    f(1);
-    setTimeout(() => {
-      expect(count).toEqual(3);
-    }, 20);
+    f(2);
+    f(3);
+
+    expect(clearTimeout).toHaveBeenCalledTimes(3);
+    expect(setTimeout).toHaveBeenCalledTimes(3);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 10);
+
+    expect(callback).not.toBeCalled();
+
+    jest.runAllTimers();
+
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenLastCalledWith(3);
+
+    // default delay
+    f = debounce(callback);
+    f();
+
+    expect(setTimeout).toHaveBeenCalledTimes(4);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 50);
+  });
+
+  test('debounce function', () => {
+    const callback = jest.fn();
+
+    const f = debounce(callback, 100);
+    f(); // ran
+    jest.advanceTimersByTime(200);
+    f(); // cancel
+    jest.advanceTimersByTime(10);
+    f(); // ran
+    jest.runAllTimers();
+    expect(callback).toHaveBeenCalledTimes(2);
   });
 });
