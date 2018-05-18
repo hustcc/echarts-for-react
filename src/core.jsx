@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
+import { isEqual, pick } from './utils';
 
-const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export default class EchartsReactCore extends Component {
   constructor(props) {
@@ -18,8 +18,6 @@ export default class EchartsReactCore extends Component {
 
   // update
   componentDidUpdate(prevProps) {
-    const echartObj = this.renderEchartDom();
-
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
     // 2. 修改 opts 的时候
@@ -35,6 +33,13 @@ export default class EchartsReactCore extends Component {
       return;
     }
 
+    // 当这些属性保持不变的时候，不 setOption
+    const pickKeys = ['option', 'notMerge', 'lazyUpdate'];
+    if (isEqual(pick(this.props, pickKeys), pick(prevProps, pickKeys))) {
+      return;
+    }
+
+    const echartObj = this.renderEchartDom();
     // 样式修改的时候，可能会导致大小变化，所以触发一下 resize
     if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
       try {

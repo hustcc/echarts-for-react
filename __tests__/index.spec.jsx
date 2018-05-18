@@ -180,6 +180,32 @@ describe('index.js', () => {
     expect(preId).not.toBe(component.instance().getEchartsInstance().id);
   });
 
+  test('update option update', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      opts={{renderer: 'svg'}}
+    />);
+
+    const preId = component.instance().getEchartsInstance().id;
+    // udpate props
+    component.setProps({
+      option: { ...option }
+    });
+
+    component.update(); // force update
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+
+    // udpate props
+    component.setProps({
+      option: {}
+    });
+
+    component.update(); // force update
+
+    expect(component.instance().getEchartsInstance().getOption().title.text).toBe(undefined);
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+  });
+
   test('unmount', () => {
     const component = mount(<EchartsReact
       option={option}
