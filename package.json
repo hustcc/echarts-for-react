@@ -85,7 +85,8 @@
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
-    "element-resize-event": "2.0.9"
+    "element-resize-event": "2.0.9",
+    "fast-deep-equal": "^2.0.1"
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0",
