@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
-import { isEqual, pick } from './utils';
+import isEqual from 'fast-deep-equal';
+import { pick } from './utils';
 
 
 export default class EchartsReactCore extends Component {
