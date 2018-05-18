@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
 import isEqual from 'fast-deep-equal';
-import { pick } from './utils';
+import { pick, debounce } from './utils';
 
 
 export default class EchartsReactCore extends Component {
@@ -80,9 +80,10 @@ export default class EchartsReactCore extends Component {
     if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
     // on resize
     if (this.echartsElement) {
-      elementResizeEvent(this.echartsElement, () => {
-        echartObj.resize();
-      });
+      elementResizeEvent(
+        this.echartsElement,
+        debounce(echartObj.resize, 100)
+      );
     }
   };
 
