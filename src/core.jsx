@@ -75,11 +75,6 @@ export default class EchartsReactCore extends Component {
     const echartObj = this.renderEchartDom();
     this.bindEvents(echartObj, onEvents || {});
 
-    // fix bug of 100px width * height.
-    try {
-      echartObj.resize();
-    } catch (_) {}
-
     // on chart ready
     if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
     // on resize
