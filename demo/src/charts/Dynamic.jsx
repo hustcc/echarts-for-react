@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cloneDeep from 'lodash.clonedeep';
 import ReactEcharts from '../../../src/index';
 
 export default class Dynamic extends Component {
@@ -12,7 +13,7 @@ export default class Dynamic extends Component {
 
   fetchNewDate = () => {
     let axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
-    let option = this.state.option;
+    const option = cloneDeep(this.state.option); // immutable
     option.title.text = 'Hello Echarts-for-react.' + new Date().getSeconds();
     let data0 = option.series[0].data;
     let data1 = option.series[1].data;
@@ -25,7 +26,10 @@ export default class Dynamic extends Component {
     option.xAxis[0].data.push(axisData);
     option.xAxis[1].data.shift();
     option.xAxis[1].data.push(this.count++);
-    this.setState({option: option});
+
+    this.setState({
+      option,
+    });
   };
 
   componentDidMount() {

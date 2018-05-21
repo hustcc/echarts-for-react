@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "baidu Echarts(v3.x & v4.x) components for react.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -74,6 +74,7 @@
     "jest": "^22.4.2",
     "jest-canvas-mock": "^1.0.0",
     "jsx-loader": "^0.13.2",
+    "lodash.clonedeep": "^4.5.0",
     "react": "^15.5.0",
     "react-adsense": "^0.0.3",
     "react-dom": "^15.5.0",

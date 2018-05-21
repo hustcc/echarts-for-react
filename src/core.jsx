@@ -26,7 +26,7 @@ export default class EchartsReactCore extends Component {
     if (
       prevProps.theme !== this.props.theme ||
       !isEqual(prevProps.opts, this.props.opts) ||
-      !isEqual(Object.keys(prevProps.onEvents || {}).sort(), Object.keys(this.props.onEvents || {}).sort())
+      !isEqual(prevProps.onEvents, this.props.onEvents)
     ) {
       this.dispose();
 
@@ -82,7 +82,7 @@ export default class EchartsReactCore extends Component {
     if (this.echartsElement) {
       elementResizeEvent(
         this.echartsElement,
-        debounce(echartObj.resize, 100)
+        debounce(echartObj.resize)
       );
     }
   };

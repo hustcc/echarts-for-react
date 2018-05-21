@@ -143,15 +143,25 @@ describe('index.js', () => {
 
   // update opts, should dispose echarts instance.
   test('update onEvents', () => {
+    const onEvents = {
+      click: () => {},
+      mousemove: () => {},
+    };
     const component = mount(<EchartsReact
       option={option}
-      onEvents={{
-        click: () => {},
-        mousemove: () => {},
-      }}
+      onEvents={onEvents}
     />);
 
     const preId = component.instance().getEchartsInstance().id;
+
+    // udpate props
+    component.setProps({
+      onEvents,
+    });
+
+    component.update(); // force update
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+
     // udpate props
     component.setProps({
       onEvents: {
@@ -161,7 +171,7 @@ describe('index.js', () => {
     });
 
     component.update(); // force update
-    expect(preId).toBe(component.instance().getEchartsInstance().id);
+    expect(preId).not.toBe(component.instance().getEchartsInstance().id);
 
     // udpate props
     component.setProps({

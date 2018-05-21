@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cloneDeep from 'lodash.clonedeep';
 import ReactEcharts from '../../../src/index';
 
 export default class Gauge extends Component {
@@ -295,7 +296,7 @@ export default class Gauge extends Component {
       clearInterval(this.timeTicket);
     }
     this.timeTicket = setInterval(() => {
-      const option = this.state.option;
+      const option = cloneDeep(this.state.option);
       option.series[0].data[0].value = (Math.random()*100).toFixed(2) - 0;
       option.series[1].data[0].value = (Math.random()*7).toFixed(2) - 0;
       option.series[2].data[0].value = (Math.random()*2).toFixed(2) - 0;
