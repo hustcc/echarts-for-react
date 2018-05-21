@@ -216,6 +216,22 @@ describe('index.js', () => {
     expect(preId).toBe(component.instance().getEchartsInstance().id);
   });
 
+  test('shouldSetOption', () => {
+    const component = mount(<EchartsReact
+      option={option}
+      shouldSetOption={() => false}
+      className="cls"
+    />);
+
+    const preId = component.instance().getEchartsInstance().id;
+    component.setProps({
+      option,
+    });
+
+    component.update(); // force update
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+  });
+
   test('unmount', () => {
     const component = mount(<EchartsReact
       option={option}
