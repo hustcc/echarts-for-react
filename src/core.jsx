@@ -4,7 +4,6 @@ import elementResizeEvent from 'element-resize-event';
 import isEqual from 'fast-deep-equal';
 import { pick, debounce } from './utils';
 
-
 export default class EchartsReactCore extends Component {
   constructor(props) {
     super(props);
@@ -35,10 +34,13 @@ export default class EchartsReactCore extends Component {
     }
 
     // 当这些属性保持不变的时候，不 setOption
-    const pickKeys = ['option', 'notMerge', 'lazyUpdate'];
+    const pickKeys = ['option', 'notMerge', 'lazyUpdate', 'showLoading', 'loadingOption'];
     if (isEqual(pick(this.props, pickKeys), pick(prevProps, pickKeys))) {
       return;
     }
+
+    // 判断是否需要 setOption，由开发者自己来确定。默认为 true
+    if (!this.props.shouldSetOption(prevProps, this.props)) { return; }
 
     const echartObj = this.renderEchartDom();
     // 样式修改的时候，可能会导致大小变化，所以触发一下 resize
@@ -161,7 +163,8 @@ EchartsReactCore.propTypes = {
       PropTypes.number,
       PropTypes.oneOf([null, undefined, 'auto'])
     ]),
-  })
+  }),
+  shouldSetOption: PropTypes.func,
 };
 
 EchartsReactCore.defaultProps = {
@@ -176,4 +179,5 @@ EchartsReactCore.defaultProps = {
   loadingOption: null,
   onEvents: {},
   opts: {},
+  shouldSetOption: () => true,
 };

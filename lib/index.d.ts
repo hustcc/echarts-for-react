@@ -33,6 +33,7 @@ export interface ReactEchartsPropsTypes {
   onEvents?: EventMap;
   echarts?: object;
   opts?: optsMap;
+  shouldSetOption?: Func;
 }
 
 export default class ReactEcharts extends React.Component<ReactEchartsPropsTypes, any>{}
