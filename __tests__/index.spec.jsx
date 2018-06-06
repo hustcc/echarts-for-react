@@ -116,6 +116,23 @@ describe('index.js', () => {
     expect(preId).not.toBe(component.instance().getEchartsInstance().id);
   });
 
+  // update theme, should dispose echarts instance.
+  test('update className', () => {
+    const component = mount(<EchartsReact
+      option={option}
+    />);
+
+    const preId = component.instance().getEchartsInstance().id;
+    // udpate props
+    component.setProps({
+      className: 'cls',
+      option: {},
+    });
+
+    component.update(); // force update
+    expect(preId).toBe(component.instance().getEchartsInstance().id);
+  });
+
   // update opts, should dispose echarts instance.
   test('update opts', () => {
     const component = mount(<EchartsReact
