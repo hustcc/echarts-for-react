@@ -40,7 +40,9 @@ export default class EchartsReactCore extends Component {
     }
 
     // 判断是否需要 setOption，由开发者自己来确定。默认为 true
-    if (!this.props.shouldSetOption(prevProps, this.props)) { return; }
+    if (typeof this.props.shouldSetOption === 'function' && !this.props.shouldSetOption(prevProps, this.props)) {
+      return;
+    }
 
     const echartObj = this.renderEchartDom();
     // 样式修改的时候，可能会导致大小变化，所以触发一下 resize
