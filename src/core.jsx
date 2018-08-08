@@ -88,7 +88,11 @@ export default class EchartsReactCore extends Component {
     // on resize
     if (this.echartsElement) {
       bind(this.echartsElement, () => {
-        echartObj.resize();
+        try {
+          echartObj.resize();
+        } catch (e) {
+          console.warn(e);
+        }
       });
     }
   };
