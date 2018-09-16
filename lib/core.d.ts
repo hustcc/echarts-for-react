@@ -31,9 +31,9 @@ export interface ReactEchartsPropsTypes {
   showLoading?: boolean;
   loadingOption?: ObjectMap;
   onEvents?: EventMap;
-  echarts?: object;
+  echarts: object;
   opts?: optsMap;
   shouldSetOption?: Func;
 }
 
-export default class ReactEcharts extends React.Component<ReactEchartsPropsTypes, any>{}
+export default class ReactEchartsCore extends React.Component<ReactEchartsPropsTypes, any>{}
