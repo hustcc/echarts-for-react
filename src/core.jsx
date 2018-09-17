@@ -7,7 +7,7 @@ import { pick } from './utils';
 export default class EchartsReactCore extends Component {
   constructor(props) {
     super(props);
-    this.echartsLib = this.props.echarts; // the echarts object.
+    this.echartsLib = props.echarts; // the echarts object.
     this.echartsElement = null; // echarts div element
   }
 
