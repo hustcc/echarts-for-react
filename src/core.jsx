@@ -23,7 +23,7 @@ export default class EchartsReactCore extends Component {
     // 2. 修改 opts 的时候
     // 3. 修改 onEvents 的时候，这样可以取消所以之前绑定的事件 issue #151
     if (
-      prevProps.theme !== this.props.theme ||
+      !isEqual(prevProps.theme, this.props.theme) ||
       !isEqual(prevProps.opts, this.props.opts) ||
       !isEqual(prevProps.onEvents, this.props.onEvents)
     ) {
@@ -155,7 +155,10 @@ EchartsReactCore.propTypes = {
   lazyUpdate: PropTypes.bool,
   style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   className: PropTypes.string,
-  theme: PropTypes.string,
+  theme: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
   onChartReady: PropTypes.func,
   showLoading: PropTypes.bool,
   loadingOption: PropTypes.object, // eslint-disable-line react/forbid-prop-types
