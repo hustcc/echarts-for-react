@@ -26,12 +26,11 @@ export interface ReactEchartsPropsTypes {
   lazyUpdate?: boolean;
   style?: ObjectMap;
   className?: string;
-  theme?: string | null;
+  theme?: string | null | ObjectMap;
   onChartReady?: Func;
   showLoading?: boolean;
   loadingOption?: ObjectMap;
   onEvents?: EventMap;
-  echarts?: object;
   opts?: optsMap;
   shouldSetOption?: Func;
 }
