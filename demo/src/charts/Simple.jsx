@@ -63,7 +63,7 @@ export default class Simple extends PureComponent {
   };
   render() {
     let code = "<ReactEcharts \n" +
-          "  option={this.getOtion()} \n" +
+          "  option={this.getOption()} \n" +
           "  style={{height: '350px', width: '100%'}}  \n" +
           "  className='react_for_echarts' />";
     return (
