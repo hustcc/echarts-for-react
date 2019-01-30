@@ -72,7 +72,7 @@
     "eslint-plugin-react": "^7.5.1",
     "file-loader": "^1.1.6",
     "jest": "^22.4.2",
-    "jest-canvas-mock": "^1.0.0",
+    "jest-canvas-mock": "^2.0.0-alpha.0",
     "jsx-loader": "^0.13.2",
     "lodash.clonedeep": "^4.5.0",
     "react": "^15.5.0",
