@@ -114,7 +114,7 @@ export default class Theme extends PureComponent {
            "  backgroundColor: '#f4cccc'\n" +
            "});\n\n" +
            "<ReactEcharts \n" +
-          "  option={this.getOtion()} \n" +
+          "  option={this.getOption()} \n" +
           "  theme='my_theme' />";
     return (
       <div className='examples'>
