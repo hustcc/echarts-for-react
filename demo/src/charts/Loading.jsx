@@ -65,7 +65,7 @@ export default class Loading extends PureComponent {
            "  'chart.hideLoading();\n" +
            "}\n\n" +
            "<ReactEcharts \n" +
-          "  option={this.getOtion()} \n" +
+          "  option={this.getOption()} \n" +
           "  onChartReady={this.onChartReady} \n" +
           "  loadingOption={this.getLoadingOption()} \n" +
           "  showLoading={true} />";
