@@ -87,7 +87,17 @@ export default class EchartsReactCore extends Component {
     if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
     // on resize
     if (this.echartsElement) {
+      let prevWidth = this.echartsElement.offsetWidth;
+      let prevHeight = this.echartsElement.offsetHeight;
+
       bind(this.echartsElement, () => {
+        // echartObj.resize 某些情况下会在尺寸实际没有发生改变的情况下触发 size-sensor 的 resize
+        const width = this.echartsElement.offsetWidth;
+        const height = this.echartsElement.offsetHeight;
+        if (width === prevWidth && height === prevHeight) return;
+        prevWidth = width;
+        prevHeight = height;
+
         try {
           echartObj.resize();
         } catch (e) {
