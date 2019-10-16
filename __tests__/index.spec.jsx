@@ -21,7 +21,7 @@ describe('index.js', () => {
     // class name
     expect(component.getDOMNode().className).toBe('echarts-for-react echarts-for-react-root');
     // style
-    expect(component.getDOMNode().style.height).toBe('300px');
+    // expect(component.getDOMNode().style.height).toBe('300px'); // 依赖于 echarts-for-react-root 的 height值
     // default props
     expect(component.props().option).toEqual(option);
     expect(component.props().style).toEqual({});
@@ -70,8 +70,7 @@ describe('index.js', () => {
     />);
 
     expect(component.props().style).toEqual({});
-    expect(component.getDOMNode().style.height).toBe('300px');
-
+    // expect(component.getDOMNode().style.height).toBe('300px'); // 依赖于 echarts-for-react-root 的 height值
     const preId = component.instance().getEchartsInstance().id;
     // udpate props
     component.setProps({

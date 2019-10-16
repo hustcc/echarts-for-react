@@ -23,7 +23,7 @@ describe('core.js', () => {
     // class name
     expect(component.getDOMNode().className).toBe('echarts-for-react echarts-for-react-root');
     // style
-    expect(component.getDOMNode().style.height).toEqual('300px');
+    // expect(component.getDOMNode().style.height).toBe('300px'); // 依赖于 echarts-for-react-root 的 height值
     // default props
     expect(component.props().option).toEqual(option);
     expect(component.props().style).toEqual({});
