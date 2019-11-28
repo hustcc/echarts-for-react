@@ -34,6 +34,28 @@ npm start
 
 then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or see [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
 
+## GL
+
+Install and import [`echarts-gl`](https://www.npmjs.com/package/echarts-gl) module when you want to create a [GL instance](https://www.echartsjs.com/examples/zh/index.html#chart-type-globe)
+
+ - **`Install`**
+
+```sh
+npm install --save echarts-gl
+```
+
+ - **`Import`**
+
+```js
+import 'echarts-gl'
+import ReactEcharts from "echarts-for-react";
+
+<ReactEcharts
+  option={GL_OPTION}
+/>
+
+```
+
 
 # 2. usage
 
@@ -134,7 +156,6 @@ import 'echarts/lib/component/title';
   onEvents={EventsDict}
   opts={} />
 ```
-
 
 # 3. component props
 
@@ -265,6 +286,10 @@ Use the props `opts` of component with `renderer = 'svg'`. For example:
   opts={{renderer: 'svg'}} // use svg to render the chart.
 />
 ```
+
+ - How to resolve Error `Component series.scatter3D not exists. Load it first.`
+
+[Install and import `echarts-gl` first](#GL)
 
 
 # 6. LICENSE
