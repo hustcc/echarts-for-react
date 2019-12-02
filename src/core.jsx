@@ -21,7 +21,7 @@ export default class EchartsReactCore extends Component {
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
     // 2. 修改 opts 的时候
-    // 3. 修改 onEvents 的时候，这样可以取消所以之前绑定的事件 issue #151
+    // 3. 修改 onEvents 的时候，这样可以取消所有之前绑定的事件 issue #151
     if (
       !isEqual(prevProps.theme, this.props.theme) ||
       !isEqual(prevProps.opts, this.props.opts) ||
