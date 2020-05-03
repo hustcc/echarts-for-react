@@ -18,6 +18,11 @@ export default class EchartsReactCore extends Component {
 
   // update
   componentDidUpdate(prevProps) {
+    // 判断是否需要 setOption，由开发者自己来确定。默认为 true
+    if (typeof this.props.shouldSetOption === 'function' && !this.props.shouldSetOption(prevProps, this.props)) {
+      return;
+    }
+    
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
     // 2. 修改 opts 的时候
@@ -36,11 +41,6 @@ export default class EchartsReactCore extends Component {
     // 当这些属性保持不变的时候，不 setOption
     const pickKeys = ['option', 'notMerge', 'lazyUpdate', 'showLoading', 'loadingOption'];
     if (isEqual(pick(this.props, pickKeys), pick(prevProps, pickKeys))) {
-      return;
-    }
-
-    // 判断是否需要 setOption，由开发者自己来确定。默认为 true
-    if (typeof this.props.shouldSetOption === 'function' && !this.props.shouldSetOption(prevProps, this.props)) {
       return;
     }
 
