@@ -1,7 +1,7 @@
 /// <reference types="react" />
 
 import * as React from 'react';
-import { EChartOption, EChartsLoadingOption } from 'echarts';
+import { EChartOption, EChartsLoadingOption, ECharts } from 'echarts';
 
 type Func = (...args: any[]) => any;
 
@@ -94,4 +94,8 @@ export interface ReactEchartsPropsTypes {
   shouldSetOption?: Func;
 }
 
-export default class ReactEcharts extends React.Component<ReactEchartsPropsTypes, any>{}
+declare class ReactEcharts extends React.Component<ReactEchartsPropsTypes, any>{
+  getEchartsInstance(): ECharts;
+}
+
+export default ReactEcharts;
