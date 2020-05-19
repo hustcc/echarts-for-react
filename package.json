@@ -1,6 +1,6 @@
 {
   "name": "echarts-for-react",
-  "version": "2.0.15-beta.1",
+  "version": "2.0.16",
   "description": "baidu Echarts(v3.x & v4.x) components for react.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -88,7 +88,7 @@
   },
   "dependencies": {
     "fast-deep-equal": "^2.0.1",
-    "size-sensor": "^0.2.0"
+    "size-sensor": "^1.0.0"
   },
   "peerDependencies": {
     "react": ">=0.13.2 || ^0.14 || ^15.0.0 || >=16.0.0",
