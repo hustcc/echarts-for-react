@@ -13,7 +13,7 @@ export default class EchartsReactCore extends Component {
 
   // first add
   componentDidMount() {
-    this.rerender();
+    this.rerender(true);
   }
 
   // update
@@ -22,7 +22,7 @@ export default class EchartsReactCore extends Component {
     if (typeof this.props.shouldSetOption === 'function' && !this.props.shouldSetOption(prevProps, this.props)) {
       return;
     }
-    
+
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
     // 2. 修改 opts 的时候
@@ -34,7 +34,7 @@ export default class EchartsReactCore extends Component {
     ) {
       this.dispose();
 
-      this.rerender(); // 重建
+      this.rerender(false); // 重建
       return;
     }
 
@@ -77,7 +77,7 @@ export default class EchartsReactCore extends Component {
     }
   };
 
-  rerender = () => {
+  rerender = (isFirst) => {
     const { onEvents, onChartReady } = this.props;
 
     const echartObj = this.renderEchartDom();
@@ -89,7 +89,8 @@ export default class EchartsReactCore extends Component {
     if (this.echartsElement) {
       bind(this.echartsElement, () => {
         try {
-          echartObj.resize();
+          // eslint-disable-next-line no-unused-expressions
+          !isFirst && echartObj.resize();
         } catch (e) {
           console.warn(e);
         }
