@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+var uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var definePlugin = webpack.DefinePlugin;
 
 // webpack for demo website
@@ -11,7 +11,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders:[{
+    rules:[{
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
@@ -30,8 +30,17 @@ module.exports = {
     echarts: 'window.echarts',
   },
   plugins: [
-   new uglifyJsPlugin({compress: {warnings: false}}),
-   new definePlugin({'process.env': {NODE_ENV: '"production"'}})
+    new definePlugin({'process.env': {NODE_ENV: '"production"'}})
   ],
-  devtool: 'source-map'
+  optimization: {
+    minimizer: [
+      new uglifyJsPlugin({
+        uglifyOptions: {
+          warnings: false,
+        }
+      })
+    ],
+  },
+  devtool: 'source-map',
+  mode: 'development',
 };

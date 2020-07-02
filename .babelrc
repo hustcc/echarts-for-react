@@ -1,11 +1,11 @@
 {
-  "presets": ["env", "react"],
+  "presets": ["@babel/env", "@babel/react"],
   "plugins": [
     "transform-es3-member-expression-literals",
     "transform-es3-property-literals",
     "transform-class-properties",
     "transform-object-rest-spread",
     "transform-export-extensions",
-    "transform-decorators-legacy"
+    [ "@babel/plugin-proposal-decorators", { "legacy": true } ]
   ]
 }

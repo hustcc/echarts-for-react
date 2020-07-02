@@ -3,7 +3,7 @@
  * Contract: i@hust.cc
  */
 
-import 'babel-polyfill';
+import '@babel/polyfill';
 import { Application, Module } from '76';
 
 import router from './router.jsx';

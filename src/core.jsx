@@ -8,7 +8,7 @@ export default class EchartsReactCore extends Component {
   constructor(props) {
     super(props);
     this.echartsLib = props.echarts; // the echarts object.
-    this.echartsElement = null; // echarts div element
+    this.echartsElement = React.createRef(); // echarts div element
   }
 
   // first add
@@ -61,19 +61,19 @@ export default class EchartsReactCore extends Component {
   }
 
   // return the echart object
-  getEchartsInstance = () => this.echartsLib.getInstanceByDom(this.echartsElement) ||
-    this.echartsLib.init(this.echartsElement, this.props.theme, this.props.opts);
+  getEchartsInstance = () => this.echartsLib.getInstanceByDom(this.echartsElement && this.echartsElement.current) ||
+    this.echartsLib.init(this.echartsElement && this.echartsElement.current, this.props.theme, this.props.opts);
 
   // dispose echarts and clear size-sensor
   dispose = () => {
-    if (this.echartsElement) {
+    if (this.echartsElement && this.echartsElement.current) {
       try {
-        clear(this.echartsElement);
+        clear(this.echartsElement.current);
       } catch (e) {
         console.warn(e);
       }
       // dispose echarts instance
-      this.echartsLib.dispose(this.echartsElement);
+      this.echartsLib.dispose(this.echartsElement.current);
     }
   };
 
@@ -86,8 +86,8 @@ export default class EchartsReactCore extends Component {
     // on chart ready
     if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
     // on resize
-    if (this.echartsElement) {
-      bind(this.echartsElement, () => {
+    if (this.echartsElement && this.echartsElement.current) {
+      bind(this.echartsElement.current, () => {
         try {
           // eslint-disable-next-line no-unused-expressions
           !isFirst && echartObj.resize();
@@ -141,7 +141,7 @@ export default class EchartsReactCore extends Component {
     // for render
     return (
       <div
-        ref={(e) => { this.echartsElement = e; }}
+        ref={this.echartsElement}
         style={newStyle}
         className={`echarts-for-react ${className}`}
       />
