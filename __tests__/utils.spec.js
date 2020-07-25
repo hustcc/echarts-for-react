@@ -1,11 +1,14 @@
 /* eslint-disable no-undef */
-
+// 浅复制obj中的keys
 import { pick } from '../src/utils';
-
+// 把遇到的计时器挂起，在必要时，再使用jest.runOnlyPendingTimers执行掉已经挂起的计时器
 jest.useFakeTimers();
-
+// 描述块，将多个test用例包裹在一起
 describe('utils.js', () => {
+  // test即it
   test('pick', () => {
+    // 期望值
+    // 当执行pick函数后，希望它的返回值符合我的期望
     expect(pick({ a: 1 }, [])).toEqual({});
 
     expect(pick({ a: 1 }, ['b'])).toEqual({});
@@ -14,47 +17,4 @@ describe('utils.js', () => {
 
     expect(pick({ a: 1 }, ['a', 'b'])).toEqual({ a: 1 });
   });
-
-  // test('debounce', () => {
-  //   jest.clearAllTimers();
-  //
-  //   const callback = jest.fn();
-  //
-  //   let f = debounce(callback, 10);
-  //
-  //   f(1);
-  //   f(2);
-  //   f(3);
-  //
-  //   expect(clearTimeout).toHaveBeenCalledTimes(3);
-  //   expect(setTimeout).toHaveBeenCalledTimes(3);
-  //   expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 10);
-  //
-  //   expect(callback).not.toBeCalled();
-  //
-  //   jest.runAllTimers();
-  //
-  //   expect(callback).toHaveBeenCalledTimes(1);
-  //   expect(callback).toHaveBeenLastCalledWith(3);
-  //
-  //   // default delay
-  //   f = debounce(callback);
-  //   f();
-  //
-  //   expect(setTimeout).toHaveBeenCalledTimes(4);
-  //   expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 50);
-  // });
-
-  // test('debounce function', () => {
-  //   const callback = jest.fn();
-  //
-  //   const f = debounce(callback, 100);
-  //   f(); // ran
-  //   jest.advanceTimersByTime(200);
-  //   f(); // cancel
-  //   jest.advanceTimersByTime(10);
-  //   f(); // ran
-  //   jest.runAllTimers();
-  //   expect(callback).toHaveBeenCalledTimes(2);
-  // });
 });

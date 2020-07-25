@@ -6,8 +6,7 @@
 import Adapter from 'enzyme-adapter-react-16';
 import { configure } from 'enzyme';
 
-// refs only work with mount, yes.
-
+// 做enzyme根据react16做的配置
 configure({
   adapter: new Adapter(),
   disableLifecycleMethods: false,
