@@ -212,14 +212,22 @@ the echarts loading option config, can see [http://echarts.baidu.com/api.html#ec
 
 `bool`, when the chart is rendering, show the loading mask.
 
- - **`onEvents`** (optional, array(string=>function) )
+ - **`onEvents`** (optional, object(string=>function)) || (optional, object(string=>object(string=>object||function)))
 
-binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g:
+binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters.
+
+can also define an object instead of a function, which allows for passing specifications for events like mouseover. Document [here](https://echarts.apache.org/en/tutorial.html#Events%20and%20Actions%20in%20ECharts)
+
+e.g:
 
 ```js
 let onEvents = {
   'click': this.onChartClick,
-  'legendselectchanged': this.onChartLegendselectchanged
+  'legendselectchanged': this.onChartLegendselectchanged,
+  'mouseover': {
+    specs: {seriesIndex: 0},
+    func: this.onChartHover
+  }
 }
 ...
 <ReactEcharts

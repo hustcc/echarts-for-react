@@ -99,14 +99,20 @@ export default class EchartsReactCore extends Component {
 
   // bind the events
   bindEvents = (instance, events) => {
-    const _bindEvent = (eventName, func) => {
+    const _bindEvent = (eventName, eventParam) => {
       // ignore the event config which not satisfy
-      if (typeof eventName === 'string' && typeof func === 'function') {
+      if (typeof eventName === 'string' && typeof eventParam === 'function') {
         // binding event
         // instance.off(eventName); // 已经 dispose 在重建，所以无需 off 操作
         instance.on(eventName, (param) => {
-          func(param, instance);
+          eventParam(param, instance);
         });
+      } else if (typeof eventName === 'string' && typeof eventParam === 'object') {
+        if (eventParam.specs && eventParam.func) {
+          instance.on(eventName, specs, (param) => {
+            eventParam.func(param, instance);
+          });
+        }
       }
     };
 
