@@ -68,4 +68,39 @@ describe('core.js', () => {
 
     expect(testOnChartReadyFunc).toBeCalled();
   });
+
+  test('alternate props', () => {
+    const testOnChartReadyFunc = jest.fn();
+    const testFunc = {
+      specs: {},
+      func: () => {}
+    }
+    // not default props
+    const component = mount(<EchartsReactCore
+      option={option}
+      style={{ width: 100 }}
+      notMerge
+      lazyUpdate
+      theme="test_theme"
+      onChartReady={testOnChartReadyFunc}
+      showLoading
+      onEvents={{ onClick: testFunc }}
+      echarts={echarts}
+      opts={{ renderer: 'svg' }}
+    />);
+
+    // default props
+    expect(component.props().option).toEqual(option);
+    expect(component.props().style).toEqual({ width: 100 });
+    expect(component.props().className).toBe('');
+    expect(component.props().notMerge).toEqual(true);
+    expect(component.props().lazyUpdate).toEqual(true);
+    expect(component.props().theme).toEqual('test_theme');
+    expect(typeof component.props().onChartReady).toEqual('function');
+    expect(component.props().showLoading).toEqual(true);
+    expect(component.props().onEvents).toEqual({ onClick: testFunc });
+    expect(component.props().opts).toEqual({ renderer: 'svg' });
+
+    expect(testOnChartReadyFunc).toBeCalled();
+  });
 });
