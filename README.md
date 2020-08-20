@@ -161,15 +161,15 @@ import 'echarts/lib/component/title';
 
  - **`option`** (required, object)
 
-the echarts option config, can see [http://echarts.baidu.com/option.html#title](http://echarts.baidu.com/option.html#title).
+the echarts option config, can see [https://echarts.apache.org/option.html#title](https://echarts.apache.org/option.html#title).
 
  - **`notMerge`** (optional, object)
 
-when `setOption`, not merge the data, default is `false`. See [http://echarts.baidu.com/api.html#echartsInstance.setOption](http://echarts.baidu.com/api.html#echartsInstance.setOption).
+when `setOption`, not merge the data, default is `false`. See [https://echarts.apache.org/api.html#echartsInstance.setOption](https://echarts.apache.org/api.html#echartsInstance.setOption).
 
  - **`lazyUpdate`** (optional, object)
 
-when `setOption`, lazy update the data, default is `false`. See [http://echarts.baidu.com/api.html#echartsInstance.setOption](http://echarts.baidu.com/api.html#echartsInstance.setOption).
+when `setOption`, lazy update the data, default is `false`. See [https://echarts.apache.org/api.html#echartsInstance.setOption](https://echarts.apache.org/api.html#echartsInstance.setOption).
 
  - **`style`** (optional, object)
 
@@ -206,7 +206,7 @@ when the chart is ready, will callback the function with the `echarts object` as
 
  - **`loadingOption`** (optional, object)
 
-the echarts loading option config, can see [http://echarts.baidu.com/api.html#echartsInstance.showLoading](http://echarts.baidu.com/api.html#echartsInstance.showLoading).
+the echarts loading option config, can see [https://echarts.apache.org/api.html#echartsInstance.showLoading](https://echarts.apache.org/api.html#echartsInstance.showLoading).
 
  - **`showLoading`** (optional, bool, default: false)
 
@@ -227,11 +227,11 @@ let onEvents = {
   style={{height: '300px', width: '100%'}}
   onEvents={onEvents} />
 ```
-for more event key name, see: [http://echarts.baidu.com/api.html#events](http://echarts.baidu.com/api.html#events)
+for more event key name, see: [https://echarts.apache.org/api.html#events](https://echarts.apache.org/api.html#events)
 
  - **`opts`** (optional, object)
 
-the `opts` of echarts. `object`, will be used when initial echarts instance by `echarts.init`. Document [here](http://echarts.baidu.com/api.html#echarts.init).
+the `opts` of echarts. `object`, will be used when initial echarts instance by `echarts.init`. Document [here](https://echarts.apache.org/api.html#echarts.init).
 
 ```js
 <ReactEcharts
@@ -262,7 +262,7 @@ let echarts_instance = this.echarts_react.getEchartsInstance();
 let base64 = echarts_instance.getDataURL();
 ```
 
-**About API of echarts, can see** [http://echarts.baidu.com/api.html#echartsInstance](http://echarts.baidu.com/api.html#echartsInstance).
+**About API of echarts, can see** [https://echarts.apache.org/api.html#echartsInstance](https://echarts.apache.org/api.html#echartsInstance).
 
 You can use the API to do:
 
