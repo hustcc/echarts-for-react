@@ -22,7 +22,7 @@ export default class EchartsReactCore extends Component {
     if (typeof this.props.shouldSetOption === 'function' && !this.props.shouldSetOption(prevProps, this.props)) {
       return;
     }
-    
+
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
     // 2. 修改 opts 的时候
@@ -87,11 +87,22 @@ export default class EchartsReactCore extends Component {
     if (typeof onChartReady === 'function') this.props.onChartReady(echartObj);
     // on resize
     if (this.echartsElement) {
-      bind(this.echartsElement, () => {
-        try {
-          echartObj.resize();
-        } catch (e) {
-          console.warn(e);
+      let prevSize = {
+        width: this.echartsElement.clientWidth,
+        height: this.echartsElement.clientHeight,
+      };
+      bind(this.echartsElement, (el) => {
+        const size = {
+          width: el.clientWidth,
+          height: el.clientHeight
+        };
+        if (!isEqual(prevSize, size)) {
+          try {
+            echartObj.resize();
+            prevSize = size;
+          } catch (e) {
+            console.warn(e);
+          }
         }
       });
     }
