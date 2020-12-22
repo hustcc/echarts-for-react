@@ -1,0 +1,38 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier", "@typescript-eslint", "import"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "impliedStrict": true
+  },
+  "rules": {
+    "no-sparse-arrays": 0,
+    "no-self-assign": 0,
+    "no-unused-vars": 0, // @typescript-eslint/no-unused-vars
+    "no-inner-declarations": 0,
+    "prettier/prettier": 2,
+    "@typescript-eslint/no-unused-vars": 1,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-use-before-define": [2, { "functions": false }],
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/type-annotation-spacing": 0,
+    "@typescript-eslint/no-empty-function": 1,
+    "no-undef": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "import/order": 2,
+    "import/no-default-export": 2
+  }
+}
