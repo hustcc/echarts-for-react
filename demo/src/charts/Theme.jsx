@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { udpate } from '76';
 import ReactEcharts from '../../../src/index';
 
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 
 export default class Theme extends PureComponent {
   constructor(props) {

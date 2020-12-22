@@ -33,7 +33,8 @@ export default class App extends PureComponent {
           <Link to="/echarts/gauge">Gauge</Link> |
           <Link to="/echarts/gcalendar">GCalendar</Link> |
           <Link to="/echarts/lunar">Lunar</Link> |
-          <Link to="/echarts/gl">gl</Link> |
+          {/* TODO: 等待 https://github.com/ecomfe/echarts-gl/issues/374 */}
+          {/* <Link to="/echarts/gl">gl</Link> | */}
           <Link to="/echarts/sunburst">Sunburst</Link> |
           <Link to="/echarts/svg">SVG</Link>
         </h4>

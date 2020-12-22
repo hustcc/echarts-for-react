@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactEcharts from '../../../src/index';
 
-require('echarts/map/js/china.js');
+require('../map/china.js');
 
 export default class Map extends Component {
   constructor(props) {

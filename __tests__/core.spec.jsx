@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { mount } from 'enzyme';
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 
 import EchartsReactCore from '../src/core';
 import option from './option';

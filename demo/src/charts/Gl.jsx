@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import ReactEcharts from '../../../src/index';
-import 'echarts-gl';
+// TODO: 等待 https://github.com/ecomfe/echarts-gl/issues/374
+// import 'echarts-gl';
 
 export default class Api extends PureComponent {
   getOption = () => ({
@@ -23,7 +24,8 @@ export default class Api extends PureComponent {
       <div className='examples'>
         <div className='parent'>
           <label>echarts-gl demo</label>
-          <ReactEcharts option={this.getOption()}  />
+          {/* TODO: 等待 https://github.com/ecomfe/echarts-gl/issues/374 */}
+          {/* <ReactEcharts option={this.getOption()}  /> */}
           <label>echarts-gl doc: https://ecomfe.github.io/echarts-doc/public/cn/option-gl.html#globe</label>
         </div>
       </div>

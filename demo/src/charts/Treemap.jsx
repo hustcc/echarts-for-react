@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import ReactEcharts from '../../../src/index';
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 
 export default class Treemap extends PureComponent {
   getOption = () => {

@@ -1,4 +1,4 @@
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 import EchartsReactCore from './core';
 
 // export the Component the echarts Object.
