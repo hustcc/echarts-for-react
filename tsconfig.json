@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "sourceMap": true,
     "inlineSources": true,
     "target": "es5",
-    "outDir": "lib",
+    "jsx": "react",
     "declaration": true,
     "importHelpers": true,
     "moduleResolution": "node",
@@ -12,7 +11,9 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "types": ["react"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
