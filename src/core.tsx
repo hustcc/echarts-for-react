@@ -1,38 +1,32 @@
 import React, { Component, CSSProperties } from 'react';
 import * as echarts from 'echarts';
-import * as PropTypes from 'prop-types';
 import isEqual from 'fast-deep-equal';
 import { bind, clear } from 'size-sensor';
 import { pick } from './utils';
 
+type EchartsModule = typeof echarts;
+type ECharts = ReturnType<EchartsModule['init']>;
+
 export type ComponentProps = {
-  option: object;
-  echarts?: object;
+  option: echarts.EChartsOption;
+  echarts?: EchartsModule;
   notMerge?: boolean;
   lazyUpdate?: boolean;
   style?: CSSProperties;
   className?: string;
-  theme?: string | object;
-  onChartReady?: Function;
+  theme?: Parameters<EchartsModule['init']>[1];
+  onChartReady?: (instance?: ECharts) => any;
   showLoading?: boolean;
-  loadingOption?: object;
-  onEvents?: object;
-  opts?: {
-    renderer?: 'canvas' | 'svg';
-    devicePixelRatio?: number;
-    width?: number;
-    height?: number;
-    locale?: string | any;
-  };
-  shouldSetOption?: Function;
+  loadingOption?: Record<string, unknown>;
+  onEvents?: Record<string, (param: any) => any>;
+  opts?: Parameters<EchartsModule['init']>[2];
+  shouldSetOption?: (prevProps?: ComponentProps, props?: ComponentProps) => boolean;
 };
 
-export class EchartsReactCore extends Component {
-  static propTypes: ComponentProps;
+export class EchartsReactCore extends Component<ComponentProps> {
   static defaultProps: ComponentProps;
-  echartsLib: typeof echarts;
+  echartsLib: EchartsModule;
   echartsElement: HTMLDivElement;
-  props: ComponentProps;
 
   constructor(props: ComponentProps) {
     super(props);
@@ -90,7 +84,7 @@ export class EchartsReactCore extends Component {
   }
 
   // return the echart object
-  getEchartsInstance = (): any =>
+  getEchartsInstance = (): ECharts =>
     this.echartsLib.getInstanceByDom(this.echartsElement) ||
     this.echartsLib.init(this.echartsElement, this.props.theme, this.props.opts);
 
@@ -128,7 +122,7 @@ export class EchartsReactCore extends Component {
   };
 
   // bind the events
-  bindEvents = (instance, events) => {
+  bindEvents = (instance: ECharts, events: Record<string, (param: any) => any>) => {
     const _bindEvent = (eventName, func) => {
       // ignore the event config which not satisfy
       if (typeof eventName === 'string' && typeof func === 'function') {
@@ -149,7 +143,7 @@ export class EchartsReactCore extends Component {
   };
 
   // render the dom
-  renderEchartDom = () => {
+  renderEchartDom = (): ECharts => {
     // init the echart object
     const echartObj = this.getEchartsInstance();
     // set the echart option
@@ -180,30 +174,9 @@ export class EchartsReactCore extends Component {
   }
 }
 
-EchartsReactCore.propTypes = {
-  option: PropTypes.object.isRequired,
-  echarts: PropTypes.object,
-  notMerge: PropTypes.bool as any,
-  lazyUpdate: PropTypes.bool as any,
-  style: PropTypes.object as any,
-  className: PropTypes.string as any,
-  theme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  onChartReady: PropTypes.func,
-  showLoading: PropTypes.bool as any,
-  loadingOption: PropTypes.object,
-  onEvents: PropTypes.object,
-  opts: PropTypes.shape({
-    devicePixelRatio: PropTypes.number,
-    renderer: PropTypes.oneOf(['canvas', 'svg']),
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf([null, undefined, 'auto'])]),
-    height: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf([null, undefined, 'auto'])]),
-  }) as any,
-  shouldSetOption: PropTypes.func,
-};
-
 EchartsReactCore.defaultProps = {
   option: {},
-  echarts: {},
+  echarts: {} as EchartsModule,
   notMerge: false,
   lazyUpdate: false,
   style: {} as any,

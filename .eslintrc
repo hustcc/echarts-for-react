@@ -29,7 +29,8 @@
     "@typescript-eslint/no-inferrable-types": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/type-annotation-spacing": 0,
-    "@typescript-eslint/no-empty-function": 1,
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-undef": 0,
     "@typescript-eslint/no-var-requires": 0,
     "import/order": 2
