@@ -1,11 +1,11 @@
 import * as echarts from 'echarts';
-import { EchartsReactCore, ComponentProps } from './core';
+import { EchartsModule, EchartsReactCore, ReactEchartsPropsTypes } from './core';
 
 // export the Component the echarts Object.
 export default class EchartsReact extends EchartsReactCore {
-  echartsLib: typeof echarts;
+  echartsLib: EchartsModule;
 
-  constructor(props: ComponentProps) {
+  constructor(props: ReactEchartsPropsTypes) {
     super(props);
     this.echartsLib = echarts;
   }

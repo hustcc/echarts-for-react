@@ -4,10 +4,12 @@ import isEqual from 'fast-deep-equal';
 import { bind, clear } from 'size-sensor';
 import { pick } from './utils';
 
-type EchartsModule = typeof echarts;
+export type EchartsModule = typeof echarts;
 type ECharts = ReturnType<EchartsModule['init']>;
+type EventHandler = (param?: any, instance?: ECharts) => any;
+type EventMap = Record<string, EventHandler>;
 
-export type ComponentProps = {
+export type ReactEchartsPropsTypes = {
   option: echarts.EChartsOption;
   echarts?: EchartsModule;
   notMerge?: boolean;
@@ -18,17 +20,17 @@ export type ComponentProps = {
   onChartReady?: (instance?: ECharts) => any;
   showLoading?: boolean;
   loadingOption?: Record<string, unknown>;
-  onEvents?: Record<string, (param: any) => any>;
+  onEvents?: EventMap;
   opts?: Parameters<EchartsModule['init']>[2];
-  shouldSetOption?: (prevProps?: ComponentProps, props?: ComponentProps) => boolean;
+  shouldSetOption?: (prevProps?: ReactEchartsPropsTypes, props?: ReactEchartsPropsTypes) => boolean;
 };
 
-export class EchartsReactCore extends Component<ComponentProps> {
-  static defaultProps: ComponentProps;
+export class EchartsReactCore extends Component<ReactEchartsPropsTypes> {
+  static defaultProps: ReactEchartsPropsTypes;
   echartsLib: EchartsModule;
   echartsElement: HTMLDivElement;
 
-  constructor(props: ComponentProps) {
+  constructor(props: ReactEchartsPropsTypes) {
     super(props);
     this.echartsLib = props.echarts as any; // the echarts object.
     this.echartsElement = null; // echarts div element
@@ -40,7 +42,7 @@ export class EchartsReactCore extends Component<ComponentProps> {
   }
 
   // update
-  componentDidUpdate(prevProps: ComponentProps) {
+  componentDidUpdate(prevProps: ReactEchartsPropsTypes) {
     // 判断是否需要 setOption，由开发者自己来确定。默认为 true
     if (typeof this.props.shouldSetOption === 'function' && !this.props.shouldSetOption(prevProps, this.props)) {
       return;
@@ -122,8 +124,8 @@ export class EchartsReactCore extends Component<ComponentProps> {
   };
 
   // bind the events
-  bindEvents = (instance: ECharts, events: Record<string, (param: any) => any>) => {
-    const _bindEvent = (eventName, func) => {
+  bindEvents = (instance: ECharts, events: EventMap) => {
+    const _bindEvent = (eventName: string, func: EventHandler) => {
       // ignore the event config which not satisfy
       if (typeof eventName === 'string' && typeof func === 'function') {
         // binding event
