@@ -11,10 +11,10 @@
     "src"
   ],
   "scripts": {
-    "docs:dev": "dumi dev",
-    "docs:build": "dumi build",
+    "docs:dev": "NODE_ENV=development dumi dev",
+    "docs:build": "NODE_ENV=production dumi build",
     "docs:deploy": "rimraf dist && npm run docs:build && gh-pages -d dist",
-    "start": "webpack-dev-server --watch",
+    "start": "npm run docs:dev",
     "lint": "eslint src __tests__ && prettier src __tests__ --check",
     "fix": "eslint src __tests__ --fix && prettier src __tests__ --write",
     "clean": "rimraf lib esm dist",

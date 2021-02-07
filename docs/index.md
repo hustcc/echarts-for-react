@@ -5,8 +5,10 @@ hero:
   title: ECharts for React
   desc: 全网最好用的 ECharts 的 React 组件封装
   actions:
-    - text: 查看在线 DEMO
+    - text: 在线实例
       link: /examples/dynamic
+    - text: 开源地址
+      link: https://github.com/hustcc/echarts-for-react
 footer: Open-source MIT Licensed | Copyright © 2021-present
 ---
 
