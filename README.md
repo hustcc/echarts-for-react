@@ -2,9 +2,9 @@
 
 A very simple React wrapper for [Apache ECharts (incubating)](https://github.com/apache/incubator-echarts). 
 
+[![npm](https://img.shields.io/npm/v/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
 [![Build Status](https://github.com/hustcc/echarts-for-react/workflows/build/badge.svg?branch=master)](https://github.com/hustcc/echarts-for-react/actions?query=workflow%3Abuild)
 [![Coverage](https://img.shields.io/coveralls/hustcc/echarts-for-react/master.svg)](https://coveralls.io/github/hustcc/echarts-for-react)
-[![npm](https://img.shields.io/npm/v/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
 [![NPM downloads](https://img.shields.io/npm/dm/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
 [![License](https://img.shields.io/npm/l/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
 ![ECharts Ver](https://img.shields.io/badge/echarts-%5E3.0.0%20%7C%7C%20%5E4.0.0%20%7C%7C%20%5E5.0.0-blue.svg)
