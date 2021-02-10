@@ -1,9 +1,9 @@
 ---
-title: ECharts for React - 全网最好用的 ECharts 的 React 组件封装
-order: 10
+title: ECharts for React - 全网开发者下载量最高的 ECharts 的 React 组件封装
+order: 1
 hero:
   title: ECharts for React
-  desc: 全网最好用的 ECharts 的 React 组件封装
+  desc: 全网开发者下载量最高的 ECharts 的 React 组件封装
   actions:
     - text: 在线实例
       link: /examples/dynamic
@@ -43,6 +43,9 @@ const Page: React.FC = () => {
         smooth: true,
       },
     ],
+    tooltip: {
+      trigger: 'axis',
+    },
   };
 
   return <ReactECharts option={options} />;
@@ -74,6 +77,9 @@ const Page: React.FC = () => {
         smooth: true,
       },
     ],
+    tooltip: {
+      trigger: 'axis',
+    },
   };
 
   return <ReactECharts option={options} />;

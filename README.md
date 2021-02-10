@@ -1,6 +1,6 @@
 # echarts-for-react
 
-A very simple React wrapper for [Apache ECharts (incubating)](https://github.com/apache/incubator-echarts). 
+The simplest, and the best React wrapper for [Apache ECharts](https://github.com/apache/incubator-echarts). 
 
 [![npm](https://img.shields.io/npm/v/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
 [![Build Status](https://github.com/hustcc/echarts-for-react/workflows/build/badge.svg?branch=master)](https://github.com/hustcc/echarts-for-react/actions?query=workflow%3Abuild)
@@ -11,101 +11,62 @@ A very simple React wrapper for [Apache ECharts (incubating)](https://github.com
 ![React Ver](https://img.shields.io/badge/React-%20%5E15.0.0%20%7C%7C%20%20%5E16.0.0%20%7C%7C%20%20%5E17.0.0-blue.svg)
 
 
-# 1. install
+## Install
 
-```sh
-npm install --save echarts-for-react
+```bach
+$ npm install --save echarts-for-react
 
 # `echarts` is the peerDependence of `echarts-for-react`, you can install echarts with your own version.
-npm install --save echarts
+$ npm install --save echarts
 ```
 
 Then use it.
 
-```js
-import ReactEcharts from 'echarts-for-react';
+```ts
+import ReactECharts from 'echarts-for-react';
 
 // render echarts option.
-<ReactEcharts option={this.getOption()} />
+<ReactECharts option={this.getOption()} />
 ```
 
-You can run demo by:
+You can run website.
 
-```sh
-git clone git@github.com:hustcc/echarts-for-react.git
+```bash
+$ git clone git@github.com:hustcc/echarts-for-react.git
 
-npm install
+$ npm install
 
-npm start
+$ npm start
 ```
 
-then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. or see [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
-
-## GL
-
-Install and import [`echarts-gl`](https://www.npmjs.com/package/echarts-gl) module when you want to create a [GL instance](https://www.echartsjs.com/examples/zh/index.html#chart-type-globe)
-
- - **`Install`**
-
-```sh
-npm install --save echarts-gl
-```
-
- - **`Import`**
-
-```js
-import 'echarts-gl'
-import ReactEcharts from "echarts-for-react";
-
-<ReactEcharts
-  option={GL_OPTION}
-/>
-
-```
+Then open [http://127.0.0.1:8081/](http://127.0.0.1:8081/) in your browser. or see [https://git.hust.cc/echarts-for-react/](https://git.hust.cc/echarts-for-react/) which is deploy on gh-pages.
 
 
-# 2. usage
+## Usage
 
-Code of a simple demo code showed below. For more example can see: [http://git.hust.cc/echarts-for-react/](http://git.hust.cc/echarts-for-react/)
+Code of a simple demo code showed below. For more example can see: [https://git.hust.cc/echarts-for-react/](https://git.hust.cc/echarts-for-react/)
 
-### javascript
-
-```js
+```ts
 import React from 'react';
-import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require('echarts-for-react');
+import ReactECharts from 'echarts-for-react';  // or var ReactECharts = require('echarts-for-react');
 
-<ReactEcharts
+<ReactECharts
   option={this.getOption()}
   notMerge={true}
   lazyUpdate={true}
   theme={"theme_name"}
   onChartReady={this.onChartReadyCallback}
   onEvents={EventsDict}
-  opts={} />
-```
-
-### typescript
-
-```js
-import * as React from "react";
-import ReactEcharts from "echarts-for-react";
-
-<ReactEcharts
-  option={this.getOption()}
-  notMerge={true}
-  lazyUpdate={true}
-  theme={"theme_name"}
-  onChartReady={this.onChartReadyCallback}
-  onEvents={EventsDict}
-  opts={} />
+  opts={}
+/>
 ```
 
 Import ECharts.js modules manually to reduce bundle size
 
-```js
+```ts
 import React from 'react';
 // import the core library.
-import ReactEchartsCore from 'echarts-for-react/lib/core';
+import ReactEChartsCore from 'echarts-for-react/lib/core';
 
 // then import echarts modules those you have used manually.
 import echarts from 'echarts/lib/echarts';
@@ -152,8 +113,8 @@ import 'echarts/lib/component/title';
 
 // import 'zrender/lib/vml/vml';
 
-// The usage of ReactEchartsCore are same with above.
-<ReactEchartsCore
+// The usage of ReactEChartsCore are same with above.
+<ReactEChartsCore
   echarts={echarts}
   option={this.getOption()}
   notMerge={true}
@@ -161,10 +122,11 @@ import 'echarts/lib/component/title';
   theme={"theme_name"}
   onChartReady={this.onChartReadyCallback}
   onEvents={EventsDict}
-  opts={} />
+  opts={}
+/>
 ```
 
-# 3. component props
+## Props of Component
 
  - **`option`** (required, object)
 
@@ -190,7 +152,7 @@ the `class` of echarts div. you can setting the css style of charts by class nam
 
 the `theme` of echarts. `string`, should `registerTheme` before use it (theme object format: [https://github.com/ecomfe/echarts/blob/master/theme/dark.js](https://github.com/ecomfe/echarts/blob/master/theme/dark.js)). e.g.
 
-```js
+```ts
 // import echarts
 import echarts from 'echarts';
 ...
@@ -200,7 +162,7 @@ echarts.registerTheme('my_theme', {
 });
 ...
 // render the echarts use option `theme`
-<ReactEcharts
+<ReactECharts
   option={this.getOption()}
   style={{height: '300px', width: '100%'}}
   className='echarts-for-echarts'
@@ -223,16 +185,17 @@ the echarts loading option config, can see [https://echarts.apache.org/api.html#
 
 binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g:
 
-```js
-let onEvents = {
+```ts
+const onEvents = {
   'click': this.onChartClick,
   'legendselectchanged': this.onChartLegendselectchanged
 }
 ...
-<ReactEcharts
+<ReactECharts
   option={this.getOption()}
-  style={{height: '300px', width: '100%'}}
-  onEvents={onEvents} />
+  style={{ height: '300px', width: '100%' }}
+  onEvents={onEvents}
+/>
 ```
 for more event key name, see: [https://echarts.apache.org/api.html#events](https://echarts.apache.org/api.html#events)
 
@@ -240,16 +203,16 @@ for more event key name, see: [https://echarts.apache.org/api.html#events](https
 
 the `opts` of echarts. `object`, will be used when initial echarts instance by `echarts.init`. Document [here](https://echarts.apache.org/api.html#echarts.init).
 
-```js
-<ReactEcharts
+```ts
+<ReactECharts
   option={this.getOption()}
-  style={{height: '300px'}}
+  style={{ height: '300px' }}
   opts={{renderer: 'svg'}} // use svg to render the chart.
 />
 ```
 
 
-# 4. Component API & Echarts API
+## Component API & Echarts API
 
 the Component only has `one API` named `getEchartsInstance`.
 
@@ -257,16 +220,18 @@ the Component only has `one API` named `getEchartsInstance`.
 
 for example:
 
-```js
+```ts
 // render the echarts component below with rel
-<ReactEcharts ref={(e) => { this.echarts_react = e; }}
-  option={this.getOption()} />
+<ReactECharts
+  ref={(e) => { this.echartRef = e; }}
+  option={this.getOption()}
+/>
 
-// then get the `ReactEcharts` use this.echarts_react
+// then get the `ReactECharts` use this.echarts_react
 
-let echarts_instance = this.echarts_react.getEchartsInstance();
+const echartInstance = this.echartRef.getEchartsInstance();
 // then you can use any API of echarts.
-let base64 = echarts_instance.getDataURL();
+const base64 = echartInstance.getDataURL();
 ```
 
 **About API of echarts, can see** [https://echarts.apache.org/api.html#echartsInstance](https://echarts.apache.org/api.html#echartsInstance).
@@ -279,28 +244,39 @@ You can use the API to do:
 4. `release` the charts.
 
 
-# 5. Q & A
+## FAQ
 
- - How to render the chart with svg when using echarts 4.x
+### How to render the chart with svg when using echarts 4.x
 
 Use the props `opts` of component with `renderer = 'svg'`. For example:
 
 
-```js
-<ReactEcharts
+```ts
+<ReactECharts
   option={this.getOption()}
   style={{height: '300px'}}
   opts={{renderer: 'svg'}} // use svg to render the chart.
 />
 ```
 
- - How to resolve Error `Component series.scatter3D not exists. Load it first.`
+### How to resolve Error `Component series.scatter3D not exists. Load it first.`
 
-[Install and import `echarts-gl` first](#GL)
+Install and import [`echarts-gl`](https://www.npmjs.com/package/echarts-gl) module when you want to create a [GL instance](https://www.echartsjs.com/examples/zh/index.html#chart-type-globe)
+
+```sh
+npm install --save echarts-gl
+```
+
+```ts
+import 'echarts-gl'
+import ReactECharts from "echarts-for-react";
+
+<ReactECharts
+  option={GL_OPTION}
+/>
+```
 
 
-# 6. LICENSE
+## LICENSE
 
 MIT@[hustcc](https://github.com/hustcc).
-
-
