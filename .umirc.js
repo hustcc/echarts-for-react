@@ -28,6 +28,7 @@ export default defineConfig({
   analytics: {
     // Google Analytics 代码，配置后会启用
     ga: 'G-T1MYFFZ6TL',
+    baidu: 'df880ba684fa4f42e9e672abeef0e34b',
   },
   // more config: https://d.umijs.org/config
 });
