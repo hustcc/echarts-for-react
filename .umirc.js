@@ -19,7 +19,15 @@ export default defineConfig({
     { title: '在线文档', path: 'https://github.com/hustcc/echarts-for-react' },
     { title: 'GitHub', path: 'https://github.com/hustcc/echarts-for-react' },
   ],
+  metas: [
+    {
+      name: 'baidu-site-verification',
+      content: 'code-RXD3FioZrI'
+    },
+  ],
   analytics: {
+    // Google Analytics 代码，配置后会启用
+    ga: 'G-T1MYFFZ6TL',
   },
   // more config: https://d.umijs.org/config
 });
