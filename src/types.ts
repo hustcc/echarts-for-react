@@ -9,6 +9,7 @@ export type Opts = {
   readonly renderer?: 'canvas' | 'svg';
   readonly width?: number | null | undefined | 'auto';
   readonly height?: number | null | undefined | 'auto';
+  readonly locale?: string;
 };
 
 export type EChartsReactProps = {
