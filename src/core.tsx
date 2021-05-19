@@ -85,7 +85,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
    * 1. if exist, return the existed instance
    * 2. or new one instance
    */
-  public getEchartsInstance() {
+  public getEchartsInstance(): ECharts {
     return this.echarts.getInstanceByDom(this.ele) || this.echarts.init(this.ele, this.props.theme, this.props.opts);
   }
 
