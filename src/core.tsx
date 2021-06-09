@@ -5,6 +5,7 @@ import { isFunction } from './helper/is-function';
 import { isString } from './helper/is-string';
 import { isEqual } from './helper/is-equal';
 import { EChartsReactProps, EChartsInstance } from './types';
+import type { ECharts } from 'echarts';
 
 /**
  * core component for echarts binding
