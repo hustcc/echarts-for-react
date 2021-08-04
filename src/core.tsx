@@ -45,16 +45,32 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
     // 2. 修改 opts 的时候
-    // 3. 修改 onEvents 的时候，这样可以取消所有之前绑定的事件 issue #151
     if (
       !isEqual(prevProps.theme, this.props.theme) ||
-      !isEqual(prevProps.opts, this.props.opts) ||
-      !isEqual(prevProps.onEvents, this.props.onEvents)
+      !isEqual(prevProps.opts, this.props.opts)
     ) {
       this.dispose();
 
       this.renderNewEcharts(); // 重建
       return;
+    }
+
+    // 修改 onEvent 的时候先移除历史事件再添加
+    const echartInstance = this.getEchartsInstance();
+    if (!isEqual(prevProps.onEvents, this.props.onEvents)) {
+      this.offEvents(echartInstance, prevProps.onEvents);
+      this.bindEvents(echartInstance, this.props.onEvents || {});
+    }
+
+    /**
+     * when style or class name updated, change size.
+     */
+    if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
+      try {
+        echartInstance.resize();
+      } catch (e) {
+        console.warn(e);
+      }
     }
 
     // when thoes props isEqual, do not update echarts
@@ -63,17 +79,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
       return;
     }
 
-    const echartsInstance = this.updateEChartsOption();
-    /**
-     * when style or class name updated, change size.
-     */
-    if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
-      try {
-        echartsInstance.resize();
-      } catch (e) {
-        console.warn(e);
-      }
-    }
+    this.updateEChartsOption();
   }
 
   componentWillUnmount() {
@@ -147,6 +153,17 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     for (const eventName in events) {
       if (Object.prototype.hasOwnProperty.call(events, eventName)) {
         _bindEvent(eventName, events[eventName]);
+      }
+    }
+  }
+
+  // off the events
+  private offEvents(instance, events: EChartsReactProps['onEvents']) {
+    if (!events) return;
+    // loop and off
+    for (const eventName in events) {
+      if (isString(eventName)) {
+        instance.off(eventName);
       }
     }
   }
