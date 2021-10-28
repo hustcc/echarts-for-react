@@ -1,3 +1,4 @@
+import type { ECharts } from 'echarts';
 import React, { PureComponent } from 'react';
 import { bind, clear } from 'size-sensor';
 import { pick } from './helper/pick';
@@ -16,6 +17,11 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   public ele: HTMLElement;
 
   /**
+   * if this is the first time we are resizing
+   */
+  private isInitialResize: boolean;
+
+  /**
    * echarts library entry
    */
   protected echarts: any;
@@ -25,6 +31,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
 
     this.echarts = props.echarts;
     this.ele = null;
+    this.isInitialResize = true;
   }
 
   componentDidMount() {
@@ -62,17 +69,12 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     if (!isEqual(pick(this.props, pickKeys), pick(prevProps, pickKeys))) {
       this.updateEChartsOption();
     }
-    
+
     /**
      * when style or class name updated, change size.
      */
     if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
-      try {
-        const echartInstance = this.getEchartsInstance();
-        echartsInstance.resize();
-      } catch (e) {
-        console.warn(e);
-      }
+      this.resize();
     }
   }
 
@@ -85,7 +87,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
    * 1. if exist, return the existed instance
    * 2. or new one instance
    */
-  public getEchartsInstance() {
+  public getEchartsInstance(): ECharts {
     return this.echarts.getInstanceByDom(this.ele) || this.echarts.init(this.ele, this.props.theme, this.props.opts);
   }
 
@@ -122,11 +124,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     // 4. on resize
     if (this.ele) {
       bind(this.ele, () => {
-        try {
-          echartsInstance.resize();
-        } catch (e) {
-          console.warn(e);
-        }
+        this.resize();
       });
     }
   }
@@ -165,6 +163,27 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     else echartInstance.hideLoading();
 
     return echartInstance;
+  }
+
+  /**
+   * resize wrapper
+   */
+  private resize() {
+    // 1. get the echarts object
+    const echartsInstance = this.getEchartsInstance();
+
+    // 2. call echarts instance resize if not the initial resize
+    // resize should not happen on first render as it will cancel initial echarts animations
+    if (!this.isInitialResize) {
+      try {
+        echartsInstance.resize();
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    // 3. update variable for future calls
+    this.isInitialResize = false;
   }
 
   render(): JSX.Element {
