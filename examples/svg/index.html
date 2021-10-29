@@ -26,7 +26,18 @@
       window.routerBase = "/echarts-for-react/";
     </script>
     <script>
-      //! umi version: 3.3.7
+      //! umi version: 3.5.20
+    </script>
+    <script>
+      !(function () {
+        var e = localStorage.getItem("dumi:prefers-color"),
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches,
+          r = ["light", "dark", "auto"];
+        document.documentElement.setAttribute(
+          "data-prefers-color",
+          e === r[2] ? (t ? r[1] : r[0]) : r.indexOf(e) > -1 ? e : r[0]
+        );
+      })();
     </script>
     <script>
       var _hmt = _hmt || [];
