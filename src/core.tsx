@@ -64,13 +64,12 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
       return;
     }
 
-    // when thoes props isEqual, do not update echarts
+    // when these props are not isEqual, update echarts
     const pickKeys = ['option', 'notMerge', 'lazyUpdate', 'showLoading', 'loadingOption'];
-    if (isEqual(pick(this.props, pickKeys), pick(prevProps, pickKeys))) {
-      return;
+    if (!isEqual(pick(this.props, pickKeys), pick(prevProps, pickKeys))) {
+      this.updateEChartsOption();
     }
 
-    this.updateEChartsOption();
     /**
      * when style or class name updated, change size.
      */
