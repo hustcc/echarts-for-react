@@ -56,10 +56,10 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     }
 
     // 修改 onEvent 的时候先移除历史事件再添加
-    const echartInstance = this.getEchartsInstance();
+    const echartsInstance = this.getEchartsInstance();
     if (!isEqual(prevProps.onEvents, this.props.onEvents)) {
-      this.offEvents(echartInstance, prevProps.onEvents);
-      this.bindEvents(echartInstance, this.props.onEvents || {});
+      this.offEvents(echartsInstance, prevProps.onEvents);
+      this.bindEvents(echartsInstance, this.props.onEvents);
     }
 
     /**
@@ -67,7 +67,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
      */
     if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
       try {
-        echartInstance.resize();
+        echartsInstance.resize();
       } catch (e) {
         console.warn(e);
       }
