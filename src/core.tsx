@@ -82,13 +82,29 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     this.dispose();
   }
 
+  /*
+   * initialise an echarts instance
+   */
+  public async initEchartsInstance(): Promise<ECharts> {
+    this.echarts.init(this.ele, this.props.theme, this.props.opts);
+    await new Promise((r) => setTimeout(r, 50));
+    const width = this.ele.clientWidth;
+    const height = this.ele.clientHeight;
+    this.dispose();
+
+    const opts = {
+      ...this.props.opts,
+      width,
+      height,
+    };
+    return this.echarts.init(this.ele, this.props.theme, opts);
+  }
+
   /**
-   * return the echart object
-   * 1. if exist, return the existed instance
-   * 2. or new one instance
+   * return the existing echart object
    */
   public getEchartsInstance(): ECharts {
-    return this.echarts.getInstanceByDom(this.ele) || this.echarts.init(this.ele, this.props.theme, this.props.opts);
+    return this.echarts.getInstanceByDom(this.ele);
   }
 
   /**
@@ -109,19 +125,22 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   /**
    * render a new echarts instance
    */
-  private renderNewEcharts() {
+  private async renderNewEcharts() {
     const { onEvents, onChartReady } = this.props;
 
-    // 1. new echarts instance
+    // 1. init echarts instance
+    await this.initEchartsInstance();
+
+    // 2. update echarts instance
     const echartsInstance = this.updateEChartsOption();
 
-    // 2. bind events
+    // 3. bind events
     this.bindEvents(echartsInstance, onEvents || {});
 
-    // 3. on chart ready
+    // 4. on chart ready
     if (isFunction(onChartReady)) onChartReady(echartsInstance);
 
-    // 4. on resize
+    // 5. on resize
     if (this.ele) {
       bind(this.ele, () => {
         this.resize();
@@ -176,7 +195,10 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     // resize should not happen on first render as it will cancel initial echarts animations
     if (!this.isInitialResize) {
       try {
-        echartsInstance.resize();
+        echartsInstance.resize({
+          width: 'auto',
+          height: 'auto',
+        });
       } catch (e) {
         console.warn(e);
       }
