@@ -86,18 +86,29 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
    * initialise an echarts instance
    */
   public async initEchartsInstance(): Promise<ECharts> {
-    this.echarts.init(this.ele, this.props.theme, this.props.opts);
-    await new Promise((r) => setTimeout(r, 50));
-    const width = this.ele.clientWidth;
-    const height = this.ele.clientHeight;
-    this.dispose();
+    return new Promise((resolve) => {
+      // create temporary echart instance
+      this.echarts.init(this.ele, this.props.theme, this.props.opts);
+      const echartsInstance = this.getEchartsInstance();
 
-    const opts = {
-      ...this.props.opts,
-      width,
-      height,
-    };
-    return this.echarts.init(this.ele, this.props.theme, opts);
+      echartsInstance.on('finished', () => {
+        // get final width and height
+        const width = this.ele.clientWidth;
+        const height = this.ele.clientHeight;
+
+        // dispose temporary echart instance
+        this.echarts.dispose(this.ele);
+
+        // recreate echart instance
+        // we use final width and height only if not originally provided as opts
+        const opts = {
+          width,
+          height,
+          ...this.props.opts, 
+        };
+        resolve(this.echarts.init(this.ele, this.props.theme, opts));
+      });
+    });
   }
 
   /**
