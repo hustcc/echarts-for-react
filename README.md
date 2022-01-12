@@ -218,6 +218,15 @@ import 'echarts/lib/component/title';
 />
 ```
 
+For **Next.js** user, code transpilation is needed.
+
+```js
+// next.config.js
+const withTM = require("next-transpile-modules")(["echarts", "zrender"]);
+
+module.exports = withMT({})
+```
+
 ## Props of Component
 
  - **`option`** (required, object)
