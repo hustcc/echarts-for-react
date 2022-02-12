@@ -82,13 +82,40 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     this.dispose();
   }
 
+  /*
+   * initialise an echarts instance
+   */
+  public async initEchartsInstance(): Promise<ECharts> {
+    return new Promise((resolve) => {
+      // create temporary echart instance
+      this.echarts.init(this.ele, this.props.theme, this.props.opts);
+      const echartsInstance = this.getEchartsInstance();
+
+      echartsInstance.on('finished', () => {
+        // get final width and height
+        const width = this.ele.clientWidth;
+        const height = this.ele.clientHeight;
+
+        // dispose temporary echart instance
+        this.echarts.dispose(this.ele);
+
+        // recreate echart instance
+        // we use final width and height only if not originally provided as opts
+        const opts = {
+          width,
+          height,
+          ...this.props.opts, 
+        };
+        resolve(this.echarts.init(this.ele, this.props.theme, opts));
+      });
+    });
+  }
+
   /**
-   * return the echart object
-   * 1. if exist, return the existed instance
-   * 2. or new one instance
+   * return the existing echart object
    */
   public getEchartsInstance(): ECharts {
-    return this.echarts.getInstanceByDom(this.ele) || this.echarts.init(this.ele, this.props.theme, this.props.opts);
+    return this.echarts.getInstanceByDom(this.ele);
   }
 
   /**
@@ -109,19 +136,22 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   /**
    * render a new echarts instance
    */
-  private renderNewEcharts() {
+  private async renderNewEcharts() {
     const { onEvents, onChartReady } = this.props;
 
-    // 1. new echarts instance
+    // 1. init echarts instance
+    await this.initEchartsInstance();
+
+    // 2. update echarts instance
     const echartsInstance = this.updateEChartsOption();
 
-    // 2. bind events
+    // 3. bind events
     this.bindEvents(echartsInstance, onEvents || {});
 
-    // 3. on chart ready
+    // 4. on chart ready
     if (isFunction(onChartReady)) onChartReady(echartsInstance);
 
-    // 4. on resize
+    // 5. on resize
     if (this.ele) {
       bind(this.ele, () => {
         this.resize();
@@ -176,7 +206,10 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     // resize should not happen on first render as it will cancel initial echarts animations
     if (!this.isInitialResize) {
       try {
-        echartsInstance.resize();
+        echartsInstance.resize({
+          width: 'auto',
+          height: 'auto',
+        });
       } catch (e) {
         console.warn(e);
       }
