@@ -224,7 +224,7 @@ For **Next.js** user, code transpilation is needed.
 // next.config.js
 const withTM = require("next-transpile-modules")(["echarts", "zrender"]);
 
-module.exports = withMT({})
+module.exports = withTM({})
 ```
 
 ## Props of Component
