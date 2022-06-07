@@ -312,6 +312,10 @@ the `opts` of echarts. `object`, will be used when initial echarts instance by `
 />
 ```
 
+- **`autoResize`** (optional, boolean)
+
+decide whether to trigger `this.resize` when window resize. default is `true`.
+
 
 ## Component API & Echarts API
 
