@@ -4,7 +4,7 @@ import { bind, clear } from 'size-sensor';
 import { pick } from './helper/pick';
 import { isFunction } from './helper/is-function';
 import { isString } from './helper/is-string';
-import { isEqual } from './helper/is-equal';
+import { isEqual,isEqualEvents } from './helper/is-equal';
 import { EChartsReactProps, EChartsInstance } from './types';
 
 /**
@@ -56,7 +56,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     if (
       !isEqual(prevProps.theme, this.props.theme) ||
       !isEqual(prevProps.opts, this.props.opts) ||
-      !isEqual(prevProps.onEvents, this.props.onEvents)
+      !isEqualEvents(prevProps.onEvents, this.props.onEvents)
     ) {
       this.dispose();
 
@@ -104,7 +104,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
         const opts = {
           width,
           height,
-          ...this.props.opts, 
+          ...this.props.opts,
         };
         resolve(this.echarts.init(this.ele, this.props.theme, opts));
       });
