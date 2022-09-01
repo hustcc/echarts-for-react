@@ -104,7 +104,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
         const opts = {
           width,
           height,
-          ...this.props.opts, 
+          ...this.props.opts,
         };
         resolve(this.echarts.init(this.ele, this.props.theme, opts));
       });
@@ -137,7 +137,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
    * render a new echarts instance
    */
   private async renderNewEcharts() {
-    const { onEvents, onChartReady } = this.props;
+    const { onEvents, onChartReady, autoResize = true } = this.props;
 
     // 1. init echarts instance
     await this.initEchartsInstance();
@@ -152,7 +152,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     if (isFunction(onChartReady)) onChartReady(echartsInstance);
 
     // 5. on resize
-    if (this.ele) {
+    if (this.ele && autoResize) {
       bind(this.ele, () => {
         this.resize();
       });

@@ -67,4 +67,9 @@ export type EChartsReactProps = {
    * should update echarts options
    */
   readonly shouldSetOption?: (prevProps: EChartsReactProps, props: EChartsReactProps) => boolean;
+
+  /**
+   * should trigger resize when window resize
+   */
+  readonly autoResize?: boolean;
 };
