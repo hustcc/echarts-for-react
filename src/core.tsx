@@ -209,6 +209,8 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
         echartsInstance.resize({
           width: 'auto',
           height: 'auto',
+          //xwb edit
+          this.props.opt.resize,
         });
       } catch (e) {
         console.warn(e);
