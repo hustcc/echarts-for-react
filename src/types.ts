@@ -10,6 +10,7 @@ export type Opts = {
   readonly width?: number | null | undefined | 'auto';
   readonly height?: number | null | undefined | 'auto';
   readonly locale?: string;
+  readonly resize?: objective;
 };
 
 export type EChartsReactProps = {
