@@ -217,7 +217,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
           //      easing?: string
           //      }
           //    }
-          this.props.opts.resize
+          this.props.opts.resize,
                                });
       } catch (e) {
         console.warn(e);
