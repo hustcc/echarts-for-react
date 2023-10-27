@@ -272,7 +272,7 @@ echarts.registerTheme('my_theme', {
 
  - **`onChartReady`** (optional, function)
 
-when the chart is ready, will callback the function with the `echarts object` as it's paramter.
+when the chart is ready, will callback the function with the `echarts object` as it's parameter.
 
  - **`loadingOption`** (optional, object)
 
@@ -284,7 +284,7 @@ the echarts loading option config, can see [https://echarts.apache.org/api.html#
 
  - **`onEvents`** (optional, array(string=>function) )
 
-binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's paramters. e.g:
+binding the echarts event, will callback with the `echarts event object`, and `the echart object` as it's parameters. e.g:
 
 ```ts
 const onEvents = {
