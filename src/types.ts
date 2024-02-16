@@ -56,7 +56,7 @@ export type EChartsReactProps = {
    */
   readonly opts?: Opts;
   /**
-   * when after chart reander, do the callback with echarts instance
+   * when after chart render, do the callback with echarts instance
    */
   readonly onChartReady?: (instance: EChartsInstance) => void;
   /**
