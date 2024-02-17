@@ -209,7 +209,16 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
         echartsInstance.resize({
           width: 'auto',
           height: 'auto',
-        });
+
+          // follow echarts v5.1+: https://echarts.apache.org/zh/api.html#echartsInstance.resize
+          // resize:{
+          //   animation?: {
+          //      duration?: number
+          //      easing?: string
+          //      }
+          //    }
+          this.props.opts.resize,
+                               });
       } catch (e) {
         console.warn(e);
       }
