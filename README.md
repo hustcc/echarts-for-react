@@ -237,6 +237,10 @@ the echarts option config, can see [https://echarts.apache.org/option.html#title
 
 when `setOption`, not merge the data, default is `false`. See [https://echarts.apache.org/api.html#echartsInstance.setOption](https://echarts.apache.org/api.html#echartsInstance.setOption).
 
+ - **`replaceMerge`** (optional, string | string[])
+
+when `setOption`, default is `null`. See [https://echarts.apache.org/api.html#echartsInstance.setOption](https://echarts.apache.org/api.html#echartsInstance.setOption).
+
  - **`lazyUpdate`** (optional, object)
 
 when `setOption`, lazy update the data, default is `false`. See [https://echarts.apache.org/api.html#echartsInstance.setOption](https://echarts.apache.org/api.html#echartsInstance.setOption).
