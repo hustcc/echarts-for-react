@@ -227,6 +227,17 @@ const withTM = require("next-transpile-modules")(["echarts", "zrender"]);
 module.exports = withTM({})
 ```
 
+For **Next.js 13** user, native code transpilation `transpilePackages` can be used.
+
+```js
+// next.config.js
+const nextConfig = {
+  transpilePackages: ['echarts', 'zrender'],
+}
+
+module.exports = nextConfig
+```
+
 ## Props of Component
 
  - **`option`** (required, object)
