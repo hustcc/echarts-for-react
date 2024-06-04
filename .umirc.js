@@ -15,7 +15,7 @@ export default defineConfig({
   ],
   navs: [
     null,
-    { title: 'G2Plot', path: 'https://github.com/antvis/G2Plot' },
+    { title: 'G2', path: 'https://github.com/antvis/G2' },
     { title: '在线文档', path: 'https://github.com/hustcc/echarts-for-react' },
     { title: 'GitHub', path: 'https://github.com/hustcc/echarts-for-react' },
   ],
