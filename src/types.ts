@@ -1,16 +1,15 @@
 import { CSSProperties } from 'react';
+import { init } from 'echarts';
 
 export type EChartsOption = any;
 
 export type EChartsInstance = any;
 
-export type Opts = {
-  readonly devicePixelRatio?: number;
-  readonly renderer?: 'canvas' | 'svg';
-  readonly width?: number | null | undefined | 'auto';
-  readonly height?: number | null | undefined | 'auto';
-  readonly locale?: string;
-};
+export type EchartsInitParameters = Parameters<typeof init>;
+
+export type Theme = EchartsInitParameters[1];
+
+export type Opts = EchartsInitParameters[2];
 
 export type EChartsReactProps = {
   /**
@@ -34,7 +33,7 @@ export type EChartsReactProps = {
    * 1. theme name string
    * 2. theme object
    */
-  readonly theme?: string | Record<string, any>;
+  readonly theme?: Theme;
   /**
    * notMerge config for echarts, default is `false`
    */
