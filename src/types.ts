@@ -1,8 +1,9 @@
 import { CSSProperties } from 'react';
+import type { EChartsOption, EChartsType } from 'echarts';
 
-export type EChartsOption = any;
+export type { EChartsOption };
 
-export type EChartsInstance = any;
+export type EChartsInstance = EChartsType;
 
 export type Opts = {
   readonly devicePixelRatio?: number;
