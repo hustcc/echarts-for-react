@@ -218,9 +218,8 @@ import 'echarts/lib/component/title';
 />
 ```
 
-For **Next.js** user, code transpilation is needed.
+For **Next.js** user, code transpilation is needed. For Next.js 13.1 or higher, as all `next-transpile-modules` features are natively built-in and the package has been deprecated, so please add `transpilePackages: ['echarts', 'zrender']` into `nextConfig` object: 
 
-For Next.js 13.1 or higher, as all `next-transpile-modules` features are natively built-in and the package has been deprecated, so please add `transpilePackages: ['echarts', 'zrender']` into `nextConfig` object: 
 ```js
 // next.config.js
 /** @type {import('next').NextConfig} */
@@ -233,7 +232,7 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-For previous versions:
+For Next.js with version < 13.1:
 
 ```js
 // next.config.js
