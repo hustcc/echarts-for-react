@@ -342,7 +342,8 @@ const base64 = echartInstance.getDataURL();
 TypeScript and `useRef()` example:
 
 ```ts
-const getOption = () => {/** */}
+const getOption = () => {/** */};
+
 export default function App() {
 	const echartsRef = useRef<InstanceType<typeof ReactEcharts>>(null);
 
