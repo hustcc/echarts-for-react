@@ -343,6 +343,25 @@ const echartInstance = this.echartRef.getEchartsInstance();
 const base64 = echartInstance.getDataURL();
 ```
 
+TypeScript and `useRef()` example:
+
+```ts
+const getOption = () => {/** */};
+
+export default function App() {
+	const echartsRef = useRef<InstanceType<typeof ReactEcharts>>(null);
+
+	useEffect(() => {
+		if (echartsRef.current) {
+			const echartsInstance = echartsRef.current.getEchartsInstance();
+			// do something
+			echartsInstance.resize();
+		}
+	}, []);
+	return <ReactEcharts ref={echartsRef} option={getOption()} />;
+}
+```
+
 **About API of echarts, can see** [https://echarts.apache.org/api.html#echartsInstance](https://echarts.apache.org/api.html#echartsInstance).
 
 You can use the API to do:
