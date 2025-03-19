@@ -1,7 +1,10 @@
 import { CSSProperties } from 'react';
-import type { EChartsOption, EChartsType } from 'echarts';
+import type { EChartsType } from 'echarts';
 
-export type { EChartsOption };
+/**
+ * Solve the type conflict caused by multiple type files
+ */
+export type EChartsOption = any;
 
 export type EChartsInstance = EChartsType;
 
