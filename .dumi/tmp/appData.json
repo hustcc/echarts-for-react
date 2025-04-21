@@ -162,10 +162,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            2
           ]
         },
-        "register": 91
+        "register": 96
       },
       "enableBy": "register",
       "type": "plugin",
@@ -196,7 +196,7 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            12
+            13
           ]
         },
         "register": 19
@@ -212,7 +212,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -232,7 +232,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -276,10 +276,10 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            0
+            1
           ]
         },
-        "register": 5
+        "register": 6
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1134,7 +1134,7 @@
       "time": {
         "hooks": {
           "onStart": [
-            0
+            1
           ]
         },
         "register": 1
@@ -1150,7 +1150,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1163,7 +1163,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 63
+        "register": 68
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1176,7 +1176,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 73
+        "register": 80
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1207,7 +1207,7 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            0
+            1
           ]
         },
         "register": 0
@@ -1250,10 +1250,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            2
+            1
           ]
         },
-        "register": 32
+        "register": 26
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
@@ -1265,7 +1265,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1278,7 +1278,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/@umijs/preset-umi/dist/features/okam/okam.js",
@@ -1317,7 +1317,7 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            1
+            0
           ]
         },
         "register": 2
@@ -1384,7 +1384,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 4
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1397,7 +1397,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1410,7 +1410,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
@@ -1422,7 +1422,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1435,7 +1435,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 16
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1448,7 +1448,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1474,7 +1474,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1487,7 +1487,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 4
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
@@ -1499,7 +1499,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 19
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1592,7 +1592,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
@@ -1604,7 +1604,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1617,7 +1617,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 4
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian.js",
@@ -1654,7 +1654,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 13
+        "register": 14
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1667,7 +1667,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 30
+        "register": 36
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1681,13 +1681,13 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            14
+            15
           ],
           "onStart": [
-            0
+            1
           ]
         },
-        "register": 24
+        "register": 26
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
@@ -1699,7 +1699,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1712,7 +1712,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1725,7 +1725,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1738,7 +1738,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1751,7 +1751,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1764,7 +1764,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 15
+        "register": 20
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1790,7 +1790,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1829,7 +1829,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1855,7 +1855,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1868,7 +1868,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1881,7 +1881,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1894,7 +1894,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1907,7 +1907,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1920,7 +1920,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1933,7 +1933,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 27
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1959,7 +1959,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1972,7 +1972,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1985,7 +1985,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2092,7 +2092,7 @@
             3
           ]
         },
-        "register": 106
+        "register": 135
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/dumi/dist/features/autoAlias.js",
@@ -2111,10 +2111,10 @@
             0
           ],
           "onCheck": [
-            0
+            1
           ]
         },
-        "register": 2
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2129,7 +2129,7 @@
       },
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "C:/Users/aarafeh/Repos/echarts-for-react/node_modules/dumi/compiled/@umijs/plugins/index.js",
@@ -2158,7 +2158,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2174,10 +2174,10 @@
           "modifyConfig": [
             0,
             0,
-            1
+            0
           ]
         },
-        "register": 8
+        "register": 14
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2200,7 +2200,7 @@
             4
           ]
         },
-        "register": 2
+        "register": 3
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2217,7 +2217,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2251,14 +2251,14 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            89
+            102
           ],
           "modifyAppData": [
             0,
             3
           ]
         },
-        "register": 28
+        "register": 35
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2299,7 +2299,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2348,7 +2348,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2416,8 +2416,8 @@
       },
       "nprogress": true,
       "lastUpdated": true,
-      "sourceLink": "https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_echarts_react_versions/{fileName}#L{line}",
-      "editLink": "https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_echarts_react_versions/{filename}"
+      "sourceLink": "https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_versions/{fileName}#L{line}",
+      "editLink": "https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_versions/{filename}"
     },
     "resolve": {
       "docDirs": [
@@ -2500,8 +2500,8 @@
       },
       "nprogress": true,
       "lastUpdated": true,
-      "sourceLink": "https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_echarts_react_versions/{fileName}#L{line}",
-      "editLink": "https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_echarts_react_versions/{filename}"
+      "sourceLink": "https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_versions/{fileName}#L{line}",
+      "editLink": "https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_versions/{filename}"
     },
     "resolve": {
       "docDirs": [
@@ -2682,7 +2682,7 @@
   "overridesCSS": [],
   "bundler": "webpack",
   "git": {
-    "originUrl": "https://github.com/hustcc/echarts-for-react.git"
+    "originUrl": "https://github.com/AnasArafeh/echarts-for-react.git"
   },
   "framework": "react",
   "typescript": {

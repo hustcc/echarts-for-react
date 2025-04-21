@@ -32,9 +32,9 @@ const LocalesContainer: FC<{ children: ReactNode }> = (props) => {
     const localeMessages = messages[locale] || {};
 
     // append internal message, for use intl as string template util
-    localeMessages['$internal.edit.link'] = "https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_echarts_react_versions/{filename}";
+    localeMessages['$internal.edit.link'] = "https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_versions/{filename}";
 
-    localeMessages['$internal.api.sourceLink'] = "https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_echarts_react_versions/{fileName}#L{line}";
+    localeMessages['$internal.api.sourceLink'] = "https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_versions/{fileName}#L{line}";
 
     return createIntl({ locale, messages: localeMessages }, cache);
   }, []);

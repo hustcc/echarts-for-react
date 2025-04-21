@@ -17,7 +17,7 @@ const entryExports = {
 const pkg = {"name":"echarts-for-react","description":" Apache Echarts components for React.","version":"3.0.3","license":"MIT","repository":{"type":"git","url":"https://github.com/hustcc/echarts-for-react.git"},"author":"hustcc (http://github.com/hustcc)"};
 const historyType = "browser";
 const hostname = undefined;
-const themeConfig = {"footer":"Copyright © 2025 | Powered by <a href=\"https://d.umijs.org\" target=\"_blank\" rel=\"noreferrer\">dumi</a>","prefersColor":{"default":"light","switch":true},"nprogress":true,"lastUpdated":true,"sourceLink":"https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_echarts_react_versions/{fileName}#L{line}","editLink":"https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_echarts_react_versions/{filename}"};
+const themeConfig = {"footer":"Copyright © 2025 | Powered by <a href=\"https://d.umijs.org\" target=\"_blank\" rel=\"noreferrer\">dumi</a>","prefersColor":{"default":"light","switch":true},"nprogress":true,"lastUpdated":true,"sourceLink":"https://github.com/hustcc/echarts-for-react/tree/feature%2Fupgrade_versions/{fileName}#L{line}","editLink":"https://github.com/hustcc/echarts-for-react/edit/feature%2Fupgrade_versions/{filename}"};
 const _2_level_nav_available = true;
 
 export default function DumiContextWrapper() {

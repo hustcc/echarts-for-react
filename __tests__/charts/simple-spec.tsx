@@ -24,7 +24,7 @@ describe('chart', () => {
   it('simple', () => {
     let instance;
     const div = createDiv();
-    const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} />;
+    const Comp = <ReactECharts ref={e => { instance = e }}  option={options} />;
     render(Comp, div);
 
     expect(instance).toBeDefined();
@@ -44,7 +44,7 @@ describe('chart', () => {
       div.style.width = '1200px';
       div.style.height = '720px';
 
-      const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} />;
+      const Comp = <ReactECharts ref={e => { instance = e }}  option={options} />;
       render(Comp, div);
 
       expect(instance).toBeDefined();
@@ -70,7 +70,7 @@ describe('chart', () => {
           width: '100%',
         };
 
-        const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} style={style} />;
+        const Comp = <ReactECharts ref={e => { instance = e }}  option={options} style={style} />;
         render(Comp, div);
 
         expect(instance).toBeDefined();
@@ -96,7 +96,7 @@ describe('chart', () => {
           height: '100%',
         };
 
-        const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} style={style} />;
+        const Comp = <ReactECharts ref={e => { instance = e }}  option={options} style={style} />;
         render(Comp, div);
 
         expect(instance).toBeDefined();
@@ -122,7 +122,7 @@ describe('chart', () => {
           height: '150px',
         };
 
-        const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} style={style} />;
+        const Comp = <ReactECharts ref={e => { instance = e }}  option={options} style={style} />;
         render(Comp, div);
 
         expect(instance).toBeDefined();
@@ -150,7 +150,7 @@ describe('chart', () => {
           height: null,
         };
 
-        const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} opts={opts} />;
+        const Comp = <ReactECharts ref={e => { instance = e }}  option={options} opts={opts} />;
         render(Comp, div);
 
         expect(instance).toBeDefined();
@@ -176,7 +176,7 @@ describe('chart', () => {
           height: 150,
         };
 
-        const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} opts={opts} />;
+        const Comp = <ReactECharts ref={e => { instance = e }}  option={options} opts={opts} />;
         render(Comp, div);
 
         expect(instance).toBeDefined();
