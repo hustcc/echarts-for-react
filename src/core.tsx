@@ -1,11 +1,11 @@
 import type { ECharts } from 'echarts';
-import React, { PureComponent } from 'react';
+import React, { type JSX, PureComponent } from 'react';
 import { bind, clear } from 'size-sensor';
 import { pick } from './helper/pick';
 import { isFunction } from './helper/is-function';
 import { isString } from './helper/is-string';
 import { isEqual } from './helper/is-equal';
-import { EChartsReactProps, EChartsInstance } from './types';
+import type { EChartsReactProps, EChartsInstance } from './types';
 
 /**
  * core component for echarts binding
