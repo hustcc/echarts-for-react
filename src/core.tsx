@@ -1,5 +1,5 @@
 import type { ECharts } from 'echarts';
-import React, { PureComponent } from 'react';
+import React, { JSX, PureComponent } from 'react';
 import { bind, clear } from 'size-sensor';
 import { pick } from './helper/pick';
 import { isFunction } from './helper/is-function';
