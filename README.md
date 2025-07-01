@@ -1,6 +1,6 @@
 # echarts-for-react
 
-The simplest, and the best React wrapper for [Apache ECharts](https://github.com/apache/incubator-echarts). 
+The simplest, and the best React wrapper for [Apache ECharts](https://github.com/apache/incubator-echarts). Using visualization with MCP Server [mcp-server-chart](https://github.com/antvis/mcp-server-chart).
 
 [![npm](https://img.shields.io/npm/v/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
 [![build](https://github.com/hustcc/echarts-for-react/actions/workflows/build.yml/badge.svg)](https://github.com/hustcc/echarts-for-react/actions/workflows/build.yml)
