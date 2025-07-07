@@ -3,8 +3,8 @@
  * @param obj
  * @param keys
  */
-export function pick(obj: Record<string, unknown>, keys: string[]): Record<string, unknown> {
-  const r = {};
+export function pick<T extends object>(obj: T, keys: readonly (keyof T)[]): Partial<T> {
+  const r = {} as Partial<T>;
   keys.forEach((key) => {
     r[key] = obj[key];
   });
