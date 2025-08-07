@@ -7,7 +7,7 @@ The simplest, and the best React wrapper for [Apache ECharts](https://github.com
 [![Coverage](https://img.shields.io/coveralls/hustcc/echarts-for-react/master.svg)](https://coveralls.io/github/hustcc/echarts-for-react)
 [![NPM downloads](https://img.shields.io/npm/dm/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
 [![License](https://img.shields.io/npm/l/echarts-for-react.svg)](https://www.npmjs.com/package/echarts-for-react)
-![ECharts Ver](https://img.shields.io/badge/echarts-%5E3.0.0%20%7C%7C%20%5E4.0.0%20%7C%7C%20%5E5.0.0-blue.svg)
+![ECharts Ver](https://img.shields.io/badge/echarts-%5E3.0.0%20%7C%7C%20%5E4.0.0%20%7C%7C%20%5E5.0.0%20%5E6.0.0-blue.svg)
 ![React Ver](https://img.shields.io/badge/React-%20%5E15.0.0%20%7C%7C%20%20%5E16.0.0%20%7C%7C%20%20%5E17.0.0-blue.svg)
 
 
@@ -63,7 +63,7 @@ import ReactECharts from 'echarts-for-react';  // or var ReactECharts = require(
 
 Import ECharts.js modules manually to reduce bundle size
 
-**With Echarts.js v5:**
+**With Echarts.js v5 or v6:**
 
 ```ts
 import React from 'react';
