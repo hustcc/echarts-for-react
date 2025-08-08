@@ -18,7 +18,7 @@
     "no-unused-vars": 0, // @typescript-eslint/no-unused-vars
     "no-inner-declarations": 0,
     "prettier/prettier": 2,
-    "@typescript-eslint/no-unused-vars": 1,
+    "@typescript-eslint/no-unused-vars": [1, { "ignoreRestSiblings": true }],
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-use-before-define": [2, { "functions": false }],

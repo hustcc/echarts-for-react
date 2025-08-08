@@ -191,4 +191,29 @@ describe('chart', () => {
       });
     });
   });
+
+  describe('props', () => {
+    it('default', () => {
+      let instance;
+      const div = createDiv();
+      div.style.display = 'block';
+      div.style.width = '1200px';
+      div.style.height = '720px';
+
+      const opts = {
+        width: null,
+        height: null,
+      };
+
+      const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} opts={opts} data-testid="props-test" />;
+      render(Comp, div);
+
+      expect(div.querySelector('[data-testid="props-test"]')).toBe(instance.ele);
+
+      destroy(div);
+      expect(div.querySelector('*')).toBe(null);
+
+      removeDom(div);
+    });
+  });
 });

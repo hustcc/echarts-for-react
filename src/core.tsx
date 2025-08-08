@@ -52,10 +52,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     // 以下属性修改的时候，需要 dispose 之后再新建
     // 1. 切换 theme 的时候
     // 2. 修改 opts 的时候
-    if (
-      !isEqual(prevProps.theme, this.props.theme) ||
-      !isEqual(prevProps.opts, this.props.opts)
-    ) {
+    if (!isEqual(prevProps.theme, this.props.theme) || !isEqual(prevProps.opts, this.props.opts)) {
       this.dispose();
 
       this.renderNewEcharts(); // 重建
@@ -70,8 +67,8 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     }
 
     // when these props are not isEqual, update echarts
-    const pickKeys = ['option', 'notMerge', 'replaceMerge', 'lazyUpdate', 'showLoading', 'loadingOption'];
-    if (!isEqual(pick(this.props, pickKeys), pick(prevProps, pickKeys))) {
+    const pickKeys = ['option', 'notMerge', 'replaceMerge', 'lazyUpdate', 'showLoading', 'loadingOption'] as const;
+    if (!isEqual(pick(this.props, pickKeys), pick(prevProps as any, pickKeys))) {
       this.updateEChartsOption();
     }
 
@@ -243,7 +240,24 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   }
 
   render(): JSX.Element {
-    const { style, className = '' } = this.props;
+    const {
+      style,
+      className = '',
+      echarts,
+      option,
+      theme,
+      notMerge,
+      replaceMerge,
+      lazyUpdate,
+      showLoading,
+      loadingOption,
+      opts,
+      onChartReady,
+      onEvents,
+      shouldSetOption,
+      autoResize,
+      ...props
+    } = this.props;
     // default height = 300
     const newStyle = { height: 300, ...style };
 
@@ -254,6 +268,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
         }}
         style={newStyle}
         className={`echarts-for-react ${className}`}
+        {...props}
       />
     );
   }
