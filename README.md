@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/hustcc-echarts-for-react-badge.png)](https://mseep.ai/app/hustcc-echarts-for-react)
+
 # echarts-for-react
 
 The simplest, and the best React wrapper for [Apache ECharts](https://github.com/apache/incubator-echarts). Using visualization with MCP Server [mcp-server-chart](https://github.com/antvis/mcp-server-chart).
