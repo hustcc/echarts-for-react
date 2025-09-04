@@ -1,10 +1,8 @@
 import type { CSSProperties } from 'react';
 import type { EChartsType } from 'echarts';
+import type { EChartsOption, ECharts } from 'echarts';
 
-/**
- * Solve the type conflict caused by multiple type files
- */
-export type EChartsOption = any;
+export type EChartsReactOption = EChartsOption;
 
 export type EChartsInstance = EChartsType;
 
@@ -20,7 +18,7 @@ export type EChartsReactProps = {
   /**
    * echarts library entry, use it for import necessary.
    */
-  readonly echarts?: any;
+  readonly echarts?: ECharts;
   /**
    * `className` for container
    */
@@ -32,7 +30,7 @@ export type EChartsReactProps = {
   /**
    * echarts option
    */
-  readonly option: EChartsOption;
+  readonly option: EChartsReactOption;
   /**
    * echarts theme config, can be:
    * 1. theme name string
@@ -58,7 +56,7 @@ export type EChartsReactProps = {
   /**
    * loadingOption config for echarts, default is `null`
    */
-  readonly loadingOption?: any;
+  readonly loadingOption?: null | object;
   /**
    * echarts opts config, default is `{}`
    */
