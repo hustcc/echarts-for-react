@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactECharts from '../../src/';
-import type { EChartsOption } from '../../src/';
+import type { EChartsReactOption } from '../../src/';
 import { render, destroy, createDiv, removeDom } from '../utils';
 
-const options: EChartsOption = {
+const options: EChartsReactOption = {
   xAxis: {
     type: 'category',
     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
