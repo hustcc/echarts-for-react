@@ -1,8 +1,9 @@
 import * as echarts from 'echarts';
-import { EChartsReactProps, EChartsReactOption, EChartsInstance } from './types';
+import { EChartsReactProps } from './types';
 import EChartsReactCore from './core';
 
-export type { EChartsReactProps, EChartsReactOption, EChartsInstance };
+// export type { EChartsReactProps, EChartsReactOption, EChartsInstance };
+export * from './types';
 
 // export the Component the echarts Object.
 export default class EChartsReact extends EChartsReactCore {
