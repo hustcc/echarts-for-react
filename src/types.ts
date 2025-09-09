@@ -15,7 +15,7 @@ export type Opts = {
   readonly locale?: string;
 };
 
-export interface EChartsReactProps extends React.HTMLAttributes<HTMLDivElement> {
+export type EChartsReactProps = React.HTMLAttributes<HTMLDivElement> & {
   /**
    * echarts library entry, use it for import necessary.
    */
@@ -71,4 +71,4 @@ export interface EChartsReactProps extends React.HTMLAttributes<HTMLDivElement> 
    * should trigger resize when window resize
    */
   readonly autoResize?: boolean;
-}
+};

@@ -256,7 +256,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
       onEvents,
       shouldSetOption,
       autoResize,
-      ...props
+      ...divHTMLAttributes
     } = this.props;
     // default height = 300
     const newStyle = { height: 300, ...style };
@@ -268,7 +268,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
         }}
         style={newStyle}
         className={`echarts-for-react ${className}`}
-        {...props}
+        {...divHTMLAttributes}
       />
     );
   }
