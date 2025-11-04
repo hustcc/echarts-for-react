@@ -190,7 +190,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     // loop and off
     for (const eventName in events) {
       if (isString(eventName)) {
-        instance.off(eventName);
+        instance.off(eventName, events[eventName]);
       }
     }
   }
