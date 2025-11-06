@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react';
 import type { EChartsType } from 'echarts';
 
 /**
@@ -16,19 +15,11 @@ export type Opts = {
   readonly locale?: string;
 };
 
-export type EChartsReactProps = {
+export type EChartsReactProps = React.HTMLAttributes<HTMLDivElement> & {
   /**
    * echarts library entry, use it for import necessary.
    */
   readonly echarts?: any;
-  /**
-   * `className` for container
-   */
-  readonly className?: string;
-  /**
-   * `style` for container
-   */
-  readonly style?: CSSProperties;
   /**
    * echarts option
    */

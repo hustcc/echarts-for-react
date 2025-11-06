@@ -2,9 +2,10 @@ import { pick } from '../../src/helper/pick';
 
 describe('pick', () => {
   it('pick', () => {
-    expect(pick({ a: 1 }, [])).toEqual({});
-    expect(pick({ a: 1 }, ['b'])).toEqual({});
-    expect(pick({ a: 1 }, ['a'])).toEqual({ a: 1 });
-    expect(pick({ a: 1 }, ['a', 'b'])).toEqual({ a: 1 });
+    const obj: { a: number; b?: number } = { a: 1 };
+    expect(pick(obj, [])).toEqual({});
+    expect(pick(obj, ['b'])).toEqual({});
+    expect(pick(obj, ['a'])).toEqual({ a: 1 });
+    expect(pick(obj, ['a', 'b'])).toEqual({ a: 1 });
   });
 });
