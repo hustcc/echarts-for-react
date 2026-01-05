@@ -4,6 +4,9 @@ import type { EChartsOption } from '../../src/';
 import { render, destroy, createDiv, removeDom } from '../utils';
 
 const options: EChartsOption = {
+  legend: {
+    data: ['series1', 'series2'],
+  },
   xAxis: {
     type: 'category',
     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -13,7 +16,14 @@ const options: EChartsOption = {
   },
   series: [
     {
+      name: 'series1',
       data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: 'line',
+      smooth: true,
+    },
+    {
+      name: 'series2',
+      data: [720, 832, 801, 834, 1190, 1230, 1220],
       type: 'line',
       smooth: true,
     },
