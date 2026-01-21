@@ -4,6 +4,9 @@ import type { EChartsOption } from '../../src/';
 import { render, destroy, createDiv, removeDom } from '../utils';
 
 const options: EChartsOption = {
+  legend: {
+    data: ['series1', 'series2'],
+  },
   xAxis: {
     type: 'category',
     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -13,7 +16,14 @@ const options: EChartsOption = {
   },
   series: [
     {
+      name: 'series1',
       data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: 'line',
+      smooth: true,
+    },
+    {
+      name: 'series2',
+      data: [720, 832, 801, 834, 1190, 1230, 1220],
       type: 'line',
       smooth: true,
     },
@@ -215,5 +225,58 @@ describe('chart', () => {
 
       removeDom(div);
     });
+  });
+
+  it('updates event handler on re-render', (done) => {
+    let instance;
+    const div = createDiv();
+
+    const handlerA = jest.fn();
+    const handlerB = jest.fn();
+
+    // First render, with first legend handler
+    const Comp1 = (
+      <ReactECharts
+        ref={(e) => (instance = e)}
+        option={options}
+        onEvents={{
+          legendselectchanged: handlerA,
+        }}
+        onChartReady={(chart) => {
+          // @ts-ignore - accessing internal property for testing
+          const handlers = chart._$handlers?.legendselectchanged;
+
+          expect(handlers).toBeDefined();
+          expect(handlers.length).toBe(1);
+
+          // Re-render with second legend handler
+          const Comp2 = (
+            <ReactECharts
+              ref={(e) => (instance = e)}
+              option={options}
+              onEvents={{
+                legendselectchanged: handlerB,
+              }}
+            />
+          );
+          render(Comp2, div);
+
+          // Wait a tick for re-render to complete
+          setTimeout(() => {
+            const updatedChart = instance.getEchartsInstance();
+            // @ts-ignore - accessing internal property for testing
+            const handlersAfterReRender = updatedChart._$handlers?.legendselectchanged;
+            expect(handlersAfterReRender).toBeDefined();
+            expect(handlersAfterReRender.length).toBe(1);
+
+            destroy(div);
+            removeDom(div);
+            done();
+          }, 0);
+        }}
+      />
+    );
+
+    render(Comp1, div);
   });
 });

@@ -26,12 +26,18 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
    */
   protected echarts: any;
 
+  /**
+   * Currently attached ECharts event listeners
+   */
+  private eventHandlerRefs: Record<string, Function>;
+
   constructor(props: EChartsReactProps) {
     super(props);
 
     this.echarts = props.echarts;
     this.ele = null;
     this.isInitialResize = true;
+    this.eventHandlerRefs = {};
   }
 
   componentDidMount() {
@@ -62,7 +68,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     // 修改 onEvent 的时候先移除历史事件再添加
     const echartsInstance = this.getEchartsInstance();
     if (!isEqual(prevProps.onEvents, this.props.onEvents)) {
-      this.offEvents(echartsInstance, prevProps.onEvents);
+      this.unbindEvents(echartsInstance);
       this.bindEvents(echartsInstance, this.props.onEvents);
     }
 
@@ -163,15 +169,21 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
 
   // bind the events
   private bindEvents(instance, events: EChartsReactProps['onEvents']) {
-    function _bindEvent(eventName: string, func: Function) {
+    const _bindEvent = (eventName: string, func: Function) => {
       // ignore the event config which not satisfy
       if (isString(eventName) && isFunction(func)) {
         // binding event
-        instance.on(eventName, (param) => {
+        const handler = (param) => {
           func(param, instance);
-        });
+        };
+
+        instance.on(eventName, handler);
+
+        // Store currently bound event handlers. This way we can unbind them
+        // on next component update, before binding the new handlers.
+        this.eventHandlerRefs[eventName] = handler;
       }
-    }
+    };
 
     // loop and bind
     for (const eventName in events) {
@@ -181,15 +193,16 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     }
   }
 
-  // off the events
-  private offEvents(instance, events: EChartsReactProps['onEvents']) {
-    if (!events) return;
-    // loop and off
-    for (const eventName in events) {
-      if (isString(eventName)) {
-        instance.off(eventName, events[eventName]);
-      }
+  /**
+   * Unbind all currently bound event handlers. Importantly, this does not
+   * unbind the `"finished"` event that is used for chart initialization.
+   */
+  private unbindEvents(instance: EChartsInstance) {
+    for (const [eventName, listener] of Object.entries(this.eventHandlerRefs)) {
+      instance.off(eventName, listener);
     }
+
+    this.eventHandlerRefs = {};
   }
 
   /**
