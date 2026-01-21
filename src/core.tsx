@@ -29,7 +29,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   /**
    * Currently attached ECharts event listeners
    */
-  private onEvents: Record<string, Function>;
+  private eventHandlerRefs: Record<string, Function>;
 
   constructor(props: EChartsReactProps) {
     super(props);
@@ -37,7 +37,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     this.echarts = props.echarts;
     this.ele = null;
     this.isInitialResize = true;
-    this.onEvents = {};
+    this.eventHandlerRefs = {};
   }
 
   componentDidMount() {
@@ -181,7 +181,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
 
         // Store currently bound event handlers. This way we can unbind them
         // on next component update, before binding the new handlers.
-        this.onEvents[eventName] = handler;
+        this.eventHandlerRefs[eventName] = handler;
       }
     };
 
@@ -198,11 +198,11 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
    * unbind the `"finished"` event that is used for chart initialization.
    */
   private unbindEvents(instance: EChartsInstance) {
-    for (const [eventName, listener] of Object.entries(this.onEvents)) {
+    for (const [eventName, listener] of Object.entries(this.eventHandlerRefs)) {
       instance.off(eventName, listener);
     }
 
-    this.onEvents = {};
+    this.eventHandlerRefs = {};
   }
 
   /**
