@@ -252,7 +252,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     this.isInitialResize = false;
   }
 
-  render(): JSX.Element {
+  render(): React.ReactElement {
     const {
       style,
       className = '',
