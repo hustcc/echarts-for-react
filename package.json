@@ -5,6 +5,32 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "module": "./esm/index.js",
+      "default": "./lib/index.js"
+    },
+    "./lib/*.js": {
+      "types": "./lib/*.d.ts",
+      "module": "./esm/*.js",
+      "default": "./lib/*.js"
+    },
+    "./lib/*": {
+      "types": "./lib/*.d.ts",
+      "module": "./esm/*.js",
+      "default": "./lib/*.js"
+    },
+    "./esm/*.js": {
+      "types": "./esm/*.d.ts",
+      "default": "./esm/*.js"
+    },
+    "./esm/*": {
+      "types": "./esm/*.d.ts",
+      "default": "./esm/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "lib",
     "esm",
