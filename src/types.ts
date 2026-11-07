@@ -7,12 +7,19 @@ export type EChartsOption = any;
 
 export type EChartsInstance = EChartsType;
 
+/**
+ * echarts init opts, see https://echarts.apache.org/en/api.html#echarts.init
+ */
 export type Opts = {
   readonly devicePixelRatio?: number;
   readonly renderer?: 'canvas' | 'svg';
-  readonly width?: number | null | undefined | 'auto';
-  readonly height?: number | null | undefined | 'auto';
-  readonly locale?: string;
+  readonly useDirtyRect?: boolean;
+  readonly useCoarsePointer?: boolean;
+  readonly pointerSize?: number;
+  readonly ssr?: boolean;
+  readonly width?: number | string | null | undefined;
+  readonly height?: number | string | null | undefined;
+  readonly locale?: string | Record<string, any>;
 };
 
 export type EChartsReactProps = React.HTMLAttributes<HTMLDivElement> & {
