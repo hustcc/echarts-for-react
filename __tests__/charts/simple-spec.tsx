@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactECharts from '../../src/';
 import type { EChartsOption } from '../../src/';
+import type { Opts } from '../../src/types';
 import { render, destroy, createDiv, removeDom } from '../utils';
 
 const options: EChartsOption = {
@@ -193,6 +194,38 @@ describe('chart', () => {
         expect(instance.getEchartsInstance()).toBeDefined();
         expect(instance.getEchartsInstance().getWidth()).toBe(400);
         expect(instance.getEchartsInstance().getHeight()).toBe(150);
+
+        destroy(div);
+        expect(div.querySelector('*')).toBe(null);
+
+        removeDom(div);
+      });
+
+      it('every echarts init option', () => {
+        let instance;
+        const div = createDiv();
+        div.style.display = 'block';
+        div.style.width = '1200px';
+        div.style.height = '720px';
+
+        const opts: Opts = {
+          renderer: 'svg',
+          devicePixelRatio: 2,
+          useDirtyRect: false,
+          useCoarsePointer: true,
+          pointerSize: 30,
+          ssr: false,
+          width: '400px',
+          height: '150px',
+          locale: 'EN',
+        };
+
+        const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} opts={opts} />;
+        render(Comp, div);
+
+        expect(instance.getEchartsInstance().getWidth()).toBe(400);
+        expect(instance.getEchartsInstance().getHeight()).toBe(150);
+        expect(div.querySelector('svg')).not.toBe(null);
 
         destroy(div);
         expect(div.querySelector('*')).toBe(null);
