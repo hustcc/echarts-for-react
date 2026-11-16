@@ -322,6 +322,20 @@ for more event key name, see: [https://echarts.apache.org/api.html#events](https
 
 the `opts` of echarts. `object`, will be used when initial echarts instance by `echarts.init`. Document [here](https://echarts.apache.org/api.html#echarts.init).
 
+| key | type | description |
+| --- | --- | --- |
+| `renderer` | `'canvas'` \| `'svg'` | the renderer, default is `'canvas'`. |
+| `devicePixelRatio` | `number` | the ratio of device pixels, default is `window.devicePixelRatio`. |
+| `useDirtyRect` | `boolean` | redraw only the changed area of the chart. canvas renderer only, ECharts 5+. |
+| `useCoarsePointer` | `boolean` | enlarge the area that responds to the pointer, for touch screens. detected from the device when not set. ECharts 5.4+. |
+| `pointerSize` | `number` | size in pixels of that enlarged area, default is `44`. ECharts 5.4+. |
+| `ssr` | `boolean` | server-side rendering, svg renderer only. ECharts 5.3+. |
+| `width` | `number` \| `string` \| `null` | the chart width in pixels. leave it out, or set `null` or `'auto'`, to use the width of the container. |
+| `height` | `number` \| `string` \| `null` | the chart height in pixels, same as `width`. |
+| `locale` | `string` \| `object` | the language: a locale name (`'EN'`, `'ZH'`, or one registered with `echarts.registerLocale`), or a locale object. ECharts 5+. |
+
+when a value in `opts` changes, the chart is disposed and created again with the new `opts`.
+
 ```ts
 <ReactECharts
   option={this.getOption()}
