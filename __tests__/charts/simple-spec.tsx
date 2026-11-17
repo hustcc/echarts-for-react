@@ -209,15 +209,15 @@ describe('chart', () => {
         div.style.height = '720px';
 
         const opts: Opts = {
+          width: '400px',
+          height: '150px',
+          locale: 'EN',
           renderer: 'svg',
           devicePixelRatio: 2,
           useDirtyRect: false,
           useCoarsePointer: true,
           pointerSize: 30,
           ssr: false,
-          width: '400px',
-          height: '150px',
-          locale: 'EN',
         };
 
         const Comp = <ReactECharts ref={(e) => (instance = e)} option={options} opts={opts} />;
