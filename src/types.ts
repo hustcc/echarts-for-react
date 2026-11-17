@@ -13,13 +13,13 @@ export type EChartsInstance = EChartsType;
 export type Opts = {
   readonly devicePixelRatio?: number;
   readonly renderer?: 'canvas' | 'svg';
+  readonly width?: number | string | null | undefined;
+  readonly height?: number | string | null | undefined;
+  readonly locale?: string | Record<string, any>;
   readonly useDirtyRect?: boolean;
   readonly useCoarsePointer?: boolean;
   readonly pointerSize?: number;
   readonly ssr?: boolean;
-  readonly width?: number | string | null | undefined;
-  readonly height?: number | string | null | undefined;
-  readonly locale?: string | Record<string, any>;
 };
 
 export type EChartsReactProps = React.HTMLAttributes<HTMLDivElement> & {
