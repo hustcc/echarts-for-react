@@ -67,6 +67,8 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
 
     // 修改 onEvent 的时候先移除历史事件再添加
     const echartsInstance = this.getEchartsInstance();
+    if (!echartsInstance) return;
+
     if (!isEqual(prevProps.onEvents, this.props.onEvents)) {
       this.unbindEvents(echartsInstance);
       this.bindEvents(echartsInstance, this.props.onEvents);
@@ -96,16 +98,28 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   public async initEchartsInstance(): Promise<ECharts> {
     return new Promise((resolve) => {
       // create temporary echart instance
-      this.echarts.init(this.ele, this.props.theme, this.props.opts);
+      const tempEchartsInstance = this.echarts.init(this.ele, this.props.theme, this.props.opts);
       const echartsInstance = this.getEchartsInstance();
+      if (!echartsInstance) {
+        resolve(tempEchartsInstance);
+        return;
+      }
 
-      echartsInstance.on('finished', () => {
+      const onFinished = () => {
+        echartsInstance.off('finished', onFinished);
+
+        const currentEle = this.ele;
+        if (!currentEle) {
+          resolve(tempEchartsInstance);
+          return;
+        }
+
         // get final width and height
-        const width = this.ele.clientWidth;
-        const height = this.ele.clientHeight;
+        const width = currentEle.clientWidth;
+        const height = currentEle.clientHeight;
 
         // dispose temporary echart instance
-        this.echarts.dispose(this.ele);
+        this.echarts.dispose(currentEle);
 
         // recreate echart instance
         // we use final width and height only if not originally provided as opts
@@ -114,15 +128,18 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
           height,
           ...this.props.opts,
         };
-        resolve(this.echarts.init(this.ele, this.props.theme, opts));
-      });
+        resolve(this.echarts.init(currentEle, this.props.theme, opts));
+      };
+
+      echartsInstance.on('finished', onFinished);
     });
   }
 
   /**
    * return the existing echart object
    */
-  public getEchartsInstance(): ECharts {
+  public getEchartsInstance(): ECharts | undefined {
+    if (!this.ele) return undefined;
     return this.echarts.getInstanceByDom(this.ele);
   }
 
@@ -152,6 +169,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
 
     // 2. update echarts instance
     const echartsInstance = this.updateEChartsOption();
+    if (!echartsInstance) return;
 
     // 3. bind events
     this.bindEvents(echartsInstance, onEvents || {});
@@ -208,7 +226,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   /**
    * render the echarts
    */
-  private updateEChartsOption(): EChartsInstance {
+  private updateEChartsOption(): EChartsInstance | undefined {
     const {
       option,
       notMerge = false,
@@ -219,6 +237,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
     } = this.props;
     // 1. get or initial the echarts object
     const echartInstance = this.getEchartsInstance();
+    if (!echartInstance) return undefined;
     // 2. set the echarts option
     echartInstance.setOption(option, { notMerge, replaceMerge, lazyUpdate });
     // 3. set loading mask
@@ -234,6 +253,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   private resize() {
     // 1. get the echarts object
     const echartsInstance = this.getEchartsInstance();
+    if (!echartsInstance) return;
 
     // 2. call echarts instance resize if not the initial resize
     // resize should not happen on first render as it will cancel initial echarts animations
